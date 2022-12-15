@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { Canvas, useThree } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+// import * as THREE from 'three';
+import { Color } from 'three';
+
+function SceneSetup () {
+    const { scene } = useThree();
+    scene.background = new Color("#000000");
+}
+
+// function TextStuff () {
+//     return(<h1 style={{position:'absolute'}}>Hello</h1>)
+// }
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Canvas>
+      <SceneSetup />
+        <OrbitControls></OrbitControls>
+        <mesh>
+          <sphereBufferGeometry position={[0, 0, 0]} />
+          <meshPhongMaterial color={"royalblue"} />
+        </mesh>
+        <mesh position={[0, 0, 1]}>
+          <planeGeometry />
+          <meshPhongMaterial color={'pink'} />
+        </mesh>
+        <ambientLight args={[0xff0000]} intensity={0.1}></ambientLight>
+        <directionalLight position={[0, 0, 5]} intensity={0.5} />
+      </Canvas>
     </div>
   );
 }
