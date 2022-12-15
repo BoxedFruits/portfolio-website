@@ -1,5 +1,8 @@
-const LightOrbs = () =>  {
-    return (<></>);
+const LightOrbs = () => {
+  return (
+    <>
+    </>
+  );
 }
 
 export default LightOrbs;

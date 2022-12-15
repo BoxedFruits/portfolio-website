@@ -5,7 +5,7 @@ import { Color } from 'three';
 const SceneSetup = () => {
   const { scene } = useThree();
   scene.background = new Color("#000000");
-}
+};
 
 const SelectionScene = ({ nextScene, prevScene }) => {
   return (
@@ -22,7 +22,8 @@ const SelectionScene = ({ nextScene, prevScene }) => {
       </mesh>
       <ambientLight args={[0xff0000]} intensity={0.1}></ambientLight>
       <directionalLight position={[0, 0, 5]} intensity={0.5} />
-    </Canvas>)
+    </Canvas>
+  );
 };
 
 export default SelectionScene;
