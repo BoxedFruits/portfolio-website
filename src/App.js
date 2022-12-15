@@ -1,7 +1,9 @@
+//AppJS will hold state and determine what gets rendered
+//Make sure to have ability to go back and forth scenes
+
 import './App.css';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-// import * as THREE from 'three';
 import { Color } from 'three';
 
 function SceneSetup () {
