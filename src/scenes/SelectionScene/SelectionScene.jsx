@@ -1,8 +1,8 @@
-import './SelectionSceneStyles'
+import './SelectionSceneStyles.css'
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SceneSetup = () => {
   const { scene } = useThree();
@@ -10,16 +10,17 @@ const SceneSetup = () => {
 };
 
 const SelectionText = () => {
-  const [isHighlighted, setIsHighLighted] = useState();
+  const [isHighlighted, setIsHighLighted] = useState(undefined);
+  // why am i blanking out on a better way to do this. Can probably use enums
 
   return (
     <div style={{ position: 'absolute', zIndex: '1' }}>
-      <h1 className='selection-name'>
+      <button className={`selection-browser ${isHighlighted ? 'highlight' : ''}`} onMouseEnter={(e) => setIsHighLighted(true)}>
         Browser
-      </h1>
-      <h1 className='selection-name'>
+      </button>
+      <button className={`selection-config' ${!isHighlighted && isHighlighted !== undefined ? 'highlight' : ''}`} onMouseEnter={(e) => setIsHighLighted(false)}>
         System Configuration
-      </h1>
+      </button>
     </div>
   )
 
