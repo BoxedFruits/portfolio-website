@@ -10,6 +10,6 @@ function App() {
       <SelectionScene />
     </div>
   );
-}
+};
 
 export default App;
