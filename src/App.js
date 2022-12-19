@@ -4,13 +4,13 @@
 import { ScreenSpace } from '@react-three/drei';
 import { useState } from 'react';
 import './App.css';
+import MemoryCardSelectionScreen from './scenes/MemoryCardSelectionScene/MemoryCardSelectionScene';
 import SelectionScene from './scenes/SelectionScene/SelectionScene';
 
 const Scenes = {
   IntroScene: 0,
   SelectionScene: 1,
-  MemoryCardSelectionScene: 2,
-  ObjectSelectionScene: 3
+  MemoryCardSelectionScene: 2
 }
 
 const App = () => {
@@ -23,12 +23,10 @@ const App = () => {
           case Scenes.IntroScene:
             break;
           case Scenes.SelectionScene: 
-            return <SelectionScene nextScene={() => setCurrScene(Scenes.MemoryCardSelectionScene)}></SelectionScene>
-            break;
-          case Scenes.MemoryCardSelectionScene: return <h1>Memory Card selection</h1>
-            break;
-          case ScreenSpace.ObjectSelectionScene:
-            break;
+            return <SelectionScene nextScene={() => setCurrScene(Scenes.MemoryCardSelectionScene)} />
+          case Scenes.MemoryCardSelectionScene: 
+            // Needs to also load data when chosing a memory card
+            return <MemoryCardSelectionScreen />
           default: <h1>Uh oh someething broke</h1>
         }
       })()}
