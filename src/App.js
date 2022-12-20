@@ -25,7 +25,7 @@ const App = () => {
           case Scenes.SelectionScene: 
             return <SelectionScene nextScene={() => setCurrScene(Scenes.MemoryCardSelectionScene)} />
           case Scenes.MemoryCardSelectionScene: 
-            // Needs to also load data when chosing a memory card
+            // Needs to also load data when chosing a memory card but doesn't need another component/scene
             return <MemoryCardSelectionScreen />
           default: <h1>Uh oh someething broke</h1>
         }

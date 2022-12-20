@@ -1,17 +1,14 @@
-import { Canvas, useThree } from "@react-three/fiber";
-import { Color } from "three";
+import { Canvas } from "@react-three/fiber";
 
-const SceneSetup = () => {
-  const { scene } = useThree();
-  scene.background = new Color('#808080');
-};
+// const SceneSetup = () => {
+//   const { scene } = useThree();
+// };
 
 const MemoryCardSelectionScreen = () => {
   return (
     <>
       <h1 style={{zIndex: 1}}>Memory Card selection2</h1>
       <Canvas>
-        <SceneSetup />
       </Canvas>
     </>
   );
