@@ -1,7 +1,6 @@
 //AppJS will hold state and determine what gets rendered
 //Make sure to have ability to go back and forth scenes
 
-import { ScreenSpace } from '@react-three/drei';
 import { useState } from 'react';
 import './App.css';
 import MemoryCardSelectionScreen from './scenes/MemoryCardSelectionScene/MemoryCardSelectionScene';
@@ -14,7 +13,7 @@ const Scenes = {
 }
 
 const App = () => {
-  const [currScene, setCurrScene] = useState(Scenes.SelectionScene);
+  const [currScene, setCurrScene] = useState(Scenes.MemoryCardSelectionScene);
 
   return (
     <div className="App">
