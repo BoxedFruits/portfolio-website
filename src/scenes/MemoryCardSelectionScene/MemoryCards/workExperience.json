@@ -1,0 +1,21 @@
+{
+  "objects": [
+    {
+      "title": "Vanguard",
+      "model": "vanguard_logo.obj",
+      "date": {
+        "start": "9/31/2020",
+        "end": "4/25/2022"
+      },
+      "summary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
+      "bulletPoints": [
+        "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
+        "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
+        "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
+      ],
+      "memory": "101 KB",
+      "height": ""
+    },
+    {}
+  ]
+}

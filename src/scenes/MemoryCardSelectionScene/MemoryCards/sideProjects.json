@@ -1,0 +1,20 @@
+{
+  "objects": [
+    {
+      "title": "Code4rena",
+      "model": "code4rena.obj",
+      "date": {
+        "start": "2/5/2022",
+        "end": "12/31/2022"
+      },
+      "summary": "A competitive auditing platform for Smart Contract Auditors to review smart contracts that are close to production deployement. There are incentives to finding High/Medium/Low vulernabilities as well as QA/Informational findings. Reports are often published after an audit has been completed and patched, allowing for further learning for the auditors on the platform." ,
+      "bulletPoints": [
+        "Finished in the top 500 for 2022",
+        "Found a medium severity finding during the Forgotten Runes audit"
+      ],
+      "memory": "422 KB",
+      "height": ""
+    },
+    {}
+  ]
+}
