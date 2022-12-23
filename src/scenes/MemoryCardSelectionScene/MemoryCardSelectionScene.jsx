@@ -1,9 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useMemo, useState } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
-import { useLoader } from '@react-three/fiber'
+import { useState } from "react";
+import MemoryCard from "./MemoryCard";
 
 const SideProjects = require("./MemoryCards/sideProjects.json");
 const WorkExperience = require("./MemoryCards/workExperience.json")
@@ -32,22 +30,6 @@ const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.DEFAULT);
   const [viewObjects, setViewObjects] = useState();
 
-  const MemoryCard = ({ position, model, color, name, file }) => { // Pass in setCurrHighLighted and currhighlighted as props and then make this a sperate component
-    const { scene } = useLoader(GLTFLoader, 'memory_card.glb')
-    const copiedScene = useMemo(() => scene.clone(), [scene])
-
-    return (
-      <group>
-        <primitive
-          onPointerOver={() => setCurrHighLighted(name)} 
-          position={position}
-          onClick={() => {setViewObjects(true);}}
-          object={copiedScene}>
-        </primitive>
-      </group>
-    );
-  }
-
   return (
     <>
       <h1 style={{ zIndex: 1 }}>Memory Card selection2 / {currHighlighted}</h1>
@@ -63,13 +45,17 @@ const MemoryCardSelectionScreen = () => {
           <MemoryCard
             position={[-2.25, 0, 0]}
             name={Highlight["Work Experience"]}
-            color="blue"
-            file={WorkExperience} />
+            file={WorkExperience}
+            setViewObjects={setViewObjects}
+            currHighlighted={currHighlighted}
+            setCurrHighLighted={setCurrHighLighted} />
           <MemoryCard
             position={[2.25, 0, 0]}
             name={Highlight["Side Projects"]}
-            color="white"
-            file={SideProjects} />
+            file={SideProjects}
+            setViewObjects={setViewObjects}
+            currHighlighted={currHighlighted}
+            setCurrHighLighted={setCurrHighLighted} />
         </Canvas>}
 
     </>
