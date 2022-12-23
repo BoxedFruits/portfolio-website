@@ -48,14 +48,16 @@ const MemoryCardSelectionScreen = () => {
             file={WorkExperience}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted}
-            setCurrHighLighted={setCurrHighLighted} />
+            setCurrHighLighted={setCurrHighLighted} 
+            viewObjects={viewObjects} />
           <MemoryCard
             position={[2.25, 0, 0]}
             name={Highlight["Side Projects"]}
             file={SideProjects}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted}
-            setCurrHighLighted={setCurrHighLighted} />
+            setCurrHighLighted={setCurrHighLighted} 
+            viewObjects={viewObjects}/>
         </Canvas>}
 
     </>
