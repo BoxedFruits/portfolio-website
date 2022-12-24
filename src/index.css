@@ -14,7 +14,7 @@ code {
 
 
 #root {
-  background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+  background-image: linear-gradient(145deg, rgb(126, 122, 122) 0%, rgba(0,0,0,1) 116%);
   /* Hacky way of getting a gradient background. Should probably be changed to a shader in the future */
 }
 
