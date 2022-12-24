@@ -3,9 +3,6 @@ import { useMemo, useRef } from "react";
 import { MathUtils } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-
-
-
 const MemoryCard = ({ position, name, file, setCurrHighLighted, currHighlighted, setViewObjects, viewObjects }) => {
   const { scene } = useLoader(GLTFLoader, 'memory_card.glb')
   const myMesh = useRef()
