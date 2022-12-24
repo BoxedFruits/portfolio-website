@@ -30,7 +30,6 @@ const MemoryCard = ({ position, name, file, setCurrHighLighted, currHighlighted,
   // currHighlighted === name will be used for highlighting
 
   return (
-
     <primitive
       ref={myMesh}
       center={position}
