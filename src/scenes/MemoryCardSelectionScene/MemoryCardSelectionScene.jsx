@@ -2,6 +2,7 @@ import { Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 import MemoryCard from "./MemoryCard";
+import ObjectSelector from "./ObjectSelector";
 
 const SideProjects = require("./MemoryCards/sideProjects.json");
 const WorkExperience = require("./MemoryCards/workExperience.json")
@@ -19,16 +20,6 @@ const Highlight = { // Is this even worse?
   }
 }
 
-const ObjectSelection = () => {
-  return (
-    <Canvas>
-      <mesh>
-        <boxGeometry></boxGeometry>
-      </mesh>
-    </Canvas>
-  )
-}
-
 const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
@@ -36,9 +27,7 @@ const MemoryCardSelectionScreen = () => {
   return (
     <>
       {viewObjects ?
-        <ObjectSelection>
-
-        </ObjectSelection>
+        <ObjectSelector />
         :
         <Canvas camera={{ position: [0, 0, -12] }}>
           <OrbitControls />
@@ -64,8 +53,8 @@ const MemoryCardSelectionScreen = () => {
             currHighlighted={currHighlighted.title}
             setCurrHighLighted={setCurrHighLighted}
             viewObjects={viewObjects} />
-        </Canvas>}
-
+        </Canvas>
+        }
     </>
   );
 }
