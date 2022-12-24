@@ -11,11 +11,12 @@ const MemoryCard = ({ position, name, file, setCurrHighLighted, currHighlighted,
 
   useFrame(({ clock }) => {
     if (startAnimation) {
-      myMesh.current.position.z = MathUtils.lerp(myMesh.current.position.z, 50, 0.001);
-      
-      myMesh.current.rotation.x = MathUtils.lerp(myMesh.current.rotation.x, -20, 0.00001);
-      myMesh.current.rotation.y = MathUtils.lerp(myMesh.current.rotation.y, -40, 0.00045);
-      myMesh.current.rotation.z = MathUtils.lerp(myMesh.current.position.z, -35, 0.0005);
+      myMesh.current.position.z = MathUtils.lerp(myMesh.current.position.z, -100, 0.002);
+      myMesh.current.position.x = MathUtils.lerp(myMesh.current.position.x, 0, 0.1);
+
+      myMesh.current.rotation.x = MathUtils.lerp(myMesh.current.rotation.x, 40, 0.00088);
+      myMesh.current.rotation.y = MathUtils.lerp(myMesh.current.rotation.y, 45, 0.00009);
+      myMesh.current.rotation.z = MathUtils.lerp(myMesh.current.position.z, -50, 0.8);
       setTimeout(() => {
         setViewObjects(true); // R3F will automatically try to destory objects
       }, 1000);
@@ -34,6 +35,7 @@ const MemoryCard = ({ position, name, file, setCurrHighLighted, currHighlighted,
       ref={myMesh}
       center={position}
       position={position}
+      rotation-x={0.6}
       object={copiedScene}
       onPointerOver={() => setCurrHighLighted(name)}
       onClick={() => {

@@ -38,7 +38,7 @@ const MemoryCardSelectionScreen = () => {
 
         </ObjectSelection>
         :
-        <Canvas>
+        <Canvas camera={{position:[0,0,-12]}}>
           <OrbitControls />
           <ambientLight></ambientLight>
           <pointLight intensity={0.1}></pointLight>
