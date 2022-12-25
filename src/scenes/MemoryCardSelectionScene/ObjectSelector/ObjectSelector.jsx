@@ -4,9 +4,10 @@
 //Populate menu with text from json file
 
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { MathUtils } from "three";
+import { CAMERA_POSITION } from "../MemoryCardSelectionScene";
 import "./ObjectSelector.css";
 
 const getAlphaValue = (rgba) => {
@@ -30,13 +31,18 @@ const Modal = ({ animateBackground }) => {
   });
 
   return (
-    <Html fullscreen ref={htmlRef}>
-      <div className="modal-background" style={{
-        display: "block",
-        backgroundColor: "rgba(255,10,255,.02)"
-      }}>
-      </div>
-    </Html>
+    <>
+      <Html zIndexRange={[1,1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
+        <div className="modal-background" style={{
+          display: "block",
+          backgroundColor: "rgba(255,10,255,.02)"
+        }}>
+        </div>
+      </Html>
+      <mesh position={[1, 1, 0]}>
+        <sphereGeometry></sphereGeometry>
+      </mesh>
+    </>
   );
 }
 
@@ -46,17 +52,19 @@ const ObjectSelector = () => {
   return (
     <>
       {animateBackground &&
-        <Modal
-          animateBackground={animateBackground}
-        />
+        <Canvas className="modal-canvas" camera={CAMERA_POSITION} style={{ position: "absolute" }}>
+          <Modal animateBackground={animateBackground} />
+        </Canvas>
       }
-      <mesh
-        onClick={() => {
-          setAnimateBackground(true)
-        }}
-      >
-        <boxGeometry></boxGeometry>
-      </mesh>
+      <Canvas className="object-selector-canvas" camera={CAMERA_POSITION} style={{ position: "absolute" }}>
+        <mesh
+          onClick={() => {
+            setAnimateBackground(true)
+          }}
+        >
+          <boxGeometry></boxGeometry>
+        </mesh>
+      </Canvas>
     </>
   )
 }

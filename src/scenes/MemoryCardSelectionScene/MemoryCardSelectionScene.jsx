@@ -4,6 +4,7 @@ import { useState } from "react";
 import MemoryCard from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
+export const CAMERA_POSITION = { position: [0, 0, -12] };
 const SideProjects = require("./MemoryCards/sideProjects.json");
 const WorkExperience = require("./MemoryCards/workExperience.json")
 
@@ -20,43 +21,43 @@ const Highlight = { // Is this even worse?
   }
 }
 
+
+
 const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
 
   return (
     <>
-      <Canvas camera={{ position: [0, 0, -12] }}>
-        {!viewObjects ?
-          <ObjectSelector />
-          :
-          <>
-            <OrbitControls />
-            <ambientLight></ambientLight>
-            <Html fullscreen >
-              <h1 style={{ position: 'absolute', marginLeft: '20px' }}>PS2</h1>
-              <h1 style={{ float: 'right', marginRight: '20px' }}>Memory Card (PS2) / {currHighlighted}</h1>
-            </Html>
-            <pointLight intensity={0.1}></pointLight>
-            <MemoryCard
-              position={[2.25, 0, 0]}
-              name={Highlight.WorkExperience.title}
-              file={WorkExperience}
-              setViewObjects={setViewObjects}
-              currHighlighted={currHighlighted.title}
-              setCurrHighLighted={setCurrHighLighted}
-              viewObjects={viewObjects} />
-            <MemoryCard
-              position={[-2.25, 0, 0]}
-              name={Highlight.SideProjects.title}
-              file={SideProjects}
-              setViewObjects={setViewObjects}
-              currHighlighted={currHighlighted.title}
-              setCurrHighLighted={setCurrHighLighted}
-              viewObjects={viewObjects} />
-          </>
-        }
-      </Canvas>
+      {!viewObjects ?
+          <ObjectSelector /> 
+        :
+        <Canvas camera={CAMERA_POSITION}>
+          <OrbitControls />
+          <ambientLight></ambientLight>
+          <Html fullscreen >
+            <h1 style={{ position: 'absolute', marginLeft: '20px' }}>PS2</h1>
+            <h1 style={{ float: 'right', marginRight: '20px' }}>Memory Card (PS2) / {currHighlighted}</h1>
+          </Html>
+          <pointLight intensity={0.1}></pointLight>
+          <MemoryCard
+            position={[2.25, 0, 0]}
+            name={Highlight.WorkExperience.title}
+            file={WorkExperience}
+            setViewObjects={setViewObjects}
+            currHighlighted={currHighlighted.title}
+            setCurrHighLighted={setCurrHighLighted}
+            viewObjects={viewObjects} />
+          <MemoryCard
+            position={[-2.25, 0, 0]}
+            name={Highlight.SideProjects.title}
+            file={SideProjects}
+            setViewObjects={setViewObjects}
+            currHighlighted={currHighlighted.title}
+            setCurrHighLighted={setCurrHighLighted}
+            viewObjects={viewObjects} />
+        </Canvas>
+      }
     </>
   );
 }
