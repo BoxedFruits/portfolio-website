@@ -30,9 +30,9 @@ const MemoryCardSelectionScreen = () => {
   return (
     <>
       {!viewObjects ?
-          <ObjectSelector /> 
+        <ObjectSelector />
         :
-        <Canvas camera={CAMERA_POSITION}>
+        <Canvas camera={CAMERA_POSITION}> {/* TODO: Need to fix this. The objects are probably backwards */}
           <OrbitControls />
           <ambientLight></ambientLight>
           <Html fullscreen >
