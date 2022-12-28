@@ -5,7 +5,7 @@ import MemoryCard from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
 export const CAMERA_POSITION = { position: [0, 0, -12] };
-const SideProjects = require("./MemoryCards/sideProjects.json");
+const SideProjects = require("./MemoryCards/sideProjects.json")
 const WorkExperience = require("./MemoryCards/workExperience.json")
 
 // const SceneSetup = () => {
@@ -26,11 +26,15 @@ const Highlight = { // Is this even worse?
 const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
-
   return (
     <>
       {!viewObjects ?
-        <ObjectSelector />
+        <ObjectSelector
+          memoryCardName={currHighlighted}
+          jsonObject={
+            currHighlighted === Highlight.WorkExperience.title ? WorkExperience : SideProjects
+          }
+        />
         :
         <Canvas camera={CAMERA_POSITION}> {/* TODO: Need to fix this. The objects are probably backwards */}
           <OrbitControls />
@@ -43,7 +47,6 @@ const MemoryCardSelectionScreen = () => {
           <MemoryCard
             position={[2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
-            file={WorkExperience}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted.title}
             setCurrHighLighted={setCurrHighLighted}
@@ -51,7 +54,6 @@ const MemoryCardSelectionScreen = () => {
           <MemoryCard
             position={[-2.25, 0, 0]}
             name={Highlight.SideProjects.title}
-            file={SideProjects}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted.title}
             setCurrHighLighted={setCurrHighLighted}
