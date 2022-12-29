@@ -42,14 +42,15 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         </div>
       </Html>
       <group>
-        <Text className="memory-card-name" position={[1, 2, 0]} anchorX="left">{memoryCardName}</Text>
-        <Text className="memory-card-title" position={[1, 1.9, 0]}>{title}</Text>
-        <Text className="memory-card-dates" position={[1, 1.8, 0]}>{date.start} - {date.end}</Text>
-        <Text className="memory-card-memorySize" position={[1, 1.7, 0]}>{memory}</Text>
-        <Text className="memory-card-summary" position={[1, 1.6, 0]}>{summary}</Text>
+        <Text className="memory-card-name" position={[1, 2, 0]} fontSize={.34}>Memory Card (PS2)/{memoryCardName}</Text>
+        <Text className="memory-card-title" position={[1, 1.4, 0]} color="yellow" fontSize={.5}>{title}</Text>
+        <Text className="memory-card-dates" position={[1, .90, 0]} fontSize={.23}>{date.start}   -   {date.end}</Text>
+        <Text className="memory-card-memorySize" position={[1, .64, 0]} fontSize={.23}>{memory}</Text>
+        <Text className="memory-card-summary" position={[1, -.05, 0]} maxWidth={5.8} fontSize={.23}>{summary}</Text>
+        {/* TODO: find way to make the bulletpoints spacing dynamic. Easiest solution would be to make it one big blob of text */}
         {
           bulletPoints.map((bullet,index) => {
-            return <Text key={index}  className="memory-card-bulletPoints" position={[1, 1.5, 0]}>{bullet}</Text>
+            return <Text key={index} className="memory-card-bulletPoints" maxWidth={5.8} position={[1, -0.85 - (index * .80) , 0]} fontSize={.23} textAlign='left'>{bullet}</Text>
           })
         }
       </group>
