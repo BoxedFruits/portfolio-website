@@ -42,8 +42,6 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         </div>
       </Html>
       <group>
-        {/* Making it a threeJS text doesn't solve the problem, it might actually make it worse because there isn't a gurantee that the aspect ratio of the models will look good. 
-            Can still have the text as an actual HTML element that is position absolute on the page and then have the controls still allow for zooming and panning so the user can adjust the page how they like */}
         <Text className="memory-card-name" position={[1, 2, 0]} anchorX="left">{memoryCardName}</Text>
         <Text className="memory-card-title" position={[1, 1.9, 0]}>{title}</Text>
         <Text className="memory-card-dates" position={[1, 1.8, 0]}>{date.start} - {date.end}</Text>
