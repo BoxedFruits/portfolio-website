@@ -27,13 +27,13 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
 
   useFrame(() => {
     if (animateBackground && htmlRef.current !== undefined) {
-      const { 
+      const {
         beginningOfString,
         percentages,
         rgbaValues,
         currentAlphaVal
       } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
-      
+
       htmlRef.current.getElementsByClassName('modal-background')[0].style.background =
         `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[2]})`
     }
@@ -53,10 +53,12 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
       </mesh>
       <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
         <div style={{ maxWidth: "24em" }}>
-          <p className="memory-card-title">Memory Card <span style={{ fontSize: "16px" }}> (PS2) / </span> {memoryCardName}</p>
-          <h1>{title}</h1>
-          <p>{date.start}   -   {date.end}</p>
-          <p>{memory}</p>
+          <center>
+            <p className="memory-card-title">Memory Card <span style={{ fontSize: "16px" }}> (PS2) / </span> {memoryCardName}</p>
+            <h1 style={{ color: "#dddd4e" }} >{title}</h1>
+            <p>{date.start}&nbsp; — &nbsp;{date.end}</p>
+            <p>{memory}</p>
+          </center>
           <p>{summary}</p>
           <ul>
             {
