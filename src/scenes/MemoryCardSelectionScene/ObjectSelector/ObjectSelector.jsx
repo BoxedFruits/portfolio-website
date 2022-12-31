@@ -3,7 +3,7 @@
 //Populate scene with objects
 //Populate menu with text from json file
 
-import { ArcballControls, Html, OrbitControls, Text } from "@react-three/drei";
+import { ArcballControls, Html } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { MathUtils } from "three";
@@ -41,23 +41,25 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         }}>
         </div>
       </Html>
-      <group>
-        <Text className="memory-card-name" position={[1, 2, 0]} fontSize={.34}>Memory Card (PS2)/{memoryCardName}</Text>
-        <Text className="memory-card-title" position={[1, 1.4, 0]} color="yellow" fontSize={.5}>{title}</Text>
-        <Text className="memory-card-dates" position={[1, .90, 0]} fontSize={.23}>{date.start}   -   {date.end}</Text>
-        <Text className="memory-card-memorySize" position={[1, .64, 0]} fontSize={.23}>{memory}</Text>
-        <Text className="memory-card-summary" position={[1, -.05, 0]} maxWidth={5.8} fontSize={.23}>{summary}</Text>
-        {/* TODO: find way to make the bulletpoints spacing dynamic. Easiest solution would be to make it one big blob of text */}
-        {
-          bulletPoints.map((bullet,index) => {
-            return <Text key={index} className="memory-card-bulletPoints" maxWidth={5.8} position={[1, -0.85 - (index * .80) , 0]} fontSize={.23} textAlign='left'>{bullet}</Text>
-          })
-        }
-      </group>
       <mesh center position={[-5.5, -1.5, -2]}>
         <sphereGeometry></sphereGeometry>
       </mesh>
-
+      <Html wrapperClass="memory-card-body" position={[0, 5.5, -2]}>
+        <div className="foo" style={{ display: "flex", alignItems: "center" }}>
+          <p className="memory-card-title">Memory Card </p><p style={{ fontSize: "16px" }}> (PS2) / </p> <p>{memoryCardName}</p>
+        </div>
+        <h1>{title}</h1>
+        <p>{date.start}   -   {date.end}</p>
+        <p>{memory}</p>
+        <p>{summary}</p>
+        <ul>
+          {
+            bulletPoints.map((bullet, index) => {
+              return <li key={index} className="memory-card-bulletPoints">{bullet}</li>
+            })
+          }
+        </ul>
+      </Html>
     </>
   );
 }
@@ -72,7 +74,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         json.objects.map((obj) => {
           return (
             <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
-              <ArcballControls enableRotate={false} enablePan={true}/>
+              <ArcballControls enableRotate={false} enablePan={true} />
               <Modal
                 memoryCardName={memoryCardName}
                 obj={obj}

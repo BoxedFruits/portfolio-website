@@ -7,7 +7,11 @@
   z-index: 0;
 }
 
-.modal-canvas > div{
+.modal-canvas > div {
   z-index: 2;
   position: absolute;
+}
+
+.memory-card-body > div {
+  position: initial !important;
 }
