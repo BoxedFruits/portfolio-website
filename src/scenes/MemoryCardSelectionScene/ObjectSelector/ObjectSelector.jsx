@@ -10,25 +10,27 @@ import { MathUtils } from "three";
 import { CAMERA_POSITION } from "../MemoryCardSelectionScene";
 import "./ObjectSelector.css";
 
-const getAlphaValue = (rgba) => {
-  //regex to get alpha
-  console.log(rgba)
-  return rgba.match(/[^,]+(?=\))/gm)[0];
+const parseGradientValues = (rgba) => {
+  const beginningOfString = rgba.match(/(^.*deg, )/g);
+  const percentages = rgba.match(/(\d*%)/g)
+  const rgbaValues = rgba.match(/(\d?\d+),/g)
+  const currentAlphaVal = rgba.match(/(\d*(\.\d+)?)\)/m)[1]
+
+  return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const TARGET_ALPHA = .42;
+const TARGET_ALPHA = .88;
 
 const Modal = ({ animateBackground, obj, memoryCardName }) => {
-  console.log(memoryCardName)
-  const { title, model, date, summary, memory, bulletPoints } = obj;
-
+  const { title, model, date, summary, memory, bulletPoints, linearGradient } = obj;
   const htmlRef = useRef();
-  //TODO: const background = generateRandomGradient() 
+
   useFrame(() => {
     if (animateBackground && htmlRef.current !== undefined) {
-      const currentAlpha = getAlphaValue(htmlRef.current.getElementsByClassName('modal-background')[0].style.backgroundColor)
-      htmlRef.current.getElementsByClassName('modal-background')[0].style.backgroundColor =
-        `rgba(25,255,25, ${MathUtils.lerp(currentAlpha, TARGET_ALPHA, 0.08)})`;
+      console.log("BACKRGOUND ", htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+      const { beginningOfString, percentages, rgbaValues, currentAlphaVal } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+      htmlRef.current.getElementsByClassName('modal-background')[0].style.background =
+        `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[2]})`
     }
   });
 
@@ -37,7 +39,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
       <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
         <div className="modal-background" style={{
           display: "block",
-          backgroundColor: "rgba(155,10,255,.02)"
+          background: linearGradient
         }}>
         </div>
       </Html>
@@ -45,7 +47,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         <sphereGeometry></sphereGeometry>
       </mesh>
       <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
-        <div style={{maxWidth: "24em" }}>
+        <div style={{ maxWidth: "24em" }}>
           <p className="memory-card-title">Memory Card <span style={{ fontSize: "16px" }}> (PS2) / </span> {memoryCardName}</p>
           <h1>{title}</h1>
           <p>{date.start}   -   {date.end}</p>
