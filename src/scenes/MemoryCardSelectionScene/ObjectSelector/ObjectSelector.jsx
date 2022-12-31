@@ -41,25 +41,24 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         }}>
         </div>
       </Html>
-
-      <mesh center position={[-5.5, -1.5, -2]}>
+      <mesh center position={[-5.5, -1.5, -5]}>
         <sphereGeometry></sphereGeometry>
       </mesh>
-      <Html wrapperClass="memory-card-body" position={[0, 5.5, -2]}>
-        <div className="foo" style={{ display: "flex", alignItems: "center" }}>
-          <p className="memory-card-title">Memory Card </p><p style={{ fontSize: "16px" }}> (PS2) / </p> <p>{memoryCardName}</p>
+      <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
+        <div style={{maxWidth: "24em" }}>
+          <p className="memory-card-title">Memory Card <span style={{ fontSize: "16px" }}> (PS2) / </span> {memoryCardName}</p>
+          <h1>{title}</h1>
+          <p>{date.start}   -   {date.end}</p>
+          <p>{memory}</p>
+          <p>{summary}</p>
+          <ul>
+            {
+              bulletPoints.map((bullet, index) => {
+                return <li key={index} className="memory-card-bulletPoints">{bullet}</li>
+              })
+            }
+          </ul>
         </div>
-        <h1>{title}</h1>
-        <p>{date.start}   -   {date.end}</p>
-        <p>{memory}</p>
-        <p>{summary}</p>
-        <ul>
-          {
-            bulletPoints.map((bullet, index) => {
-              return <li key={index} className="memory-card-bulletPoints">{bullet}</li>
-            })
-          }
-        </ul>
       </Html>
     </>
   );
