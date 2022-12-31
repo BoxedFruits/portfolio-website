@@ -27,8 +27,13 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
 
   useFrame(() => {
     if (animateBackground && htmlRef.current !== undefined) {
-      console.log("BACKRGOUND ", htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
-      const { beginningOfString, percentages, rgbaValues, currentAlphaVal } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+      const { 
+        beginningOfString,
+        percentages,
+        rgbaValues,
+        currentAlphaVal
+      } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+      
       htmlRef.current.getElementsByClassName('modal-background')[0].style.background =
         `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[2]})`
     }
