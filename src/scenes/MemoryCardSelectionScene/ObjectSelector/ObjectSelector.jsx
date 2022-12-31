@@ -37,10 +37,11 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
       <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
         <div className="modal-background" style={{
           display: "block",
-          backgroundColor: "rgba(255,10,255,.02)"
+          backgroundColor: "rgba(155,10,255,.02)"
         }}>
         </div>
       </Html>
+
       <mesh center position={[-5.5, -1.5, -2]}>
         <sphereGeometry></sphereGeometry>
       </mesh>
@@ -74,7 +75,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         json.objects.map((obj) => {
           return (
             <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
-              <ArcballControls enableRotate={false} enablePan={true} />
+              <ArcballControls enableRotate={false} enablePan={false} />
               <Modal
                 memoryCardName={memoryCardName}
                 obj={obj}
