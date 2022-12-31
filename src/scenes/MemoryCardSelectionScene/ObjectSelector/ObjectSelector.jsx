@@ -52,18 +52,19 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         <sphereGeometry></sphereGeometry>
       </mesh>
       <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
-        <div style={{ maxWidth: "24em" }}>
+        <div style={{ maxWidth: "28em" }}>
           <center>
-            <p className="memory-card-title">Memory Card <span style={{ fontSize: "16px" }}> (PS2) / </span> {memoryCardName}</p>
-            <h1 style={{ color: "#dddd4e" }} >{title}</h1>
-            <p>{date.start}&nbsp; — &nbsp;{date.end}</p>
-            <p>{memory}</p>
+            {/* TODO: move some of the inline styles to the stylesheet */}
+            <p className="memory-card-title" style={{fontSize: "32px", marginBottom: "8px"}}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
+            <h1 style={{ color: "#dddd4e", marginTop: "0", fontFamily: "arial", fontWeight: "lighter", fontSize: "48px", marginBottom: "8px"}} >{title}</h1>
+            <p style={{marginBottom: "0", marginTop: "0", fontSize: "24px"}}>{date.start}&nbsp; — &nbsp;{date.end}</p>
+            <p style={{marginTop: "0", marginBottom: "64px", fontSize: "24px"}}>{memory}</p>
           </center>
-          <p>{summary}</p>
+          <p style={{lineHeight: "1.5"}}>{summary}</p>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
-                return <li key={index} className="memory-card-bulletPoints">{bullet}</li>
+                return <li key={index} style={{lineHeight: "1.8"}} className="memory-card-bulletPoints">{bullet}</li>
               })
             }
           </ul>
