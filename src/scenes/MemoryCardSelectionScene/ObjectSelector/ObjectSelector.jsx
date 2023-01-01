@@ -10,6 +10,9 @@ import { MathUtils } from "three";
 import { CAMERA_POSITION } from "../MemoryCardSelectionScene";
 import "./ObjectSelector.css";
 
+const TARGET_ALPHA = .88;
+const LERP_FACTOR = 0.08;
+
 const parseGradientValues = (rgba) => {
   const beginningOfString = rgba.match(/(^.*deg, )/g);
   const percentages = rgba.match(/(\d*%)/g)
@@ -18,8 +21,6 @@ const parseGradientValues = (rgba) => {
 
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
-
-const TARGET_ALPHA = .88;
 
 const Modal = ({ animateBackground, obj, memoryCardName }) => {
   const { title, model, date, summary, memory, bulletPoints, linearGradient } = obj;
@@ -35,7 +36,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
       } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
 
       htmlRef.current.getElementsByClassName('modal-background')[0].style.background =
-        `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, 0.08)}) ${percentages[2]})`
+        `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[2]})`
     }
   });
 
