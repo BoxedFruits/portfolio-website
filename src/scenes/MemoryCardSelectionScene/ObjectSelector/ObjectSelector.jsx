@@ -7,11 +7,12 @@ import { ArcballControls, Html } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { MathUtils } from "three";
-import { CAMERA_POSITION } from "../MemoryCardSelectionScene";
 import "./ObjectSelector.css";
 
 const TARGET_ALPHA = .88;
 const LERP_FACTOR = 0.03;
+const OBJECTS_IN_ROW = 5;
+
 
 const parseGradientValues = (rgba) => {
   const beginningOfString = rgba.match(/(^.*deg, )/g);
@@ -22,9 +23,9 @@ const parseGradientValues = (rgba) => {
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const Modal = ({obj, memoryCardName }) => {
-  const { 
-    title, 
+const Modal = ({ obj, memoryCardName }) => {
+  const {
+    title,
     model,
     date,
     summary,
@@ -72,7 +73,7 @@ const Modal = ({obj, memoryCardName }) => {
             <p style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
           </center>
           <p style={{ lineHeight: "1.5", color: "#dfdbdb" }}>{summary}</p>
-          <i style={{fontSize: "16px", color: "#dfdbdb"}}>Tech Stack:  {techStack}</i>
+          <i style={{ fontSize: "16px", color: "#dfdbdb" }}>Tech Stack:  {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
@@ -89,11 +90,19 @@ const Modal = ({obj, memoryCardName }) => {
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const json = jsonObject;
   const [animateBackground, setAnimateBackground] = useState(false);
+  let objIndex = useRef();
+  let zValue = 2.5;
+
+  const handleAnimation = ({ index }) => {
+    objIndex = index;
+    setAnimateBackground(true);
+  }
 
   return (
     // modal isnt showing object specific things
     <>
       {animateBackground &&
+        // this should take the index of the object
         json.objects.map((obj) => {
           return (
             <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
@@ -105,15 +114,27 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             </Canvas>)
         })
       }
-      <Canvas className="object-selector-canvas" camera={CAMERA_POSITION} style={{ position: "absolute" }}>
+      <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
         {/* need to show more than one object */}
-        <mesh
-          onClick={() => {
-            setAnimateBackground(true)
-          }}
-        >
-          <boxGeometry></boxGeometry>
-        </mesh>
+        {
+          json.objects.map((obj, index) => { // TODO: Load models
+            if (index % OBJECTS_IN_ROW === 0) {
+              zValue -= 3
+            }
+
+            return (
+              <mesh position={[-5 + ((index % OBJECTS_IN_ROW) * 2.5), 0, zValue]}
+                key={index}
+                onClick={() => {
+                  handleAnimation(index);
+                }}
+              >
+                <Html><div>{index}</div></Html>
+                <boxGeometry></boxGeometry>
+              </mesh>
+            )
+          })
+        }
       </Canvas>
     </>
   )
