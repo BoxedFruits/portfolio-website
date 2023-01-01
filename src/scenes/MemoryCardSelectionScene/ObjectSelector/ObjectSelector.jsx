@@ -23,7 +23,17 @@ const parseGradientValues = (rgba) => {
 }
 
 const Modal = ({ animateBackground, obj, memoryCardName }) => {
-  const { title, model, date, summary, memory, bulletPoints, linearGradient } = obj;
+  const { 
+    title, 
+    model,
+    date,
+    summary,
+    memory,
+    bulletPoints,
+    linearGradient,
+    techStack
+  } = obj;
+
   const htmlRef = useRef();
 
   useFrame(() => {
@@ -62,6 +72,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
             <p style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
           </center>
           <p style={{ lineHeight: "1.5", color: "#dfdbdb" }}>{summary}</p>
+          <i style={{fontSize: "16px", color: "#dfdbdb"}}>Tech Stack:  {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
