@@ -34,7 +34,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
         rgbaValues,
         currentAlphaVal
       } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
-
+      //TODO: Currently only allows gradients of three shades. Can solve that by using a for loop and creating the string that way.
       htmlRef.current.getElementsByClassName('modal-background')[0].style.background =
         `${beginningOfString} rgba(${rgbaValues[0]} ${rgbaValues[1]} ${rgbaValues[2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[0]}, rgba(${rgbaValues[3]} ${rgbaValues[4]} ${rgbaValues[5]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[1]}, rgba(${rgbaValues[6]} ${rgbaValues[7]} ${rgbaValues[8]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[2]})`
     }
