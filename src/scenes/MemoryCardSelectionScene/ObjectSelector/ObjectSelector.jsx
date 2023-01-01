@@ -90,40 +90,32 @@ const Modal = ({ obj, memoryCardName }) => {
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const json = jsonObject;
   const [animateBackground, setAnimateBackground] = useState(false);
-  let objIndex = useRef();
+  const objIndex = useRef(null);
   let zValue = 2.5;
 
-  const handleAnimation = ({ index }) => {
-    objIndex = index;
+  const handleAnimation = (index) => {
+    objIndex.current = index;
     setAnimateBackground(true);
   }
 
   return (
-    // modal isnt showing object specific things
     <>
       {animateBackground &&
-        // this should take the index of the object
-        json.objects.map((obj) => {
-          return (
-            <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
-              <ArcballControls enableRotate={false} enablePan={false} />
-              <Modal
-                memoryCardName={memoryCardName}
-                obj={obj}
-              />
-            </Canvas>)
-        })
+        <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
+          <ArcballControls enableRotate={false} enablePan={false} />
+          <Modal
+            memoryCardName={memoryCardName}
+            obj={json.objects[objIndex.current]}
+          />
+        </Canvas>
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
-        {/* need to show more than one object */}
         {
           json.objects.map((obj, index) => { // TODO: Load models
-            if (index % OBJECTS_IN_ROW === 0) {
-              zValue -= 3
-            }
-
+            if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
+            
             return (
-              <mesh position={[-5 + ((index % OBJECTS_IN_ROW) * 2.5), 0, zValue]}
+              <mesh position={[-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue]}
                 key={index}
                 onClick={() => {
                   handleAnimation(index);
