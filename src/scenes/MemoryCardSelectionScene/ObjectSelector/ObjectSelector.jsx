@@ -11,7 +11,7 @@ import { CAMERA_POSITION } from "../MemoryCardSelectionScene";
 import "./ObjectSelector.css";
 
 const TARGET_ALPHA = .88;
-const LERP_FACTOR = 0.08;
+const LERP_FACTOR = 0.03;
 
 const parseGradientValues = (rgba) => {
   const beginningOfString = rgba.match(/(^.*deg, )/g);
