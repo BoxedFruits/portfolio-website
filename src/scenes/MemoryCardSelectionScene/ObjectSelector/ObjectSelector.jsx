@@ -22,7 +22,7 @@ const parseGradientValues = (rgba) => {
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const Modal = ({ animateBackground, obj, memoryCardName }) => {
+const Modal = ({obj, memoryCardName }) => {
   const { 
     title, 
     model,
@@ -37,7 +37,7 @@ const Modal = ({ animateBackground, obj, memoryCardName }) => {
   const htmlRef = useRef();
 
   useFrame(() => {
-    if (animateBackground && htmlRef.current !== undefined) {
+    if (htmlRef.current !== undefined) {
       const {
         beginningOfString,
         percentages,
@@ -91,6 +91,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [animateBackground, setAnimateBackground] = useState(false);
 
   return (
+    // modal isnt showing object specific things
     <>
       {animateBackground &&
         json.objects.map((obj) => {
@@ -100,11 +101,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
               <Modal
                 memoryCardName={memoryCardName}
                 obj={obj}
-                animateBackground={animateBackground} />
+              />
             </Canvas>)
         })
       }
       <Canvas className="object-selector-canvas" camera={CAMERA_POSITION} style={{ position: "absolute" }}>
+        {/* need to show more than one object */}
         <mesh
           onClick={() => {
             setAnimateBackground(true)
