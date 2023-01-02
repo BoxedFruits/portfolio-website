@@ -37,21 +37,22 @@ const MemoryCardSelectionScreen = () => {
         :
         <Canvas>
           <OrbitControls />
-          <ambientLight></ambientLight>
+          <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
             <h1 style={{ position: 'absolute', marginLeft: '20px' }}>PS2</h1>
             <h1 style={{ float: 'right', marginRight: '20px' }}>Memory Card (PS2) / {currHighlighted}</h1>
           </Html>
-          <pointLight intensity={0.1}></pointLight>
+          <pointLight position={[2.5,9,4]} intensity={.45}></pointLight>
+          <pointLight position={[-2.5,9,4]} intensity={.45}></pointLight>
           <MemoryCard
-            position={[2.25, 0, 0]}
+            position={[-2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted.title}
             setCurrHighLighted={setCurrHighLighted}
             viewObjects={viewObjects} />
           <MemoryCard
-            position={[-2.25, 0, 0]}
+            position={[2.25, 0, 0]}
             name={Highlight.SideProjects.title}
             setViewObjects={setViewObjects}
             currHighlighted={currHighlighted.title}
