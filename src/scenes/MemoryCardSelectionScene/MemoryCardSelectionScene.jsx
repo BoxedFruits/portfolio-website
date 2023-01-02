@@ -4,7 +4,6 @@ import { useState } from "react";
 import MemoryCard from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
-export const CAMERA_POSITION = { position: [0, 0, -12] };
 const SideProjects = require("./MemoryCards/sideProjects.json")
 const WorkExperience = require("./MemoryCards/workExperience.json")
 
@@ -28,7 +27,7 @@ const MemoryCardSelectionScreen = () => {
   const [viewObjects, setViewObjects] = useState();
   return (
     <>
-      {!viewObjects ?
+      {viewObjects ?
         <ObjectSelector
           memoryCardName={currHighlighted}
           jsonObject={
@@ -36,7 +35,7 @@ const MemoryCardSelectionScreen = () => {
           }
         />
         :
-        <Canvas camera={CAMERA_POSITION}> {/* TODO: Need to fix this. The objects are probably backwards */}
+        <Canvas>
           <OrbitControls />
           <ambientLight></ambientLight>
           <Html fullscreen >

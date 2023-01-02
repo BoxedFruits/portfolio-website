@@ -34,7 +34,7 @@ const MemoryCard = ({ position, name, setCurrHighLighted, currHighlighted, setVi
       ref={myMesh}
       center={position}
       position={position}
-      rotation-x={0.6}
+      rotation-x={-0.7}
       object={copiedScene}
       onPointerOver={() => setCurrHighLighted(name)}
       onClick={() => {
