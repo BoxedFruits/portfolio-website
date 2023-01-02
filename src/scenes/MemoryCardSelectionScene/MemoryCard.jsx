@@ -19,7 +19,7 @@ const MemoryCard = ({ position, name, setCurrHighLighted, currHighlighted, setVi
       myMesh.current.rotation.y = MathUtils.lerp(myMesh.current.rotation.y, 3, 0.0007);
       myMesh.current.rotation.z = MathUtils.lerp(myMesh.current.position.z, -5, 0.78);
       setTimeout(() => {
-        setViewObjects(true); // R3F will automatically try to destory objects
+        setViewObjects(true);
       }, 750);
     }
   });
