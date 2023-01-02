@@ -4,7 +4,7 @@ import { MathUtils } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const MemoryCard = ({ position, name, setCurrHighLighted, currHighlighted, setViewObjects, viewObjects }) => {
-  const { scene } = useLoader(GLTFLoader, 'memory_card.glb')
+  const { scene } = useLoader(GLTFLoader, '/models/memory_card.glb')
   const myMesh = useRef()
   const copiedScene = useMemo(() => scene.clone(), [scene])
   let startAnimation = false
