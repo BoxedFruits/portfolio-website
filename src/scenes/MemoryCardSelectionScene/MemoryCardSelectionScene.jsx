@@ -1,7 +1,7 @@
 import { Html, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
-import MemoryCard from "./MemoryCard";
+import { MemoryCard } from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
 const SideProjects = require("./MemoryCards/sideProjects.json")
@@ -35,15 +35,15 @@ const MemoryCardSelectionScreen = () => {
           }
         />
         :
-        <Canvas camera={{position:[0,0,10]}}>
+        <Canvas camera={{ position: [0, 0, 10] }}>
           <OrbitControls />
           <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
             <h1 style={{ position: 'absolute', marginLeft: '20px' }}>PS2</h1>
             <h1 style={{ float: 'right', marginRight: '20px' }}>Memory Card (PS2) / {currHighlighted}</h1>
           </Html>
-          <pointLight position={[2.5,9,2]} intensity={.45}></pointLight>
-          <pointLight position={[-2.5,9,2]} intensity={.45}></pointLight>
+          <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
+          <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
           <MemoryCard
             position={[-2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
