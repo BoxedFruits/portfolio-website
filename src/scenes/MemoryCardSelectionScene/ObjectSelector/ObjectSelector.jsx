@@ -3,10 +3,11 @@
 //Populate scene with objects
 //Populate menu with text from json file
 
-import { ArcballControls, Html } from "@react-three/drei";
+import { ArcballControls, Html, Text } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { MathUtils } from "three";
+import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
 
 const TARGET_ALPHA = .88;
@@ -93,11 +94,19 @@ const Modal = ({ obj, memoryCardName }) => {
   );
 }
 
+const getModel = (title, position, index, onHandleAnimation) => {
+  switch(title){
+    case "Vanguard": 
+      return <VanguardLogo key={index} position={position} onHandleAnimation={() => onHandleAnimation()} />;
+    default: return <Text>uh oh something broke</Text>
+  }
+}
+
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const json = jsonObject;
   const [animateBackground, setAnimateBackground] = useState(false);
   const objIndex = useRef(null);
-  let zValue = 2.5;
+  let zValue = 3.25;
 
   const handleAnimation = (index) => {
     objIndex.current = index;
@@ -116,21 +125,11 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         </Canvas>
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
+        <ambientLight />
         {
           json.objects.map((obj, index) => { // TODO: Load models
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
-            
-            return (
-              <mesh position={[-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue]}
-                key={index}
-                onClick={() => {
-                  handleAnimation(index);
-                }}
-              >
-                <Html><div>{index}</div></Html>
-                <boxGeometry></boxGeometry>
-              </mesh>
-            )
+            return getModel(obj.title, [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue], index, () => handleAnimation(index))
           })
         }
       </Canvas>
