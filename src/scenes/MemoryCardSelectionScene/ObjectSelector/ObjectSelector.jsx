@@ -12,10 +12,20 @@ import "./ObjectSelector.css";
 
 const OBJECTS_IN_ROW = 5;
 
-const getModel = (title, position, index, onHandleAnimation) => {
+//TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
+const getModelForSelection = (title, position, index, onHandleAnimation) => {
   switch(title){
     case "Vanguard": 
-      return <VanguardLogo key={index} position={position} onHandleAnimation={() => onHandleAnimation()} />;
+      return <VanguardLogo key={index} position={position} onClick={() => onHandleAnimation()} />;
+    default: return <Text>uh oh something broke</Text>
+  }
+}
+
+const getModelForModal = (title, index) => {
+  console.log("getModelForModal ", title, index)
+  switch(title){
+    case "Vanguard": 
+      return <VanguardLogo key={index} position={[-4.5, -1.5, -1]} rotation-x={1.6} scale={[.85, .85, .85]} shouldRotate={true} />; //rotation
     default: return <Text>uh oh something broke</Text>
   }
 }
@@ -34,11 +44,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   return (
     <>
       {animateBackground &&
-        <Canvas className="modal-canvas" camera={[0, 0, 0]} style={{ position: "absolute" }}>
+        <Canvas className="modal-canvas" style={{ position: "absolute" }}>
           <ArcballControls enableRotate={false} enablePan={false} />
           <Modal
             memoryCardName={memoryCardName}
-            obj={json.objects[objIndex.current]}
+            data={json.objects[objIndex.current]}
+            Model={getModelForModal(json.objects[objIndex.current].title, objIndex.current)}
           />
         </Canvas>
       }
@@ -47,7 +58,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         {
           json.objects.map((obj, index) => { // TODO: Load models
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
-            return getModel(obj.title, [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue], index, () => handleAnimation(index))
+            return getModelForSelection(obj.title, [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue], index, () => handleAnimation(index))
           })
         }
       </Canvas>

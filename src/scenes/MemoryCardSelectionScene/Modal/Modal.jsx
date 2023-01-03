@@ -15,17 +15,16 @@ const parseGradientValues = (rgba) => {
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const Modal = ({ obj, memoryCardName }) => {
+const Modal = ({ data, memoryCardName, Model }) => {
   const {
     title,
-    model,
     date,
     summary,
     memory,
     bulletPoints,
     linearGradient,
     techStack
-  } = obj;
+  } = data;
 
   const htmlRef = useRef();
 
@@ -43,7 +42,7 @@ const Modal = ({ obj, memoryCardName }) => {
       for (let index = 0; index < rgbaValues.length; index += 3) {
         newBackground += `rgba(${rgbaValues[index]} ${rgbaValues[index + 1]} ${rgbaValues[index + 2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[percentageIndex++]}, `
       }
-      newBackground = newBackground.slice(0,-2) + ")"
+      newBackground = newBackground.slice(0, -2) + ")"
 
       htmlRef.current.getElementsByClassName('modal-background')[0].style.background = newBackground;
     }
@@ -58,9 +57,8 @@ const Modal = ({ obj, memoryCardName }) => {
         }}>
         </div>
       </Html>
-      <mesh center position={[-5.5, -1.5, -5]}>
-        <sphereGeometry></sphereGeometry>
-      </mesh>
+      <ambientLight />
+      {Model}
       <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
         <div style={{ maxWidth: "28em" }}>
           <center>
