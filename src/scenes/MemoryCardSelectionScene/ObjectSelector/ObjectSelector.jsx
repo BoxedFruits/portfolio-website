@@ -13,6 +13,7 @@ import "./ObjectSelector.css";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
+//Might be able to combine these two functions with optional parameters and destructuring 
 const getModelForSelection = (title, position, index, onHandleAnimation) => {
   switch(title){
     case "Vanguard": 
@@ -22,10 +23,9 @@ const getModelForSelection = (title, position, index, onHandleAnimation) => {
 }
 
 const getModelForModal = (title, index) => {
-  console.log("getModelForModal ", title, index)
   switch(title){
     case "Vanguard": 
-      return <VanguardLogo key={index} position={[-4.5, -1.5, -1]} rotation-x={1.6} scale={[.85, .85, .85]} shouldRotate={true} />; //rotation
+      return <VanguardLogo key={index} position={[-4.5, -1.25, -1]} rotation-x={1.6} scale={[.85, .85, .85]} shouldRotate={true} />; //rotation
     default: return <Text>uh oh something broke</Text>
   }
 }

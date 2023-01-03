@@ -8,7 +8,6 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 export function VanguardLogo({ shouldRotate, ...props }) {
-  console.log(props)
   const ref = useRef();
 
   useFrame(({clock}) => {
