@@ -2,7 +2,6 @@
   "objects": [
     {
       "title": "Vanguard",
-      "model": "vanguard_logo.obj",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -19,8 +18,7 @@
       "techStack": "Angular, CSS, HTML, TypeScript"
     },
     {
-      "title": "2Vanguard2",
-      "model": "vanguard_logo.obj",
+      "title": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -38,7 +36,6 @@
     },
     {
       "title": "Vanguard",
-      "model": "vanguard_logo.obj",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -55,8 +52,7 @@
       "techStack": "Angular, CSS, HTML, TypeScript"
     },
     {
-      "title": "2Vanguard2",
-      "model": "vanguard_logo.obj",
+      "title": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -74,7 +70,6 @@
     },
     {
       "title": "Vanguard",
-      "model": "vanguard_logo.obj",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -91,8 +86,7 @@
       "techStack": "Angular, CSS, HTML, TypeScript"
     },
     {
-      "title": "2Vanguard2",
-      "model": "vanguard_logo.obj",
+      "title": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
