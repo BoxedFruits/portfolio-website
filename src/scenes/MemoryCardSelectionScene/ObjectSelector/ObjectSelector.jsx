@@ -5,26 +5,27 @@
 
 import { ArcballControls, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useRef, useState } from "react";
+import GlowOrbs from "../../../components/GlowOrbs/GlowOrbs";
 import Modal from "../Modal/Modal";
 import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
-
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
 //Might be able to combine these two functions with optional parameters and destructuring 
 const getModelForSelection = (title, position, index, onHandleAnimation) => {
-  switch(title){
-    case "Vanguard": 
+  switch (title) {
+    case "Vanguard":
       return <VanguardLogo key={index} position={position} onClick={() => onHandleAnimation()} />;
     default: return <Text>uh oh something broke</Text>
   }
 }
 
 const getModelForModal = (title, index) => {
-  switch(title){
-    case "Vanguard": 
+  switch (title) {
+    case "Vanguard":
       return <VanguardLogo key={index} position={[-4.5, -1.25, -1]} rotation-x={1.6} scale={[.85, .85, .85]} shouldRotate={true} />; //rotation
     default: return <Text>uh oh something broke</Text>
   }
@@ -61,6 +62,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             return getModelForSelection(obj.title, [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue], index, () => handleAnimation(index))
           })
         }
+        <EffectComposer>
+          <Bloom luminanceThreshold={1.5} mipmapBlur luminanceSmoothing={0} intensity={1.5} radius={.9009} level={50} />
+        </EffectComposer>
       </Canvas>
     </>
   )
