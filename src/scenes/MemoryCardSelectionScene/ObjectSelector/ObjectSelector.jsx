@@ -5,9 +5,7 @@
 
 import { ArcballControls, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useRef, useState } from "react";
-import GlowOrbs from "../../../components/GlowOrbs/GlowOrbs";
 import Modal from "../Modal/Modal";
 import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
@@ -62,9 +60,6 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             return getModelForSelection(obj.title, [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue], index, () => handleAnimation(index))
           })
         }
-        <EffectComposer>
-          <Bloom luminanceThreshold={1.5} mipmapBlur luminanceSmoothing={0} intensity={1.5} radius={.9009} level={50} />
-        </EffectComposer>
       </Canvas>
     </>
   )

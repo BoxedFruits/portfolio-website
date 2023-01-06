@@ -7,6 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { MathUtils } from 'three';
+import GlowOrbs from '../../components/GlowOrbs/GlowOrbs';
 
 export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted, setViewObjects, viewObjects }) {
   const { nodes, materials } = useGLTF('models/memory_card.glb')
@@ -46,6 +47,7 @@ export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted
         HandleClick(123);
       }}>
       <mesh geometry={nodes.Memory_card.geometry} material={materials['07 - Default']} rotation={[Math.PI / 2, 0, 0]} scale={0.02} />
+      {currHighlighted === name && <GlowOrbs key={name} />}
     </group>
   )
 }
