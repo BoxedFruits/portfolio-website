@@ -75,7 +75,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           json.objects.map((obj, index) => { // TODO: Load models
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
             let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
-            return getModelForSelection(obj.model, position , index, () => handleAnimation(index), () => setOrbPostion([position[0], position[1] - 0.5, position[2] - 0.75]))
+            return getModelForSelection(obj.model, position , index, () => handleAnimation(index), () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]))
           })
         }
       </Canvas>
