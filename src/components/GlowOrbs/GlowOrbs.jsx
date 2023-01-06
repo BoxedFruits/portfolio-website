@@ -2,7 +2,7 @@
 import { useTexture } from '@react-three/drei';
 import { AdditiveBlending } from 'three';
 
-const GlowOrbs = () => {
+const GlowOrbs = (props) => {
   const orbTexture = useTexture("glow.png")
   return (
     <>
@@ -16,7 +16,7 @@ const GlowOrbs = () => {
         </meshBasicMaterial>
       </mesh> */}
 
-      <sprite scale={3} position={[0, 0, .6]}>
+      <sprite scale={3} position={[0, 0, .6]} {...props}>
         <spriteMaterial // should grow and become smaller
           map={orbTexture}
           alphaMap={orbTexture}
@@ -27,7 +27,7 @@ const GlowOrbs = () => {
           toneMapped={false}
         />
       </sprite>
-      <mesh scale={.36} position={[0, 0, .6]}>
+      <mesh scale={.36} position={[0, 0, .6]} {...props}>
         <sphereGeometry />
         <meshPhongMaterial
           color='white'
