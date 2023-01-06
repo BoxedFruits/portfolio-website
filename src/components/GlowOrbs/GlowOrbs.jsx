@@ -25,7 +25,7 @@ const GlowOrbs = (props) => {
         scale={3}
         position={[0, 0, .6]}
         {...props}>
-        <spriteMaterial // should grow and become smaller
+        <spriteMaterial
           map={orbTexture}
           alphaMap={orbTexture}
           transparent={true}
