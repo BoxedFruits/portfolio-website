@@ -14,15 +14,19 @@ const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
 //Might be able to combine these two functions with optional parameters and destructuring 
-const getModelForSelection = (title, position, index, onHandleAnimation, setOrbPostion) => {
+const getModelForSelection = (title, position, index, onHandleAnimation, setOrbPostion, setCurrHighLighted) => {
   switch (title) {
     case "Vanguard":
-      return <VanguardLogo 
-        key={index} 
-        position={position} 
-        onClick={() => onHandleAnimation()} 
-        onPointerOver={() => setOrbPostion()}
-        />;
+      return <VanguardLogo
+        key={index}
+        position={position}
+        onClick={() => onHandleAnimation()}
+        onPointerOver={() => {
+          setOrbPostion();
+          setCurrHighLighted();
+        }
+        }
+      />;
     default: return <Text>uh oh something broke</Text>
   }
 }
@@ -30,7 +34,7 @@ const getModelForSelection = (title, position, index, onHandleAnimation, setOrbP
 const getModelForModal = (title, index) => {
   switch (title) {
     case "Vanguard":
-      return <VanguardLogo 
+      return <VanguardLogo
         key={index}
         position={[-4.5, -1.25, -1]}
         rotation-x={1.6}
@@ -42,11 +46,15 @@ const getModelForModal = (title, index) => {
 
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   let zValue = 3.25;
+
   const json = jsonObject;
+
   const [animateBackground, setAnimateBackground] = useState(false);
-  const [orbPostion, setOrbPostion] = useState([-5,-0.5, -.50]);
+  const [orbPostion, setOrbPostion] = useState([-5, -0.5, -.50]);
+  const [currHighlighted, setCurrHighLighted] = useState(json.objects[0].title)
+
   const objIndex = useRef(null);
-  // console.log(currHighlighted)
+
   const handleAnimation = (index) => {
     objIndex.current = index;
     setAnimateBackground(true);
@@ -60,14 +68,19 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           <Modal
             memoryCardName={memoryCardName}
             data={json.objects[objIndex.current]}
-            Model={getModelForModal(json.objects[objIndex.current].title, objIndex.current)}
+            Model={getModelForModal(json.objects[objIndex.current].model, objIndex.current)}
           />
         </Canvas>
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
         <Html fullscreen>
-          <h1 style={{ position: 'absolute', marginLeft: '20px' }}>PS2</h1>
-          {/* <h1 style={{ float: 'right', marginRight: '20px' }}>{currHighlighted}</h1> */}
+          <p className="memory-card-title" style={{ fontSize: "32px", color: "#dfdbdb", position: "absolute", marginLeft: "24px" }}>
+            Memory Card
+            <span style={{ fontSize: "24px" }}> (PS2) &nbsp;/</span>
+            &nbsp;{memoryCardName}
+            <p style={{marginTop: "0px", fontSize: "24px"}}>46,341 KB FREE</p>
+          </p>
+          <h1 style={{ float: 'right', marginRight: '24px', color: 'rgb(221, 221, 78)', fontFamily: "arial", fontWeight: "lighter" }}>{currHighlighted}</h1>
         </Html>
         <ambientLight />
         <GlowOrbs position={orbPostion} />
@@ -75,7 +88,14 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           json.objects.map((obj, index) => { // TODO: Load models
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
             let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
-            return getModelForSelection(obj.model, position , index, () => handleAnimation(index), () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]))
+            return getModelForSelection(
+              obj.model,
+              position,
+              index,
+              () => handleAnimation(index),
+              () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]),
+              () => setCurrHighLighted(obj.title)
+            )
           })
         }
       </Canvas>
