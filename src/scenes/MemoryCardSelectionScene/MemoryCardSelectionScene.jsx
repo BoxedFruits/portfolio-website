@@ -35,7 +35,7 @@ const MemoryCardSelectionScreen = () => {
           }
         />
         :
-        <Canvas camera={{ position: [0, 0, 10] }}>
+        <Canvas camera={{ position: [0, 0, 10] }}> {/* Need to play around with either FOV or orthographic camera to avoid the fisheye lens effect*/}
           <OrbitControls />
           <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
