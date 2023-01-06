@@ -18,6 +18,7 @@ const GlowOrbs = (props) => {
   })
 
   const orbTexture = useTexture("glow.png")
+  // To prevent sprite from clipping other objects, might have to mess around with the renderOrder. Might have render it last
   return (
     <>
       <sprite 
