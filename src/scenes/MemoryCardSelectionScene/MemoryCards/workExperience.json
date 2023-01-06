@@ -1,7 +1,8 @@
 {
   "objects": [
     {
-      "title": "Vanguard",
+      "title": "DVanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -19,6 +20,7 @@
     },
     {
       "title": "Vanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -36,6 +38,7 @@
     },
     {
       "title": "Vanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -52,7 +55,8 @@
       "techStack": "Angular, CSS, HTML, TypeScript"
     },
     {
-      "title": "Vanguard",
+      "title": "Kanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -70,6 +74,7 @@
     },
     {
       "title": "Vanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
@@ -87,6 +92,7 @@
     },
     {
       "title": "Vanguard",
+      "model": "Vanguard",
       "date": {
         "start": "9/31/2020",
         "end": "4/25/2022"
