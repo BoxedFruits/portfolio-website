@@ -4,14 +4,22 @@ import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
 import { useState } from 'react';
 
+const Highlight = {
+  Browser: {
+    title: "Browser"
+  },
+  SystemConfig : {
+    title: "System Configuration"
+  }
+}
+
 const SceneSetup = () => {
   const { scene } = useThree();
   scene.background = new Color('#000000');
 };
 
 const SelectionText = ({ nextScene }) => {
-  const [isHighlighted, setIsHighLighted] = useState(true);
-
+  const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   return (
     <div style={{ position: "absolute", zIndex: "1", display: "flex", flexDirection: "column", height: "100%", right: "25%", top: "40%" }}>
       <button
@@ -19,20 +27,20 @@ const SelectionText = ({ nextScene }) => {
         onClick={() => nextScene()}
       >
         <p
-          className={`selection-browser ${isHighlighted ? 'highlight' : ''}`}
+          className={`selection-browser ${currHighlighted === Highlight.Browser.title ? 'highlight' : ''}`}
           style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px" }}
-          onMouseEnter={() => setIsHighLighted(true)}>
-          Browser
+          onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
+          {Highlight.Browser.title}
         </p>
       </button>
       <button
         style={{ backgroundColor: "transparent", color: "#5e5a5a", border: "none"}}
       >
         <p
-          className={`selection-browser ${isHighlighted ? '': 'highlight' }`}
+          className={`selection-browser ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': '' }`}
           style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
-          onMouseEnter={() => setIsHighLighted(false)}>
-          System Configuration
+          onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
+          {Highlight.SystemConfig.title}
         </p>
       </button>
     </div>
