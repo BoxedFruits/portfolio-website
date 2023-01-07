@@ -74,13 +74,13 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
         <Html fullscreen>
-          <p className="memory-card-title" style={{ fontSize: "32px", color: "#dfdbdb", position: "absolute", marginLeft: "24px" }}>
+          <p className="memory-card-title text-shadow" style={{ fontSize: "32px", color: "#dfdbdb", position: "absolute", marginLeft: "24px" }}>
             Memory Card
             <span style={{ fontSize: "24px" }}> (PS2) &nbsp;/</span>
             &nbsp;{memoryCardName}
             <p style={{marginTop: "0px", fontSize: "24px"}}>46,341 KB FREE</p>
           </p>
-          <h1 style={{ float: 'right', marginRight: '24px', color: 'rgb(221, 221, 78)', fontFamily: "arial", fontWeight: "lighter" }}>{currHighlighted}</h1>
+          <h1 className="text-shadow" style={{ float: 'right', marginRight: '24px', color: 'rgb(221, 221, 78)', fontFamily: "arial", fontWeight: "lighter" }}>{currHighlighted}</h1>
         </Html>
         <ambientLight />
         <GlowOrbs position={orbPostion} />
