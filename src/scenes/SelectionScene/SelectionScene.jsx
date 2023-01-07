@@ -9,32 +9,40 @@ const SceneSetup = () => {
   scene.background = new Color('#000000');
 };
 
-const SelectionScene = ({nextScene, anotherProp}) => {
-  console.log(anotherProp)
-  
-console.log(nextScene)
-  const SelectionText = () => {
-    const [isHighlighted, setIsHighLighted] = useState(undefined);
-    // why am i blanking out on a better way to do this. Can probably use enums
-  
-    return (
-      <div style={{ position: 'absolute', zIndex: '1' }}>
-        <button className={`selection-browser ${isHighlighted ? 'highlight' : ''}`} 
-          onMouseEnter={(e) => setIsHighLighted(true)}
-          onClick={()=> {nextScene()}}
-          >
-          Browser
-        </button>
-        <button className={`selection-config' ${!isHighlighted && isHighlighted !== undefined ? 'highlight' : ''}`} onMouseEnter={(e) => setIsHighLighted(false)}>
-          System Configuration
-        </button>
-      </div>
-    );
-  }
+const SelectionText = ({ nextScene }) => {
+  const [isHighlighted, setIsHighLighted] = useState(true);
 
   return (
+    <div style={{ position: "absolute", zIndex: "1", display: "flex", flexDirection: "column", height: "100%", right: "25%", top: "40%" }}>
+      <button
+        style={{ backgroundColor: "transparent", border: "none" }}
+        onClick={() => nextScene()}
+      >
+        <p
+          className={`selection-browser ${isHighlighted ? 'highlight' : ''}`}
+          style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px" }}
+          onMouseEnter={() => setIsHighLighted(true)}>
+          Browser
+        </p>
+      </button>
+      <button
+        style={{ backgroundColor: "transparent", color: "#5e5a5a", border: "none"}}
+      >
+        <p
+          className={`selection-browser ${isHighlighted ? '': 'highlight' }`}
+          style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
+          onMouseEnter={() => setIsHighLighted(false)}>
+          System Configuration
+        </p>
+      </button>
+    </div>
+  );
+}
+
+const SelectionScene = ({ nextScene }) => {
+  return (
     <>
-      <SelectionText />
+      <SelectionText nextScene={nextScene} />
       <Canvas>
         <SceneSetup />
         <OrbitControls />
