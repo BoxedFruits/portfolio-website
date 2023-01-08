@@ -85,7 +85,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         <ambientLight />
         <GlowOrbs position={orbPostion} />
         {
-          json.objects.map((obj, index) => { // TODO: Load models
+          json.objects.map((obj, index) => {
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
             let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
             return getModelForSelection(

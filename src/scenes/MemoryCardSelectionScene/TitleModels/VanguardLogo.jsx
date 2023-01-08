@@ -19,7 +19,7 @@ export function VanguardLogo({ shouldRotate, ...props }) {
 
   const { nodes, materials } = useGLTF("models/vanguard_logo.glb")
 
-  return ( //TODO: Fix models so they are all the same orientation and size
+  return (
     <group
       ref={ref}
       scale={[.55, .55, .55]}
