@@ -104,6 +104,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
 
   return (
     <>
+    {/* disable pointer events if loading animations is on */}
       {!finishedLoadingAnimation &&
         <div
           className="text-shadow"
