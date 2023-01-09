@@ -47,11 +47,9 @@ const getModelForModal = (title, index) => {
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   let zValue = 3.25;
 
-  const json = jsonObject;
-
   const [animateBackground, setAnimateBackground] = useState(false);
   const [orbPostion, setOrbPostion] = useState([-5, -0.5, -.50]);
-  const [currHighlighted, setCurrHighLighted] = useState(json.objects[0].title)
+  const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title)
 
   const objIndex = useRef(null);
 
@@ -67,8 +65,8 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           <ArcballControls enableRotate={false} enablePan={false} />
           <Modal
             memoryCardName={memoryCardName}
-            data={json.objects[objIndex.current]}
-            Model={getModelForModal(json.objects[objIndex.current].model, objIndex.current)}
+            data={jsonObject.objects[objIndex.current]}
+            Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current)}
           />
         </Canvas>
       }
@@ -85,7 +83,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         <ambientLight />
         <GlowOrbs position={orbPostion} />
         {
-          json.objects.map((obj, index) => {
+          jsonObject.objects.map((obj, index) => {
             if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
             let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
             return getModelForSelection(
