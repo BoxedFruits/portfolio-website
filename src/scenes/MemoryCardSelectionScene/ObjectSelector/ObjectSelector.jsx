@@ -52,6 +52,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title)
   const [objectsToRender, setObjectsToRender] = useState([]);
   const [animatedObjectsCounter, setAnimatedObjectsCounter] = useState(0); // Keeps track of which object to animate
+  const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
   const [objectRefs, setObjectRefs] = useState([])
 
   const objIndex = useRef(null);
@@ -75,7 +76,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => setCurrHighLighted(obj.title),
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
-        () => {console.log("animationCallback");setAnimatedObjectsCounter(index + 1)}
+        () => { console.log("animationCallback"); setAnimatedObjectsCounter(index + 1) }
       )
     })
     setObjectsToRender(objects);
@@ -92,14 +93,38 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
     console.log("animated objects Counter ", animatedObjectsCounter);
     if (objectRefs[animatedObjectsCounter]?.current) {
       objectRefs[animatedObjectsCounter].current.startLoadingAnimation()
-    } else {
+      setFinishedLoadingAnimation(false);
+    }
+
+    if (animatedObjectsCounter >= objectRefs.length) {
       console.log("tried to access index out of bounds?")
+      setFinishedLoadingAnimation(true);
     }
   }, [animatedObjectsCounter])
 
   return (
     <>
-      {animateBackground &&
+      {!finishedLoadingAnimation &&
+        <div
+          className="text-shadow"
+          style={{
+            position: "absolute",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100%",
+            minWidth: "100%",
+            zIndex: 12345,
+            fontSize: "64px",
+            color: "#dfdbdb",
+            fontFamily: "arial",
+            fontWeight: "lighter"
+          }}>
+          Now Loading...
+        </div>
+      }
+      {
+        animateBackground &&
         <Canvas className="modal-canvas" style={{ position: "absolute" }}>
           <ArcballControls enableRotate={false} enablePan={false} />
           <Modal
