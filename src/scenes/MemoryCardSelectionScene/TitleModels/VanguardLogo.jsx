@@ -39,7 +39,7 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, ...props
   }
 
   useEffect(() => {
-    if (!isComponentMounted) {
+    if (!isComponentMounted && getRef) {
       getRef(ref);
 
       setIsComponentMounted(true);
