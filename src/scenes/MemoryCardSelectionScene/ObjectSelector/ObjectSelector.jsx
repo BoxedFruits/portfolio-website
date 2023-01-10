@@ -76,16 +76,18 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => setCurrHighLighted(obj.title),
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
-        () => { console.log("animationCallback"); setAnimatedObjectsCounter(index + 1) }
+        () => setAnimatedObjectsCounter(index + 1) 
       )
     })
     setObjectsToRender(objects);
   }, [])
 
   useEffect(() => {
+    console.log("objectrefs, ", objectRefs)
     if (objectRefs[0]?.current) {
       console.log(objectRefs[0].current)
-      objectRefs[0].current.startLoadingAnimation()
+      objectRefs[0].current.startLoadingAnimation();
+      setFinishedLoadingAnimation(false);
     }
   }, [objectRefs])
 
@@ -93,10 +95,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
     console.log("animated objects Counter ", animatedObjectsCounter);
     if (objectRefs[animatedObjectsCounter]?.current) {
       objectRefs[animatedObjectsCounter].current.startLoadingAnimation()
-      setFinishedLoadingAnimation(false);
     }
 
-    if (animatedObjectsCounter >= objectRefs.length) {
+    if (objectRefs.length > 0 && animatedObjectsCounter >= objectRefs.length) {
       console.log("tried to access index out of bounds?")
       setFinishedLoadingAnimation(true);
     }
@@ -104,7 +105,6 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
 
   return (
     <>
-    {/* disable pointer events if loading animations is on */}
       {!finishedLoadingAnimation &&
         <div
           className="text-shadow"
@@ -119,7 +119,8 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             fontSize: "64px",
             color: "#dfdbdb",
             fontFamily: "arial",
-            fontWeight: "lighter"
+            fontWeight: "lighter",
+            pointerEvents: "none"
           }}>
           Now Loading...
         </div>
@@ -135,7 +136,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           />
         </Canvas>
       }
-      <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute" }}>
+      <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute", pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
         <Html fullscreen>
           <p className="memory-card-title text-shadow" style={{ fontSize: "32px", color: "#dfdbdb", position: "absolute", marginLeft: "24px" }}>
             Memory Card
