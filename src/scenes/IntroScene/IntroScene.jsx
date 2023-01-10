@@ -1,14 +1,63 @@
+import { ArcballControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber"
+import { useEffect, useRef, useState } from "react";
 
-const IntroScene = () => {
+const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
+const WorkExperience = require("../MemoryCardSelectionScene/MemoryCards/workExperience.json")
+
+const GRID_SIZE = 7;
+
+const getBlockHeights = (file) => {
+  return file.objects.map((e) => {
+    const startDate = new Date(e.date.start).getTime()
+    const endDate = new Date(e.date.end).getTime()
+    return (endDate - startDate) / (1000 * 3600 * 24)
+  })
+}
+
+const getRandomArbitrary = () => {
+  return Math.random() * (5 - (-5)) + (-5);
+}
+
+const IntroScene = ({ nextScene }) => {
+  const pillarCount = useRef(0);
+  const blockHeights = useRef([]);
+  const pillarPositions = useRef(new Set())
+  const [pillars, setPillars] = useState([])
+
+  useEffect(() => {
+    blockHeights.current.push(...getBlockHeights(SideProjects))
+    blockHeights.current.push(...getBlockHeights(WorkExperience))
+
+    pillarCount.current = blockHeights.current.length
+
+    for (let index = 0; index < pillarCount.current; index++) { //get random position  for pillars
+      let randomPosition = [Math.ceil(getRandomArbitrary()), Math.ceil(getRandomArbitrary())]
+      while (pillarPositions.current.has(randomPosition)) { //avoid duplicates
+        randomPosition = [Math.ceil(getRandomArbitrary()), Math.ceil(getRandomArbitrary())]
+      }
+      pillarPositions.current.add(randomPosition)
+    }
+    setPillars(createPillars())
+  }, [])
+
+  const createPillars = () => {
+    return Array.from(pillarPositions.current).map((pos) => {
+      return (
+        <mesh scale={.5} position={[.65 * pos[0], .65 * pos[1], 0]}>
+          <boxGeometry />
+          <meshNormalMaterial />
+        </mesh>
+      )
+    })
+  }
+
 
   return (
     <Canvas>
-      <ambientLight/>
-      <mesh>
-        <boxGeometry/>
-        <meshBasicMaterial color={"blue"} />
-      </mesh>
+      <ArcballControls />
+      <ambientLight />
+      {pillars}
     </Canvas>
   )
 
