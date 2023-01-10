@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import './App.css';
+import IntroScene from './scenes/IntroScene/IntroScene';
 import MemoryCardSelectionScreen from './scenes/MemoryCardSelectionScene/MemoryCardSelectionScene';
 import SelectionScene from './scenes/SelectionScene/SelectionScene';
 
@@ -13,18 +14,17 @@ const Scenes = {
 }
 
 const App = () => {
-  const [currScene, setCurrScene] = useState(Scenes.MemoryCardSelectionScene);
+  const [currScene, setCurrScene] = useState(Scenes.IntroScene);
 
   return (
     <div className="App">
       {(() => {
         switch (currScene) {
           case Scenes.IntroScene:
-            break;
+            return <IntroScene nextScene={() => setCurrScene(Scenes.SelectionScene)}/>
           case Scenes.SelectionScene: 
             return <SelectionScene nextScene={() => setCurrScene(Scenes.MemoryCardSelectionScene)} />
           case Scenes.MemoryCardSelectionScene: 
-            // Needs to also load data when chosing a memory card but doesn't need another component/scene
             return <MemoryCardSelectionScreen />
           default: <h1>Uh oh someething broke</h1>
         }
