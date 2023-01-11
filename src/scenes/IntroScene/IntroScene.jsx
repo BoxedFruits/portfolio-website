@@ -71,6 +71,11 @@ const IntroScene = ({ nextScene }) => {
       <ambientLight intensity={.01} />
       <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
       {pillars}
+      {/* Hard coded pillars to make it look more spread out */}
+      <BoxWithTexture
+        scale={[.5, .5, 250 * .0035]}
+        position={[.65 * 2, .65 * 7, 1]}
+      />
       <Suspense fallback={null}>
         <group ref={cloudRef}>
           <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25} />
