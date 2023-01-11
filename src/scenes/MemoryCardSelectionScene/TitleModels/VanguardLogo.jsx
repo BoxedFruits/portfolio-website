@@ -8,10 +8,9 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { MathUtils } from 'three';
 
-const TARGET_SCALE = .55;
 const MARGIN = .035; // `lerp` doesn't go up to the exact value so stop a little bit prior to target
 
-export function VanguardLogo({ shouldRotate, getRef, animationCallback, ...props }) {
+export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetScale, ...props }) {
   const ref = useRef();
 
   const [isComponentMounted, setIsComponentMounted] = useState(false);
@@ -24,11 +23,11 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, ...props
     }
 
     if (isLoadingAnimationFinished === false) {
-      if (ref.current.scale.x <= TARGET_SCALE - MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, TARGET_SCALE, 0.01)
+      if (ref.current.scale.x <= targetScale - MARGIN) {
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.01)
         ref.current.scale.set(lerpValue, lerpValue, lerpValue)
       } else {
-        animationCallback(); // tell parent component animation is finished
+        if(animationCallback) animationCallback(); // tell parent component animation is finished
         setIsLoadingAnimationFinished(true);
       }
     }
@@ -51,7 +50,6 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, ...props
   return (
     <group
       ref={ref}
-      scale={[.55, .55, .55]}
       rotation-x={3.7}
       dispose={null}
       {...props}

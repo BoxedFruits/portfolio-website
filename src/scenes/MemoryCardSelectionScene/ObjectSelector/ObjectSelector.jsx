@@ -27,6 +27,7 @@ const getModelForSelection = (title, position, index, onHandleAnimation, setOrbP
         }}
         getRef={getRef}
         scale={0}
+        targetScale={.55}
         animationCallback={() => animateNextObject()} //this is what will move the count to the next object to animate
       />;
     default: return <Text>uh oh something broke</Text>
@@ -40,8 +41,11 @@ const getModelForModal = (title, index) => {
         key={index}
         position={[-4.5, -1.25, -1]}
         rotation-x={1.6}
-        scale={[.85, .85, .85]}
-        shouldRotate={true} />;
+        scale={0}
+        targetScale={.85}
+        shouldRotate={true} 
+        getRef={(e) => e.current.startLoadingAnimation()}
+        />;
     default: return <Text>uh oh something broke</Text>
   }
 }
