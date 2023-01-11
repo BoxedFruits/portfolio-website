@@ -12,6 +12,10 @@
   position: absolute;
 }
 
+.highlight {
+  color:rgb(74, 173, 231)  !important;
+}
+
 /* 
   This won;t work for now because the arcballcontrols has panning enable. Need to figure out how to exclude this element from it
 .memory-card-body {

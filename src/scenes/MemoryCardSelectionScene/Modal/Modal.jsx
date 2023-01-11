@@ -1,10 +1,15 @@
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { MathUtils } from "three";
 
 const TARGET_ALPHA = .88;
 const LERP_FACTOR = 0.03;
+
+const Highlight = {
+  Link: "Link",
+  Back: "Back"
+}
 
 const parseGradientValues = (rgba) => {
   const beginningOfString = rgba.match(/(^.*deg, )/g);
@@ -23,10 +28,12 @@ const Modal = ({ data, memoryCardName, Model }) => {
     memory,
     bulletPoints,
     linearGradient,
-    techStack
+    techStack,
+    link
   } = data;
 
   const htmlRef = useRef();
+  const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
 
   useFrame(() => {
     if (htmlRef.current !== undefined) {
@@ -69,7 +76,7 @@ const Modal = ({ data, memoryCardName, Model }) => {
             <p className="text-shadow" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
           </center>
           <p style={{ lineHeight: "1.5", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000" }}>{summary}</p>
-          <i style={{ fontSize: "16px", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000"}}>Tech Stack:  {techStack}</i>
+          <i style={{ fontSize: "16px", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000" }}>Tech Stack:  {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
@@ -77,6 +84,24 @@ const Modal = ({ data, memoryCardName, Model }) => {
               })
             }
           </ul>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <p
+              href={link}
+              target="_blank"
+              rel="noopener"
+              className={`${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : ''}`}
+              style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
+              onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
+            >Link</p>
+            <p
+              className={`${currHighlighted === Highlight.Back ? 'highlight' : ''}`}
+              style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", cursor: "pointer" }}
+              onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
+              onClick={() => {}}
+              >
+            Back
+            </p>
+          </div>
         </div>
       </Html>
     </>
