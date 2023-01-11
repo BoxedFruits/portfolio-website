@@ -1,6 +1,7 @@
-import { ArcballControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber"
-import { useEffect, useRef, useState } from "react";
+import { ArcballControls, Cloud } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber"
+import { Suspense, useEffect, useRef, useState } from "react";
+import { Color, Fog, FogExp2 } from "three";
 
 const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
 const WorkExperience = require("../MemoryCardSelectionScene/MemoryCards/workExperience.json")
@@ -17,6 +18,11 @@ const getBlockHeights = (file) => {
 
 const getRandomArbitrary = () => {
   return Math.random() * (5 - (-5)) + (-5);
+}
+
+const SetupScene = () => {
+  const {scene, gl, camera} = useThree();
+  scene.background = new Color("black")
 }
 
 const IntroScene = ({ nextScene }) => {
@@ -56,8 +62,20 @@ const IntroScene = ({ nextScene }) => {
   return (
     <Canvas camera={{position: [0, 0, 8.5]}}>
       <ArcballControls />
-      <ambientLight />
+      {/* <ambientLight /> */}
+      <directionalLight args={[0x0031f3, 1]} position={[0,0,8.5]}/>
       {pillars}
+      <Suspense fallback={null}>
+        {/* <Cloud position={[-4, -2, -25]} speed={1.2} opacity={1} /> */}
+        <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25}/>
+        <Cloud position={[0, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={2.5}/>
+        <Cloud position={[2, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={5.5}/>
+        <Cloud position={[0, 0, -1.5]} speed={1.55} opacity={.02} depth={.52} width={10.5}/>
+        {/* <Cloud position={[-4, 2, -10]} speed={1.2} opacity={1} />
+        <Cloud position={[4, -2, -5]} speed={0.2} opacity={0.5} />
+        <Cloud position={[4, 2, 0]} speed={0.2} opacity={0.75} /> */}
+      </Suspense>
+      <SetupScene/>
     </Canvas>
   )
 
