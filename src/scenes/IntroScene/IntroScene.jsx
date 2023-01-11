@@ -16,7 +16,7 @@ const getBlockHeights = (file) => {
 }
 
 const getRandomArbitrary = () => {
-  return Math.random() * (5 - (-5)) + (-5);
+  return Math.random() * (4 - (-4)) + (-4);
 }
 
 const IntroScene = ({ nextScene }) => {
@@ -42,9 +42,9 @@ const IntroScene = ({ nextScene }) => {
   }, [])
 
   const createPillars = () => {
-    return Array.from(pillarPositions.current).map((pos) => {
+    return Array.from(pillarPositions.current).map((pos,index) => {
       return (
-        <mesh scale={.5} position={[.65 * pos[0], .65 * pos[1], 0]}>
+        <mesh scale={[.5,.5, blockHeights.current[index] * .0035]} position={[.65 * pos[0], .65 * pos[1], ((blockHeights.current[index] * .0035) / 2)]}>
           <boxGeometry />
           <meshNormalMaterial />
         </mesh>
