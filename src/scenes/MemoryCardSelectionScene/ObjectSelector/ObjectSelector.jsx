@@ -76,7 +76,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         () => setOrbPostion([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => setCurrHighLighted(obj.title),
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
-        () => setAnimatedObjectsCounter(index + 1) 
+        () => setAnimatedObjectsCounter(index + 1)
       )
     })
     setObjectsToRender(objects);
@@ -133,6 +133,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             memoryCardName={memoryCardName}
             data={jsonObject.objects[objIndex.current]}
             Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current)}
+            closeModal={() => setAnimateBackground(false)}
           />
         </Canvas>
       }

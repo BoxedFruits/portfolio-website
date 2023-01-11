@@ -20,7 +20,7 @@ const parseGradientValues = (rgba) => {
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const Modal = ({ data, memoryCardName, Model }) => {
+const Modal = ({ data, memoryCardName, closeModal, Model }) => {
   const {
     title,
     date,
@@ -34,26 +34,41 @@ const Modal = ({ data, memoryCardName, Model }) => {
 
   const htmlRef = useRef();
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
+  const [triggerExitAnimation, setTriggerExitAnimation] = useState(false);
 
   useFrame(() => {
-    if (htmlRef.current !== undefined) {
-      const {
-        beginningOfString,
-        percentages,
-        rgbaValues,
-        currentAlphaVal
-      } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+    if (htmlRef.current !== undefined) { //Load animation
+      changeBackgroundAlpha(TARGET_ALPHA)
+    }
 
-      let newBackground = beginningOfString
-      let percentageIndex = 0
-      for (let index = 0; index < rgbaValues.length; index += 3) {
-        newBackground += `rgba(${rgbaValues[index]} ${rgbaValues[index + 1]} ${rgbaValues[index + 2]} ${MathUtils.lerp(currentAlphaVal, TARGET_ALPHA, LERP_FACTOR)}) ${percentages[percentageIndex++]}, `
+    if (triggerExitAnimation) {
+
+      //TODO: text not fading out. lerp is not going down in value like i expect it to
+      document.getElementsByClassName('memory-card-body')[0].style.opacity = `${MathUtils.lerp(100, 0, 0.01)} %`
+      if (changeBackgroundAlpha(-1) - .15 <= 0) {
+        closeModal()
       }
-      newBackground = newBackground.slice(0, -2) + ")"
-
-      htmlRef.current.getElementsByClassName('modal-background')[0].style.background = newBackground;
     }
   });
+
+  const changeBackgroundAlpha = (alpha) => {
+    const {
+      beginningOfString,
+      percentages,
+      rgbaValues,
+      currentAlphaVal
+    } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
+
+    let newBackground = beginningOfString
+    let percentageIndex = 0
+    for (let index = 0; index < rgbaValues.length; index += 3) {
+      newBackground += `rgba(${rgbaValues[index]} ${rgbaValues[index + 1]} ${rgbaValues[index + 2]} ${MathUtils.lerp(currentAlphaVal, alpha, LERP_FACTOR)}) ${percentages[percentageIndex++]}, `
+    }
+    newBackground = newBackground.slice(0, -2) + ")"
+
+    htmlRef.current.getElementsByClassName('modal-background')[0].style.background = newBackground;
+    return currentAlphaVal;
+  }
 
   return (
     <>
@@ -66,7 +81,7 @@ const Modal = ({ data, memoryCardName, Model }) => {
       </Html>
       <ambientLight />
       {Model}
-      <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
+      <Html transform className="memory-card-body" style={{opacity: "100%"}} position={[5.5, 2.5, -10]}>
         <div style={{ maxWidth: "28em" }}>
           <center>
             {/* TODO: move some of the inline styles to the stylesheet */}
@@ -97,9 +112,9 @@ const Modal = ({ data, memoryCardName, Model }) => {
               className={`${currHighlighted === Highlight.Back ? 'highlight' : ''}`}
               style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", cursor: "pointer" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
-              onClick={() => {}}
-              >
-            Back
+              onClick={() => { setTriggerExitAnimation(true) }}
+            >
+              Back
             </p>
           </div>
         </div>
