@@ -1,7 +1,7 @@
 import { ArcballControls, Cloud, useTexture } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Color } from "three";
+import { Color, MathUtils } from "three";
 
 const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
 const WorkExperience = require("../MemoryCardSelectionScene/MemoryCards/workExperience.json")
@@ -20,7 +20,25 @@ const getRandomArbitrary = () => {
 
 const SetupScene = () => {
   const { scene } = useThree();
+  const camera = useThree((state) => state.camera);
+
   scene.background = new Color("black")
+  camera.rotateZ(-0.025)
+  console.log("mounted")
+  useFrame(() => {
+    console.log("camera rotation ", camera.rotation._z)
+
+    if (camera.rotation._z <= 0.14) {
+      const lerpValue = MathUtils.lerp(0.0001, 5, .0001)
+      camera.rotateZ(lerpValue)
+    } else {
+      const lerpValueRotation = MathUtils.lerp(0.0025, 5, .0001)
+      const lerpValueZ = MathUtils.lerp(-0.0275, 1.5 , .0001)
+      
+      camera.rotateZ(lerpValueRotation)
+      camera.translateZ(lerpValueZ)
+    }
+  })
 }
 
 const BoxWithTexture = (props) => {
@@ -67,7 +85,7 @@ const IntroScene = ({ nextScene }) => {
 
   return (
     <Canvas camera={{ position: [0, 0, 8.5] }}>
-      <ArcballControls />
+      {/* <ArcballControls /> */}
       <ambientLight intensity={.01} />
       <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
       {pillars}
