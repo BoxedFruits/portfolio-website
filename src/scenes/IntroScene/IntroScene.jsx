@@ -1,12 +1,10 @@
-import { ArcballControls, Cloud } from "@react-three/drei";
+import { ArcballControls, Cloud, useTexture } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Color, Fog, FogExp2 } from "three";
+import { Color } from "three";
 
 const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
 const WorkExperience = require("../MemoryCardSelectionScene/MemoryCards/workExperience.json")
-
-const GRID_SIZE = 7;
 
 const getBlockHeights = (file) => {
   return file.objects.map((e) => {
@@ -21,11 +19,22 @@ const getRandomArbitrary = () => {
 }
 
 const SetupScene = () => {
-  const {scene, gl, camera} = useThree();
+  const { scene } = useThree();
   scene.background = new Color("black")
 }
 
+const BoxWithTexture = (props) => {
+  const stoneTexture = useTexture("stoneTexture.jpg");
+  return (
+    <mesh {...props}>
+      <boxGeometry></boxGeometry>
+      <meshBasicMaterial map={stoneTexture} />
+    </mesh>
+  )
+}
+
 const IntroScene = ({ nextScene }) => {
+  const cloudRef = useRef()
   const pillarCount = useRef(0);
   const blockHeights = useRef([]);
   const pillarPositions = useRef(new Set())
@@ -48,34 +57,29 @@ const IntroScene = ({ nextScene }) => {
   }, [])
 
   const createPillars = () => {
-    return Array.from(pillarPositions.current).map((pos,index) => {
+    return Array.from(pillarPositions.current).map((pos, index) => {
       return (
-        <mesh scale={[.5,.5, blockHeights.current[index] * .0035]} position={[.65 * pos[0], .65 * pos[1], ((blockHeights.current[index] * .0035) / 2)]}>
-          <boxGeometry />
-          <meshNormalMaterial />
-        </mesh>
+        <BoxWithTexture scale={[.5, .5, blockHeights.current[index] * .0035]}
+          position={[.65 * pos[0], .65 * pos[1], ((blockHeights.current[index] * .0035) / 2)]} />
       )
     })
   }
 
-
   return (
-    <Canvas camera={{position: [0, 0, 8.5]}}>
+    <Canvas camera={{ position: [0, 0, 8.5] }}>
       <ArcballControls />
-      {/* <ambientLight /> */}
-      <directionalLight args={[0x0031f3, 1]} position={[0,0,8.5]}/>
+      <ambientLight intensity={.01} />
+      <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
       {pillars}
       <Suspense fallback={null}>
-        {/* <Cloud position={[-4, -2, -25]} speed={1.2} opacity={1} /> */}
-        <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25}/>
-        <Cloud position={[0, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={2.5}/>
-        <Cloud position={[2, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={5.5}/>
-        <Cloud position={[0, 0, -1.5]} speed={1.55} opacity={.02} depth={.52} width={10.5}/>
-        {/* <Cloud position={[-4, 2, -10]} speed={1.2} opacity={1} />
-        <Cloud position={[4, -2, -5]} speed={0.2} opacity={0.5} />
-        <Cloud position={[4, 2, 0]} speed={0.2} opacity={0.75} /> */}
+        <group ref={cloudRef}>
+          <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25} />
+          <Cloud position={[0, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={2.5} />
+          <Cloud position={[2, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={5.5} />
+          <Cloud position={[0, 0, -1.5]} speed={1.55} opacity={.02} depth={.52} width={10.5} />
+        </group>
       </Suspense>
-      <SetupScene/>
+      <SetupScene />
     </Canvas>
   )
 
