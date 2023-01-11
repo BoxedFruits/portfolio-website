@@ -16,7 +16,7 @@ const getBlockHeights = (file) => {
 }
 
 const getRandomArbitrary = () => {
-  return Math.random() * (4 - (-4)) + (-4);
+  return Math.random() * (5 - (-5)) + (-5);
 }
 
 const IntroScene = ({ nextScene }) => {
@@ -54,7 +54,7 @@ const IntroScene = ({ nextScene }) => {
 
 
   return (
-    <Canvas>
+    <Canvas camera={{position: [0, 0, 8.5]}}>
       <ArcballControls />
       <ambientLight />
       {pillars}
