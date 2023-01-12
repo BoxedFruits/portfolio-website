@@ -31,6 +31,8 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
         setIsLoadingAnimationFinished(true);
       }
     }
+
+    //TODO: shrinking animation. Might have to refactor to forwardRefs instead so that ObjectSelector can be the component that handles state changes
   })
 
   const startLoadingAnimation = async () => {
