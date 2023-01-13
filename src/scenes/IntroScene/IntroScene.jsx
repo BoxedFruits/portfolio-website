@@ -1,4 +1,4 @@
-import { ArcballControls, Cloud, useTexture } from "@react-three/drei";
+import { Cloud, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Color, MathUtils } from "three";
@@ -85,7 +85,6 @@ const IntroScene = ({ nextScene }) => {
 
   return (
     <Canvas camera={{ position: [0, 0, 8.5] }}>
-      {/* <ArcballControls /> */}
       <ambientLight intensity={.01} />
       <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
       {pillars}
