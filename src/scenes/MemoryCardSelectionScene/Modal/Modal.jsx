@@ -105,13 +105,12 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
               href={link}
               target="_blank"
               rel="noopener"
-              className={`arial-lighter text-shadow-thinner ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : 'not-highlighted'}`}
-              style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
+              className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : 'not-highlighted'}`}
+              style={{ cursor: link === "" ? "not-allowed" : "pointer" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
             >Link</p>
             <p
-              className={`arial-lighter text-shadow-thinner ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
-              style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", cursor: "pointer" }}
+              className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
               onClick={() => { setTriggerExitAnimation(true) }}
             >

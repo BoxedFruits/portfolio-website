@@ -8,7 +8,7 @@ const Highlight = {
   Browser: {
     title: "Browser"
   },
-  SystemConfig : {
+  SystemConfig: {
     title: "System Configuration"
   }
 }
@@ -22,24 +22,19 @@ const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   return (
     <div className="selection-text-container">
-      <button className="transparent-button"
-        onClick={() => nextScene()}
-      >
+      <center style={{marginTop: "10px"}}>
         <p
-          className={`arial-lighter ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
-          style={{fontSize: "3.25em", marginBottom: "10px" }}
+          className={`arial-lighter selectable-text ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
+          onClick={() => nextScene()}
           onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
           {Highlight.Browser.title}
         </p>
-      </button>
-      <button className="transparent-button">
         <p
-          className={`arial-lighter ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': 'not-highlighted' }`}
-          style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
+          className={`arial-lighter selectable-text ${currHighlighted === Highlight.SystemConfig.title ? 'highlight' : 'not-highlighted'}`}
           onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
           {Highlight.SystemConfig.title}
         </p>
-      </button>
+      </center>
     </div>
   );
 }
