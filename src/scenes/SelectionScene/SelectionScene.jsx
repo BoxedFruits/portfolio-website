@@ -21,9 +21,8 @@ const SceneSetup = () => {
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   return (
-    <div className="" style={{ position: "absolute", zIndex: "1", display: "flex", flexDirection: "column", height: "100%", right: "25%", top: "40%" }}>
-      <button
-        style={{ backgroundColor: "transparent", border: "none" }}
+    <div className="selection-text-container">
+      <button className="transparent-button"
         onClick={() => nextScene()}
       >
         <p
@@ -33,9 +32,7 @@ const SelectionText = ({ nextScene }) => {
           {Highlight.Browser.title}
         </p>
       </button>
-      <button
-        style={{ backgroundColor: "transparent", border: "none"}}
-      >
+      <button className="transparent-button">
         <p
           className={`arial-lighter ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': 'not-highlighted' }`}
           style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}

@@ -1,0 +1,14 @@
+.selection-text-container{
+  z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  right: 25%;
+  top: 40%; 
+}
+
+.transparent-button {
+  background-color: transparent;
+  border: none;
+}

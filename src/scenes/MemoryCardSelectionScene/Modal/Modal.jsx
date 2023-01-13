@@ -90,12 +90,12 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
             <p className="text-shadow" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
             <p className="text-shadow" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
           </center>
-          <p style={{ lineHeight: "1.5", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000" }}>{summary}</p>
-          <i style={{ fontSize: "16px", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000" }}>Tech Stack:  {techStack}</i>
+          <p className="text-shadow-thinner" style={{ lineHeight: "1.5", color: "#dfdbdb" }}>{summary}</p>
+          <i className="text-shadow-thinner" style={{ fontSize: "16px", color: "#dfdbdb" }}>Tech Stack:  {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
-                return <li key={index} style={{ lineHeight: "1.8", color: "#dfdbdb", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000" }} className="memory-card-bulletPoints">{bullet}</li>
+                return <li key={index} className="memory-card-bulletpoints text-shadow-thinner" style={{ lineHeight: "1.8", color: "#dfdbdb"}}>{bullet}</li>
               })
             }
           </ul>
@@ -104,13 +104,13 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
               href={link}
               target="_blank"
               rel="noopener"
-              className={`arial-lighter ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : ''}`}
-              style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
+              className={`arial-lighter text-shadow-thinner ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : 'not-highlighted'}`}
+              style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
             >Link</p>
             <p
-              className={`arial-lighter ${currHighlighted === Highlight.Back ? 'highlight' : ''}`}
-              style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", cursor: "pointer" }}
+              className={`arial-lighter text-shadow-thinner ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
+              style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", cursor: "pointer" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
               onClick={() => { setTriggerExitAnimation(true) }}
             >
