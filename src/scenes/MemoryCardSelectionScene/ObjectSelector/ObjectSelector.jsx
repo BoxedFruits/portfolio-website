@@ -146,7 +146,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             &nbsp;{memoryCardName}
             <p style={{ marginTop: "0px", fontSize: "24px" }}>46,341 KB FREE</p>
           </p>
-          <h1 className="text-shadow" style={{ float: 'right', marginRight: '24px', color: 'rgb(221, 221, 78)', fontFamily: "arial", fontWeight: "lighter", pointerEvents: "None" }}>{currHighlighted}</h1>
+          <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '24px', color: 'rgb(221, 221, 78)', pointerEvents: "None" }}>{currHighlighted}</h1>
         </Html>
         <ambientLight />
         <GlowOrbs position={orbPostion} />

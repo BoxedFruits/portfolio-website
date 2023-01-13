@@ -27,8 +27,8 @@ const SelectionText = ({ nextScene }) => {
         onClick={() => nextScene()}
       >
         <p
-          className={`selection-browser ${currHighlighted === Highlight.Browser.title ? 'highlight' : ''}`}
-          style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px" }}
+          className={`selection-browser arial-lighter ${currHighlighted === Highlight.Browser.title ? 'highlight' : ''}`}
+          style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px" }}
           onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
           {Highlight.Browser.title}
         </p>
@@ -37,8 +37,8 @@ const SelectionText = ({ nextScene }) => {
         style={{ backgroundColor: "transparent", color: "#5e5a5a", border: "none"}}
       >
         <p
-          className={`selection-browser ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': '' }`}
-          style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
+          className={`selection-browser arial-lighter ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': '' }`}
+          style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
           onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
           {Highlight.SystemConfig.title}
         </p>

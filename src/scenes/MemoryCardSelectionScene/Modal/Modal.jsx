@@ -86,7 +86,7 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
           <center>
             {/* TODO: move some of the inline styles to the stylesheet */}
             <p className="memory-card-title text-shadow" style={{ fontSize: "32px", marginBottom: "8px", color: "#dfdbdb" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
-            <h1 className="text-shadow" style={{ color: "#dddd4e", marginTop: "0", fontFamily: "arial", fontWeight: "lighter", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
+            <h1 className="text-shadow arial-lighter" style={{ color: "#dddd4e", marginTop: "0", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
             <p className="text-shadow" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
             <p className="text-shadow" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
           </center>
@@ -104,13 +104,13 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
               href={link}
               target="_blank"
               rel="noopener"
-              className={`${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : ''}`}
-              style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
+              className={`arial-lighter ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : ''}`}
+              style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", textDecoration: "none", cursor: link === "" ? "not-allowed" : "grab" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
             >Link</p>
             <p
-              className={`${currHighlighted === Highlight.Back ? 'highlight' : ''}`}
-              style={{ color: "#5e5a5a", fontFamily: "arial", fontWeight: "lighter", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", cursor: "pointer" }}
+              className={`arial-lighter ${currHighlighted === Highlight.Back ? 'highlight' : ''}`}
+              style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px", textShadow: "-1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000", cursor: "pointer" }}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
               onClick={() => { setTriggerExitAnimation(true) }}
             >
