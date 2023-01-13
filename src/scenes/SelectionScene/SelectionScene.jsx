@@ -21,24 +21,24 @@ const SceneSetup = () => {
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   return (
-    <div style={{ position: "absolute", zIndex: "1", display: "flex", flexDirection: "column", height: "100%", right: "25%", top: "40%" }}>
+    <div className="" style={{ position: "absolute", zIndex: "1", display: "flex", flexDirection: "column", height: "100%", right: "25%", top: "40%" }}>
       <button
         style={{ backgroundColor: "transparent", border: "none" }}
         onClick={() => nextScene()}
       >
         <p
-          className={`selection-browser arial-lighter ${currHighlighted === Highlight.Browser.title ? 'highlight' : ''}`}
-          style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px" }}
+          className={`arial-lighter ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
+          style={{fontSize: "3.25em", marginBottom: "10px" }}
           onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
           {Highlight.Browser.title}
         </p>
       </button>
       <button
-        style={{ backgroundColor: "transparent", color: "#5e5a5a", border: "none"}}
+        style={{ backgroundColor: "transparent", border: "none"}}
       >
         <p
-          className={`selection-browser arial-lighter ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': '' }`}
-          style={{ color: "#5e5a5a", fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
+          className={`arial-lighter ${currHighlighted === Highlight.SystemConfig.title ? 'highlight': 'not-highlighted' }`}
+          style={{ fontSize: "3.25em", marginBottom: "10px", marginTop: "0px"}}
           onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
           {Highlight.SystemConfig.title}
         </p>

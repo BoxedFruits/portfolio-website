@@ -36,3 +36,11 @@ body,
   font-family: arial;
   font-weight: lighter;
 }
+
+.highlight {
+  color:rgb(74, 173, 231)  !important;
+}
+
+.not-highlighted {
+  color: #5e5a5a !important;
+}
