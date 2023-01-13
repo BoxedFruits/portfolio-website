@@ -1,3 +1,7 @@
 .text-shadow-thinner { 
   text-shadow: -1px 1px 0px #000, 1px 1px 0px #000, 1px -1px 0px #000, -1px -1px 0px #000;
 }
+
+.modal-body {
+  color: #dfdbdb !important;
+}

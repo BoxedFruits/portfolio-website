@@ -44,3 +44,7 @@ body,
 .not-highlighted {
   color: #5e5a5a !important;
 }
+
+.title { 
+  color: #dddd4e;
+}

@@ -2,6 +2,7 @@ import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { MathUtils } from "three";
+import "./Modal.css";
 
 const TARGET_ALPHA = .88;
 const LERP_FACTOR = 0.03;
@@ -85,17 +86,17 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
         <div style={{ maxWidth: "28em" }}>
           <center>
             {/* TODO: move some of the inline styles to the stylesheet */}
-            <p className="memory-card-title text-shadow" style={{ fontSize: "32px", marginBottom: "8px", color: "#dfdbdb" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
-            <h1 className="text-shadow arial-lighter" style={{ color: "#dddd4e", marginTop: "0", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
-            <p className="text-shadow" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
-            <p className="text-shadow" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", color: "#dfdbdb", letterSpacing: "2px" }}>{memory}</p>
+            <p className="memory-card-title text-shadow modal-body" style={{ fontSize: "32px", marginBottom: "8px" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
+            <h1 className="text-shadow arial-lighter title" style={{ marginTop: "0", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
+            <p className="text-shadow modal-body" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
+            <p className="text-shadow modal-body" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", letterSpacing: "2px" }}>{memory}</p>
           </center>
           <p className="text-shadow-thinner" style={{ lineHeight: "1.5", color: "#dfdbdb" }}>{summary}</p>
           <i className="text-shadow-thinner" style={{ fontSize: "16px", color: "#dfdbdb" }}>Tech Stack:  {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
-                return <li key={index} className="memory-card-bulletpoints text-shadow-thinner" style={{ lineHeight: "1.8", color: "#dfdbdb"}}>{bullet}</li>
+                return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>
               })
             }
           </ul>
