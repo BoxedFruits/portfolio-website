@@ -87,22 +87,19 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   }, [])
 
   useEffect(() => {
-    console.log("objectrefs, ", objectRefs)
-    if (objectRefs[0]?.current) {
-      console.log(objectRefs[0].current)
+    if (objectRefs[0]?.current) { // Start the loading animations
       objectRefs[0].current.startLoadingAnimation();
       setFinishedLoadingAnimation(false);
     }
   }, [objectRefs])
 
   useEffect(() => {
-    console.log("animated objects Counter ", animatedObjectsCounter);
+    // console.log("animated objects Counter ", animatedObjectsCounter);
     if (objectRefs[animatedObjectsCounter]?.current) {
       objectRefs[animatedObjectsCounter].current.startLoadingAnimation()
     }
 
     if (objectRefs.length > 0 && animatedObjectsCounter >= objectRefs.length) {
-      console.log("tried to access index out of bounds?")
       setFinishedLoadingAnimation(true);
     }
   }, [animatedObjectsCounter])

@@ -24,9 +24,8 @@ const SetupScene = () => {
 
   scene.background = new Color("black")
   camera.rotateZ(-0.025)
-  console.log("mounted")
+
   useFrame(() => {
-    console.log("camera rotation ", camera.rotation._z)
 
     if (camera.rotation._z <= 0.14) {
       const lerpValue = MathUtils.lerp(0.0001, 5, .0001)
