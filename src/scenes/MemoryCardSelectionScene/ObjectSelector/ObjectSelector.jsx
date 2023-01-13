@@ -107,24 +107,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   return (
     <>
       {!finishedLoadingAnimation &&
-        <div
-          className="text-shadow"
-          style={{
-            position: "absolute",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100%",
-            minWidth: "100%",
-            zIndex: 12345,
-            fontSize: "64px",
-            color: "#dfdbdb",
-            fontFamily: "arial",
-            fontWeight: "lighter",
-            pointerEvents: "none"
-          }}>
-          Now Loading...
-        </div>
+        <div className="text-shadow loading-text"> Now Loading...</div>
       }
       {
         animateBackground &&

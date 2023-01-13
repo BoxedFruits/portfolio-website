@@ -12,8 +12,19 @@
   position: absolute;
 }
 
-.highlight {
-  color:rgb(74, 173, 231)  !important;
+.loading-text {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: 12345;
+  font-size: 64px;
+  color: #dfdbdb;
+  font-family: arial;
+  font-weight: lighter;
+  pointer-events: none;
 }
 
 /* 
