@@ -91,8 +91,8 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
             <p className="text-shadow modal-body" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
             <p className="text-shadow modal-body" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", letterSpacing: "2px" }}>{memory}</p>
           </center>
-          <p className="text-shadow-thinner" style={{ lineHeight: "1.5", color: "#dfdbdb" }}>{summary}</p>
-          <i className="text-shadow-thinner" style={{ fontSize: "16px", color: "#dfdbdb" }}>Tech Stack:  {techStack}</i>
+          <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{summary}</p>
+          <i className="text-shadow-thinner modal-body" style={{ fontSize: "16px" }}>Tech Stack: {techStack}</i>
           <ul>
             {
               bulletPoints.map((bullet, index) => {
