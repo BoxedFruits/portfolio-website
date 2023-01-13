@@ -54,6 +54,7 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
       ref={ref}
       rotation-x={3.7}
       dispose={null}
+      scale={0}
       {...props}
       startLoadingAnimation={() => startLoadingAnimation()}
     >
