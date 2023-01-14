@@ -16,6 +16,40 @@ export const GlassBoxes = () => {
     thickness: "2",
     ior: "2",
   }
+
+  const glassBoxesData = [
+    {
+      ref: boxRef1,
+      scale: SCALE,
+      position: [-3, 3, 2.75],
+      rotation: [-4.25, -2.2, 1.25]
+    },
+    {
+      ref: boxRef2,
+      scale: SCALE,
+      position: [-2.55, -1.75, 2.75],
+      rotation: [.01, -.15, -.15]
+    },
+    {
+      ref: boxRef3,
+      scale: SCALE,
+      position: [3, 3, 2.75],
+      rotation: [.05, .05, .5]
+    },
+    {
+      ref: boxRef4,
+      scale: .35,
+      position: [3, -.1, 2.75],
+      rotation: [.04, -.15, -.16]
+    },
+    {
+      ref: boxRef5,
+      scale: .6,
+      position: [-.35, .75, 2.75],
+      rotation: [.15, .25, -.28]
+    }
+  ]
+
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() / 5.2
     boxRef1.current.rotation.z = -t
@@ -41,62 +75,22 @@ export const GlassBoxes = () => {
 
   return (
     <>
-      <mesh
-        ref={boxRef1}
-        scale={SCALE}
-        position={[-3, 3, 2.75]}
-        center={[-3, 3, 2.75]}
-        rotation={[-4.25, -2.2, 1.25]}
-      >
-        <boxGeometry />
-        <MeshTransmissionMaterial
-          {...transmissionMaterialConfig}
-        />
-      </mesh>
-      <mesh
-        ref={boxRef2}
-        scale={SCALE}
-        position={[-2.55, -1.75, 2.75]}
-        rotation={[.01, -.15, -.15]}
-      >
-        <boxGeometry />
-        <MeshTransmissionMaterial
-          {...transmissionMaterialConfig}
-        />
-      </mesh>
-      <mesh
-        ref={boxRef3}
-        scale={SCALE}
-        position={[3, 3, 2.75]}
-        rotation={[.05, .05, .5]}
-      >
-        <boxGeometry />
-        <MeshTransmissionMaterial
-          {...transmissionMaterialConfig}
-        />
-      </mesh>
-      <mesh
-        ref={boxRef4}
-        scale={.35}
-        position={[3, -.1, 2.75]}
-        rotation={[.04, -.15, -.16]}
-      >
-        <boxGeometry />
-        <MeshTransmissionMaterial
-          {...transmissionMaterialConfig}
-        />
-      </mesh>
-      <mesh
-        ref={boxRef5}
-        scale={.6}
-        position={[-.35, .75, 2.75]}
-        rotation={[.15, .25, -.28]}
-      >
-        <boxGeometry />
-        <MeshTransmissionMaterial
-          {...transmissionMaterialConfig}
-        />
-      </mesh>
+      {glassBoxesData.map((box) => {
+        return (
+          <mesh
+            ref={box.ref}
+            scale={box.scale}
+            position={box.position}
+            rotation={box.rotation}
+          >
+            <boxGeometry />
+            <MeshTransmissionMaterial
+              {...transmissionMaterialConfig}
+            />
+          </mesh>
+        )
+      })}
+
     </>
   )
 }
