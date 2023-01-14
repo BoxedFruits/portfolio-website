@@ -1,7 +1,7 @@
-import { Cloud, useTexture, ArcballControls } from "@react-three/drei";
+import { Cloud, useTexture, ArcballControls, Trail } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Color, MathUtils } from "three";
+import { AdditiveBlending, Color, MathUtils } from "three";
 import { GlassBoxes } from "./GlassBoxes";
 
 const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
@@ -50,6 +50,102 @@ const BoxWithTexture = (props) => {
   )
 }
 
+const ColorSpheres = () => {
+  const redSphere = useRef()
+  const greenSphere = useRef()
+  const purpleSphere = useRef()
+  const blueSphere = useRef()
+
+  const SCALE = .035
+  const RED_COLOR = "#FF043E"
+  const PURPLE_COLOR = "#900ff0"
+  const GREEN_COLOR = "#007F5C"
+  const BLUE_COLOR = "#336693"
+
+  const orbTexture = useTexture("glow.png")
+  const SPRITE_CONFIG = {
+    map: orbTexture,
+    alphaMap: orbTexture,
+    transparent: true,
+    opacity: 1,
+    blending: AdditiveBlending,
+    depthWrite: false,
+    toneMapped: false,
+  }
+
+  const sphereData =
+    [{
+      color: RED_COLOR,
+      position: [-.35, .75, 3],
+      ref: redSphere
+    },
+    {
+      color: PURPLE_COLOR,
+      position: [2.4, -.1, 3],
+      ref: purpleSphere
+    },
+    {
+      color: GREEN_COLOR,
+      position: [-2.55, -.75, 2.75],
+      ref: greenSphere
+    },
+    {
+      color: BLUE_COLOR,
+      position: [-1.5, -1.75, 2.75],
+      ref: blueSphere
+    }
+    ];
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+
+    redSphere.current.position.x = Math.sin(t / 2.5) * 4
+    redSphere.current.position.y = Math.cos(-t)
+
+    greenSphere.current.position.x = Math.sin(t) * 2- 2
+    greenSphere.current.position.y = Math.cos(t / Math.PI) - 1
+
+    blueSphere.current.position.x = Math.cos(t)
+    blueSphere.current.position.y = Math.sin( 2*t / Math.PI)
+
+    purpleSphere.current.position.x = Math.sin(t / Math.PI) * 4 - 1.5
+    purpleSphere.current.position.y = Math.cos(t) * 2
+  })
+
+  return (
+    <>
+      {sphereData.map((sphere) => {
+        return (
+          <group ref={sphere.ref} position={sphere.position}>
+            <sprite
+              scale={SCALE + .5}
+            >
+              <spriteMaterial
+                {...SPRITE_CONFIG}
+                color={sphere.color}
+              />
+            </sprite>
+            <Trail
+              width={1}
+              length={20}
+              decay={0.1}
+              attenuation={(t) => {
+                return (t * t) / 2
+              }}
+              color={sphere.color}
+            >
+              <mesh scale={SCALE}>
+                <sphereGeometry />
+                <meshBasicMaterial color={sphere.color} />
+              </mesh>
+            </Trail>
+          </group>
+        )
+      })}
+    </>
+  )
+}
+
 const IntroScene = ({ nextScene }) => {
   const cloudRef = useRef()
   const pillarCount = useRef(0);
@@ -83,27 +179,28 @@ const IntroScene = ({ nextScene }) => {
   }
 
   return (
-    <Canvas camera={{ position: [0, 0, 8.5] }}>
-      <ambientLight intensity={0.01} />
-      <ArcballControls />
-      <GlassBoxes />
-      <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
-      {pillars}
-      {/* Hard coded pillars to make it look more spread out */}
-      <BoxWithTexture
-        scale={[.5, .5, 250 * .0035]}
-        position={[.65 * 2, .65 * 7, 1]}
-      />
-      <Suspense fallback={null}>
-        <group ref={cloudRef}>
-          <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25} />
-          <Cloud position={[0, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={2.5} />
-          <Cloud position={[2, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={5.5} />
-          <Cloud position={[0, 0, -1.5]} speed={1.55} opacity={.02} depth={.52} width={10.5} />
-        </group>
-      </Suspense>
-      <SetupScene />
-    </Canvas>
+    <Suspense fallback={null}>
+      <Canvas camera={{ position: [0, 0, 8.5] }}>
+        <ambientLight intensity={0.01} />
+        <ArcballControls />
+        <GlassBoxes />
+        <ColorSpheres />
+        <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
+        {pillars}
+        {/* Hard coded pillars to make it look more spread out */}
+        <BoxWithTexture
+          scale={[.5, .5, 250 * .0035]}
+          position={[.65 * 2, .65 * 7, 1]}
+        />
+          <group ref={cloudRef}>
+            <Cloud position={[0, 0, -.5]} speed={.35} opacity={.12} depth={.2} width={10.25} />
+            <Cloud position={[0, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={2.5} />
+            <Cloud position={[2, 0, -1.5]} speed={.25} opacity={.04} depth={.52} width={5.5} />
+            <Cloud position={[0, 0, -1.5]} speed={1.55} opacity={.02} depth={.52} width={10.5} />
+          </group>
+        <SetupScene />
+      </Canvas>
+    </Suspense>
   )
 
 }
