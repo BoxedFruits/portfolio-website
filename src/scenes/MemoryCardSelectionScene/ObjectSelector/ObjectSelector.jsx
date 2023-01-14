@@ -33,7 +33,7 @@ const getModelForSelection = (title, position, index, onHandleAnimation, setOrbP
   }
 }
 
-const getModelForModal = (title, index) => {
+const getModelForModal = (title, index, getRef) => {
   switch (title) {
     case "Vanguard":
       return <VanguardLogo
@@ -42,7 +42,8 @@ const getModelForModal = (title, index) => {
         rotation-x={1.6}
         targetScale={.85}
         shouldRotate={true} 
-        getRef={(e) => e.current.startLoadingAnimation()}
+        loadAnimation={(e) => e.current.startLoadingAnimation()}
+        getRef={getRef}
         />;
     default: return <Text>uh oh something broke</Text>
   }
@@ -56,6 +57,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [animatedObjectsCounter, setAnimatedObjectsCounter] = useState(0); // Keeps track of which object to animate
   const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
   const [objectRefs, setObjectRefs] = useState([])
+  const [modalObjectRef, setModalObjectRef] = useState();
 
   const objIndex = useRef(null);
 
@@ -114,8 +116,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           <Modal
             memoryCardName={memoryCardName}
             data={jsonObject.objects[objIndex.current]}
-            Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current)}
-            closeModal={() => setAnimateBackground(false)}
+            Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current, (e) => setModalObjectRef(e))}
+            shrinkModel={() => modalObjectRef.current.triggerShrinkAnimation()}
+            closeModal={() => {console.log(modalObjectRef); setAnimateBackground(false)}}
           />
         </Canvas>
       }

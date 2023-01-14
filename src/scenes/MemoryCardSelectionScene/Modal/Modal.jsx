@@ -21,7 +21,7 @@ const parseGradientValues = (rgba) => {
   return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
-const Modal = ({ data, memoryCardName, closeModal, Model }) => {
+const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
   const {
     title,
     date,
@@ -46,6 +46,7 @@ const Modal = ({ data, memoryCardName, closeModal, Model }) => {
 
       //TODO: text not fading out. lerp is not going down in value like i expect it to
       document.getElementsByClassName('memory-card-body')[0].style.opacity = `${MathUtils.lerp(100, 0, 0.01)} %`
+      shrinkModel()
       if (changeBackgroundAlpha(-1) - 0.05 <= 0) {
         closeModal()
       }

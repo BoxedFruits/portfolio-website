@@ -9,12 +9,11 @@ import { useFrame } from '@react-three/fiber'
 import { MathUtils } from 'three';
 
 const MARGIN = .035; // `lerp` doesn't go up to the exact value so stop a little bit prior to target
-
-export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetScale, ...props }) {
+//TODO: Refactor to useRef instead of passing it back manually. Can simplify code more if ObjectSelector just held the refs of all logo model
+export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetScale, loadAnimation, shrink, ...props }) {
   const ref = useRef();
-
-  const [isComponentMounted, setIsComponentMounted] = useState(false);
   const [isLoadingAnimationFinished, setIsLoadingAnimationFinished] = useState(null);
+  const [shrinkAnimation, setShrinkAnimation] = useState(false);
 
   useFrame(({ clock }) => {
     if (shouldRotate) {
@@ -27,12 +26,18 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
         const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.01)
         ref.current.scale.set(lerpValue, lerpValue, lerpValue)
       } else {
-        if(animationCallback) animationCallback(); // tell parent component animation is finished
+        if (animationCallback) animationCallback(); // tell parent component animation is finished
         setIsLoadingAnimationFinished(true);
       }
     }
 
-    //TODO: shrinking animation. Might have to refactor to forwardRefs instead so that ObjectSelector can be the component that handles state changes
+    if (shrinkAnimation === true) {
+      if (ref.current.scale.x >= MARGIN) {
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, 0, 0.08)
+        ref.current.scale.set(lerpValue, lerpValue, lerpValue)
+      }
+    }
+
   })
 
   const startLoadingAnimation = async () => {
@@ -40,10 +45,16 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
   }
 
   useEffect(() => {
-    if (!isComponentMounted && getRef) {
+    if (getRef) {
       getRef(ref);
+    }
 
-      setIsComponentMounted(true);
+    if (loadAnimation) {
+      loadAnimation(ref);
+    }
+
+    if (shrink) {
+      shrink(ref);
     }
   }, [])
 
@@ -57,6 +68,7 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
       scale={0}
       {...props}
       startLoadingAnimation={() => startLoadingAnimation()}
+      triggerShrinkAnimation={() => { console.log("SHRINKIT"); setShrinkAnimation(true); }}
     >
       <mesh geometry={nodes.Cube.geometry} material={materials.Material} />
     </group>
