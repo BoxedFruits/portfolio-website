@@ -1,4 +1,4 @@
-import { Cloud, useTexture } from "@react-three/drei";
+import { Cloud, useTexture, MeshTransmissionMaterial, ArcballControls } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Color, MathUtils } from "three";
@@ -26,14 +26,13 @@ const SetupScene = () => {
   camera.rotateZ(-0.025)
 
   useFrame(() => {
-
     if (camera.rotation._z <= 0.14) {
       const lerpValue = MathUtils.lerp(0.0001, 5, .0001)
       camera.rotateZ(lerpValue)
     } else {
       const lerpValueRotation = MathUtils.lerp(0.0025, 5, .0001)
       const lerpValueZ = MathUtils.lerp(-0.0275, 1.5 , .0001)
-      
+
       camera.rotateZ(lerpValueRotation)
       camera.translateZ(lerpValueZ)
     }
@@ -48,6 +47,89 @@ const BoxWithTexture = (props) => {
       <meshBasicMaterial map={stoneTexture} />
     </mesh>
   )
+}
+
+const GlassBoxes = () => {
+  const boxRef1 = useRef();
+  const boxRef2 = useRef();
+  const boxRef3 = useRef();
+  const boxRef4 = useRef();
+  const boxRef5 = useRef();
+  const SCALE = .65;
+
+  const transmissionMaterialConfig = {
+    attenuationColor: "#ffffff",
+    color: "#b1b1b1",
+    thickness: "2",
+    ior: "2",
+  }
+  useFrame(() => {
+
+  })
+
+
+  return (
+    <>
+      <mesh
+        ref={boxRef1}
+        scale={SCALE}
+        position={[-3,3,2.75]}
+        center={[-3,3,2.75]}
+        rotation={[-4.25,-2.2,1.25]}
+      >
+        <boxGeometry />
+        <MeshTransmissionMaterial
+          {...transmissionMaterialConfig}
+        />
+      </mesh>
+      <mesh
+        ref={boxRef2}
+        scale={SCALE}
+        position={[-2.55,-1.75,2.75]}
+        rotation={[.01,-.15,-.15]}
+      >
+        <boxGeometry />
+        <MeshTransmissionMaterial
+          {...transmissionMaterialConfig}
+        />
+      </mesh>
+      <mesh
+        ref={boxRef3}
+        scale={SCALE}
+        position={[3,3,2.75]}
+        rotation={[.05,.05,.5]}
+      >
+        <boxGeometry />
+        <MeshTransmissionMaterial
+          {...transmissionMaterialConfig}
+        />
+      </mesh>
+      <mesh
+        ref={boxRef4}
+        scale={.35}
+        position={[3,-.1,2.75]}
+        rotation={[.04,-.15,-.16]}
+      >
+        <boxGeometry />
+        <MeshTransmissionMaterial
+          {...transmissionMaterialConfig}
+        />
+      </mesh>
+      <mesh
+        ref={boxRef5}
+        scale={.6}
+        position={[-.35,.75,2.75]}
+        rotation={[.15,.25,-.28]}
+      >
+        <boxGeometry />
+        <MeshTransmissionMaterial
+          {...transmissionMaterialConfig}
+        />
+      </mesh>
+    </>
+
+  )
+
 }
 
 const IntroScene = ({ nextScene }) => {
@@ -85,6 +167,8 @@ const IntroScene = ({ nextScene }) => {
   return (
     <Canvas camera={{ position: [0, 0, 8.5] }}>
       <ambientLight intensity={.01} />
+      <ArcballControls />
+      <GlassBoxes />
       <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
       {pillars}
       {/* Hard coded pillars to make it look more spread out */}
