@@ -63,7 +63,25 @@ const GlassBoxes = () => {
     thickness: "2",
     ior: "2",
   }
-  useFrame(() => {
+  useFrame(({clock}) => {
+    const t = clock.getElapsedTime() / 5.2
+    boxRef1.current.rotation.z = -t
+    boxRef1.current.rotation.y = t / 2
+    
+    boxRef2.current.rotation.z = -t
+    boxRef2.current.rotation.y = -t * 1.4
+    boxRef2.current.rotation.x = t 
+    
+    boxRef3.current.rotation.z = -t
+    boxRef3.current.rotation.y = t / 2
+
+    boxRef4.current.rotation.z = -t
+    boxRef4.current.rotation.y = t / 2
+    boxRef4.current.rotation.x = t / 2
+
+    boxRef5.current.rotation.z = t
+    boxRef5.current.rotation.y = -t
+    boxRef5.current.rotation.x = t / 2
 
   })
 
@@ -166,7 +184,7 @@ const IntroScene = ({ nextScene }) => {
 
   return (
     <Canvas camera={{ position: [0, 0, 8.5] }}>
-      <ambientLight intensity={.01} />
+      <ambientLight intensity={0.01} />
       <ArcballControls />
       <GlassBoxes />
       <directionalLight args={[0x0031f3, 1]} position={[0, 0, 1]} target={cloudRef.current} />
