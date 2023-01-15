@@ -1,4 +1,4 @@
-import { Cloud, useTexture, ArcballControls, Trail } from "@react-three/drei";
+import { Cloud, useTexture, ArcballControls, Trail, useProgress, Html } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Suspense, useEffect, useRef, useState } from "react";
 import { AdditiveBlending, Color, MathUtils } from "three";
@@ -28,11 +28,11 @@ const SetupScene = () => {
 
   useFrame(() => {
     if (camera.rotation._z <= 0.14) {
-      const lerpValue = MathUtils.lerp(0.0001, 5, .0001)
+      const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {
-      const lerpValueRotation = MathUtils.lerp(0.0025, 5, .0001)
-      const lerpValueZ = MathUtils.lerp(-0.0275, 1.5, .0001)
+      const lerpValueRotation = MathUtils.lerp(0.0025, 5, .001)
+      const lerpValueZ = MathUtils.lerp(-0.0275, -4.5, .045)
 
       camera.rotateZ(lerpValueRotation)
       camera.translateZ(lerpValueZ)
@@ -102,11 +102,11 @@ const ColorSpheres = () => {
     redSphere.current.position.x = Math.sin(t / 2.5) * 4
     redSphere.current.position.y = Math.cos(-t)
 
-    greenSphere.current.position.x = Math.sin(t) * 2- 2
+    greenSphere.current.position.x = Math.sin(t) * 2 - 2
     greenSphere.current.position.y = Math.cos(t / Math.PI) - 1
 
     blueSphere.current.position.x = Math.cos(t)
-    blueSphere.current.position.y = Math.sin( 2*t / Math.PI)
+    blueSphere.current.position.y = Math.sin(2 * t / Math.PI)
 
     purpleSphere.current.position.x = Math.sin(t / Math.PI) * 4 - 1.5
     purpleSphere.current.position.y = Math.cos(t) * 2
@@ -152,6 +152,7 @@ const IntroScene = ({ nextScene }) => {
   const blockHeights = useRef([]);
   const pillarPositions = useRef(new Set())
   const [pillars, setPillars] = useState([])
+  // const audioLoader = useLoader()
 
   useEffect(() => {
     blockHeights.current.push(...getBlockHeights(SideProjects))
@@ -169,6 +170,14 @@ const IntroScene = ({ nextScene }) => {
     setPillars(createPillars())
   }, [])
 
+  function Loader() {
+    const { progress } = useProgress()
+    // if (progress === 100) {
+    //   const audio = new Audio("ps2_startup_sound_effect.mp4")
+    //   console.log(audio.play().then(console.log("audio done")))
+    // }
+    return <Html center>{progress} % loaded</Html>
+  }
   const createPillars = () => {
     return Array.from(pillarPositions.current).map((pos, index) => {
       return (
@@ -178,10 +187,19 @@ const IntroScene = ({ nextScene }) => {
     })
   }
 
+  const playAudio = () => { // Have to make an disclaimer thingy before this because of google policy not allowing audio to play right away. Hard to debug right now
+    const audio = new Audio("ps2_startup_sound_effect.mp4")
+    audio.play().then(() => {
+      console.log("finished")
+    })
+
+    console.log(audio.onau)
+  }
+
   return (
-    <Suspense fallback={null}>
+    <>
       <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1 }}>
-        <ArcballControls />
+        {/* <ArcballControls /> */}
         <GlassBoxes />
         <ColorSpheres />
         <pointLight args={["white", .75, 10, 3]} position={[0, -0.4, 5]} />
@@ -194,6 +212,7 @@ const IntroScene = ({ nextScene }) => {
           scale={[.5, .5, 250 * .0035]}
           position={[.65 * 2, .65 * 7, 1]}
         />
+        {/* {playAudio()} */}
         <group ref={cloudRef}>
           <Cloud position={[0, 0, -.5]} speed={.35} opacity={.32} depth={.2} width={14.25} segments={40} color="blue" />
           <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.20} depth={.52} width={3.25} color="blue" />
@@ -205,7 +224,7 @@ const IntroScene = ({ nextScene }) => {
         </group>
         <SetupScene />
       </Canvas>
-    </Suspense>
+    </>
   )
 
 }
