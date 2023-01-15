@@ -32,10 +32,8 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
     }
 
     if (shrinkAnimation === true) {
-      if (ref.current.scale.x >= MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, 0, 0.08)
-        ref.current.scale.set(lerpValue, lerpValue, lerpValue)
-      }
+      const lerpValue = MathUtils.lerp(ref.current.scale.x, -0.02, 0.25)
+      ref.current.scale.set(lerpValue, lerpValue, lerpValue)
     }
 
   })

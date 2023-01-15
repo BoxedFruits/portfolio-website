@@ -35,22 +35,12 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
 
   const htmlRef = useRef();
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
-  const [triggerExitAnimation, setTriggerExitAnimation] = useState(false);
 
   useFrame(() => {
     if (htmlRef.current !== undefined) { //Load animation
       changeBackgroundAlpha(TARGET_ALPHA)
     }
 
-    if (triggerExitAnimation) {
-
-      //TODO: text not fading out. lerp is not going down in value like i expect it to
-      document.getElementsByClassName('memory-card-body')[0].style.opacity = `${MathUtils.lerp(100, 0, 0.01)} %`
-      shrinkModel()
-      if (changeBackgroundAlpha(-1) - 0.05 <= 0) {
-        closeModal()
-      }
-    }
   });
 
   const changeBackgroundAlpha = (alpha) => {
@@ -72,19 +62,27 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
     return currentAlphaVal;
   }
 
+  const fadeout = () => {
+    shrinkModel()
+    document.getElementsByClassName('memory-card-body')[0].className += " fadeout-modal"
+    document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"
+  }
+
   return (
     <>
-    {/* TODO: Refactor this. Probably no need to have two different Html elements. Can also change it to divs with absolute position to allow for scrolling */}
+      {/* TODO: Refactor this. Probably no need to have two different Html elements. Can also change it to divs with absolute position to allow for scrolling */}
       <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
         <div className="modal-background" style={{
           display: "block",
           background: linearGradient
-        }}>
+        }}
+          onAnimationEnd={() => closeModal()}
+        >
         </div>
       </Html>
       <ambientLight />
       {Model}
-      <Html transform className="memory-card-body" style={{opacity: "100%"}} position={[5.5, 2.5, -10]}>
+      <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
         <div style={{ maxWidth: "28em" }}>
           <center>
             {/* TODO: move some of the inline styles to the stylesheet */}
@@ -114,7 +112,7 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
             <p
               className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
-              onClick={() => { setTriggerExitAnimation(true) }}
+              onClick={() =>  fadeout()}
             >
               Back
             </p>

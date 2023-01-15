@@ -78,13 +78,20 @@ body,
   z-index: 9000;
 }
 
+.fadeout-modal {
+  animation: fadeOut .45s forwards;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
+    pointer-events: none;
   }
 
   100% {
     opacity: 0;
+    /* display: none; */
+    pointer-events: auto;
   }
 }
 
