@@ -11,18 +11,23 @@ import GlowOrbs from '../../components/GlowOrbs/GlowOrbs';
 
 export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted, setViewObjects, viewObjects }) {
   const { nodes, materials } = useGLTF('models/memory_card.glb')
-  const myMesh = useRef()
+  const ref = useRef()
   let startAnimation = false
 
   useFrame(() => {
-    if (startAnimation) {
-      myMesh.current.position.z = MathUtils.lerp(myMesh.current.position.z, 100, 0.002);
-      myMesh.current.position.y = MathUtils.lerp(myMesh.current.position.y, -1, 0.01);
-      myMesh.current.position.x = MathUtils.lerp(myMesh.current.position.x, 0, .055);
+    if (ref.current.scale.x <= 1.5) {
+      const lerpValue = MathUtils.lerp(ref.current.scale.x, 1.2, 0.04)
+      ref.current.scale.set(lerpValue, lerpValue, lerpValue)
+    }
 
-      myMesh.current.rotation.x = MathUtils.lerp(myMesh.current.rotation.x, -7, 0.009);
-      myMesh.current.rotation.y = MathUtils.lerp(myMesh.current.rotation.y, 3, 0.0007);
-      myMesh.current.rotation.z = MathUtils.lerp(myMesh.current.position.z, -5, 0.78);
+    if (startAnimation) {
+      ref.current.position.z = MathUtils.lerp(ref.current.position.z, 100, 0.002);
+      ref.current.position.y = MathUtils.lerp(ref.current.position.y, -1, 0.01);
+      ref.current.position.x = MathUtils.lerp(ref.current.position.x, 0, .055);
+
+      ref.current.rotation.x = MathUtils.lerp(ref.current.rotation.x, -7, 0.009);
+      ref.current.rotation.y = MathUtils.lerp(ref.current.rotation.y, 3, 0.0007);
+      ref.current.rotation.z = MathUtils.lerp(ref.current.position.z, -5, 0.78);
       setTimeout(() => {
         setViewObjects(true);
       }, 750);
@@ -38,9 +43,10 @@ export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted
   return (
     <group
       dispose={null}
-      ref={myMesh}
+      ref={ref}
       center={position}
       position={position}
+      scale={0}
       rotation-x={-0.4}
       onPointerOver={() => setCurrHighLighted(name)}
       onClick={() => {
