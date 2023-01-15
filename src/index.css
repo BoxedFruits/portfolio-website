@@ -82,6 +82,10 @@ body,
   animation: fadeOut .45s forwards;
 }
 
+.fadein-modal {
+  animation: fadeIn .75s forwards;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;

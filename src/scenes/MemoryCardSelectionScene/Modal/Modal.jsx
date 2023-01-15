@@ -1,24 +1,10 @@
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
-import { MathUtils } from "three";
 import "./Modal.css";
-
-const TARGET_ALPHA = .88;
-const LERP_FACTOR = 0.03;
 
 const Highlight = {
   Link: "Link",
   Back: "Back"
-}
-
-const parseGradientValues = (rgba) => {
-  const beginningOfString = rgba.match(/(^.*deg, )/g);
-  const percentages = rgba.match(/(\d*%)/g)
-  const rgbaValues = rgba.match(/(\d?\d+),/g)
-  const currentAlphaVal = rgba.match(/(\d*(\.\d+)?)\)/m)[1]
-
-  return ({ beginningOfString, percentages, rgbaValues, currentAlphaVal })
 }
 
 const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
@@ -36,32 +22,6 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
   const htmlRef = useRef();
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
 
-  useFrame(() => {
-    if (htmlRef.current !== undefined) { //Load animation
-      changeBackgroundAlpha(TARGET_ALPHA)
-    }
-
-  });
-
-  const changeBackgroundAlpha = (alpha) => {
-    const {
-      beginningOfString,
-      percentages,
-      rgbaValues,
-      currentAlphaVal
-    } = parseGradientValues(htmlRef.current.getElementsByClassName('modal-background')[0].style.background)
-
-    let newBackground = beginningOfString
-    let percentageIndex = 0
-    for (let index = 0; index < rgbaValues.length; index += 3) {
-      newBackground += `rgba(${rgbaValues[index]} ${rgbaValues[index + 1]} ${rgbaValues[index + 2]} ${MathUtils.lerp(currentAlphaVal, alpha, LERP_FACTOR)}) ${percentages[percentageIndex++]}, `
-    }
-    newBackground = newBackground.slice(0, -2) + ")"
-
-    htmlRef.current.getElementsByClassName('modal-background')[0].style.background = newBackground;
-    return currentAlphaVal;
-  }
-
   const fadeout = () => {
     shrinkModel()
     document.getElementsByClassName('memory-card-body')[0].className += " fadeout-modal"
@@ -71,7 +31,7 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
   return (
     <>
       {/* TODO: Refactor this. Probably no need to have two different Html elements. Can also change it to divs with absolute position to allow for scrolling */}
-      <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
+      <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper fadein-modal" fullscreen ref={htmlRef}>
         <div className="modal-background" style={{
           display: "block",
           background: linearGradient
