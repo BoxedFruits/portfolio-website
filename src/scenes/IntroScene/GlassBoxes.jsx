@@ -21,7 +21,7 @@ export const GlassBoxes = () => {
     {
       ref: boxRef1,
       scale: SCALE,
-      position: [-3, 3, 2.75],
+      position: [-2.35, 2.55, 2.75],
       rotation: [-4.25, -2.2, 1.25]
     },
     {
