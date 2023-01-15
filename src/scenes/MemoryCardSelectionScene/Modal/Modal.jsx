@@ -74,6 +74,7 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
 
   return (
     <>
+    {/* TODO: Refactor this. Probably no need to have two different Html elements. Can also change it to divs with absolute position to allow for scrolling */}
       <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper" fullscreen ref={htmlRef}>
         <div className="modal-background" style={{
           display: "block",
