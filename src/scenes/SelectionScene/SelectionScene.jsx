@@ -20,22 +20,29 @@ const SceneSetup = () => {
 
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
+  const [isTextVisible, setIsTextVisible] = useState(true);
+
   return (
-    <div className="selection-text-container">
-      <center style={{marginTop: "10px"}}>
-        <p
-          className={`arial-lighter selectable-text ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
-          onClick={() => nextScene()}
-          onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
-          {Highlight.Browser.title}
-        </p>
-        <p
-          className={`arial-lighter selectable-text ${currHighlighted === Highlight.SystemConfig.title ? 'highlight' : 'not-highlighted'}`}
-          onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
-          {Highlight.SystemConfig.title}
-        </p>
-      </center>
-    </div>
+    <>
+      {isTextVisible ?
+        <div className="selection-text-container">
+          <center style={{ marginTop: "10px" }}>
+            <p
+              className={`arial-lighter selectable-text ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
+              onClick={() => setIsTextVisible(false)}
+              onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
+              {Highlight.Browser.title}
+            </p>
+            <p
+              className={`arial-lighter selectable-text ${currHighlighted === Highlight.SystemConfig.title ? 'highlight' : 'not-highlighted'}`}
+              onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
+              {Highlight.SystemConfig.title}
+            </p>
+          </center>
+        </div>
+        : <div className="fadein-animation" style={{color:"red"}} onAnimationEnd={() => nextScene()}>
+        </div>}
+    </>
   );
 }
 
@@ -44,6 +51,7 @@ const SelectionScene = ({ nextScene }) => {
     <>
       <SelectionText nextScene={nextScene} />
       <Canvas>
+        {/* LightOrbs component */}
         <SceneSetup />
         <OrbitControls />
         <ambientLight args={[0xff0000]} intensity={0.1}></ambientLight>

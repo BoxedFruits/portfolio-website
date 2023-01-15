@@ -38,20 +38,62 @@ body,
 }
 
 .highlight {
-  color:rgb(74, 173, 231)  !important;
+  color: rgb(74, 173, 231) !important;
 }
 
 .not-highlighted {
   color: #5e5a5a !important;
 }
 
-.title { 
+.title {
   color: #dddd4e;
 }
 
-.selectable-text { 
+.selectable-text {
   font-size: 3.25em;
   margin-bottom: 10px;
   margin-top: 0px;
   cursor: pointer;
+}
+
+.fadeout-animation {
+  opacity: 0;
+  animation: fadeOut 3s;
+  animation-iteration-count: 1;
+  background: #000000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
+}
+
+.fadein-animation {
+  opacity: 1;
+  animation: fadeIn 3s;
+  animation-iteration-count: 1;
+  background: #000000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9000;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

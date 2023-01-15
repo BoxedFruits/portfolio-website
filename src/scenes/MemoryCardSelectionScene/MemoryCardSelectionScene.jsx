@@ -27,6 +27,7 @@ const MemoryCardSelectionScreen = () => {
   const [viewObjects, setViewObjects] = useState();
   return (
     <>
+    <div className="fadeout-animation"></div>
       {viewObjects ?
         <ObjectSelector
           memoryCardName={currHighlighted}
