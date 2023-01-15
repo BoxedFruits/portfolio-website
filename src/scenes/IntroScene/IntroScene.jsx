@@ -127,10 +127,10 @@ const ColorSpheres = () => {
             </sprite>
             <Trail
               width={1}
-              length={20}
-              decay={0.1}
+              length={10}
+              decay={2}
               attenuation={(t) => {
-                return (t * t) / 2
+                return (t * t) / 2.2
               }}
               color={sphere.color}
             >
