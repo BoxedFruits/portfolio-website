@@ -20,7 +20,7 @@ const getRandomArbitrary = () => {
   return Math.random() * (5 - (-5)) + (-5);
 }
 
-const SetupScene = () => {
+const SetupScene = ({nextScene}) => {
   const { scene } = useThree();
   const camera = useThree((state) => state.camera);
 
@@ -32,6 +32,7 @@ const SetupScene = () => {
       const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {
+      if(camera.position.z <= -59 ) nextScene();
       const lerpValueRotation = MathUtils.lerp(0.0025, 5, .001)
       const lerpValueZ = MathUtils.lerp(-0.0275, -4.5, .045)
 
@@ -75,15 +76,6 @@ const IntroScene = ({ nextScene }) => {
     setPillars(createPillars())
   }, [])
 
-  function Loader() {
-    const { progress } = useProgress()
-    // if (progress === 100) {
-    //   const audio = new Audio("ps2_startup_sound_effect.mp4")
-    //   console.log(audio.play().then(console.log("audio done")))
-    // }
-    return <Html center>{progress} % loaded</Html>
-  }
-
   const createPillars = () => {
     return Array.from(pillarPositions.current).map((pos, index) => {
       return (
@@ -95,11 +87,7 @@ const IntroScene = ({ nextScene }) => {
 
   const playAudio = () => { // Have to make an disclaimer thingy before this because of google policy not allowing audio to play right away. Hard to debug right now
     const audio = new Audio("ps2_startup_sound_effect.mp4")
-    audio.play().then(() => {
-      console.log("finished")
-    })
-
-    console.log(audio.onau)
+    audio.play()
   }
 
   return (
@@ -130,7 +118,7 @@ const IntroScene = ({ nextScene }) => {
           <Cloud position={[-.2, -2, -3.25]} speed={.15} opacity={.7} depth={.52} width={10.5} color="#000000" />
           <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.2} depth={.52} width={30} segments={35} color="#8080EF" />
         </group>
-        <SetupScene />
+        <SetupScene nextScene={nextScene} />
       </Canvas>
     </>
   )
