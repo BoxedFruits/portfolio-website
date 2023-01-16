@@ -1,7 +1,7 @@
-import { Cloud, useTexture, ArcballControls, Trail, useProgress, Html } from "@react-three/drei";
+import { Cloud, useTexture, useProgress, Html } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { Suspense, useEffect, useRef, useState } from "react";
-import { AdditiveBlending, Color, MathUtils } from "three";
+import { useEffect, useRef, useState } from "react";
+import { Color, MathUtils } from "three";
 import ColorSpheres from "./ColorSpheres";
 import { GlassBoxes } from "./GlassBoxes";
 
@@ -104,6 +104,8 @@ const IntroScene = ({ nextScene }) => {
 
   return (
     <>
+      <div className="fadeout-intro"></div>
+      <div className="sony text-shadow fadeInOut">Sony Computer Enterainment</div>
       <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1 }}>
         {/* <ArcballControls /> */}
         <GlassBoxes />
