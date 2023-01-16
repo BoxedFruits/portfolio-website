@@ -28,7 +28,7 @@ const SetupScene = () => {
   camera.rotateZ(-0.025)
 
   useFrame(() => {
-    if (camera.rotation._z <= 0.86) {
+    if (camera.rotation._z <= 0.85) {
       const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {

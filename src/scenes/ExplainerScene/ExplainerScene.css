@@ -1,9 +1,10 @@
-div > center > p {
+div > center > p, i {
   color:white;
 }
 
 /* CSS */
 .button-18 {
+  margin-top: 48px;
   align-items: center;
   background-color: #0A66C2;
   border: 0;
