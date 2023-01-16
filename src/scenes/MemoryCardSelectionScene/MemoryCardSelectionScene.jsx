@@ -1,17 +1,14 @@
-import { Html, OrbitControls } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
+import GlowOrbs from "../../components/GlowOrbs/GlowOrbs";
 import { MemoryCard } from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
 const SideProjects = require("./MemoryCards/sideProjects.json")
 const WorkExperience = require("./MemoryCards/workExperience.json")
 
-// const SceneSetup = () => {
-//   const { scene } = useThree();
-// };
-
-const Highlight = { // Is this even worse?
+const Highlight = {
   WorkExperience: {
     title: "Work Experience"
   },
@@ -20,11 +17,11 @@ const Highlight = { // Is this even worse?
   }
 }
 
-
-
 const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
+  const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
+
   return (
     <>
       <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"}></div>
@@ -38,7 +35,7 @@ const MemoryCardSelectionScreen = () => {
         />
         :
         <Canvas camera={{ position: [0, 0, 10] }}> {/* Need to play around with either FOV or orthographic camera to avoid the fisheye lens effect*/}
-          <OrbitControls />
+          {/* <OrbitControls /> */}
           <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
             <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white" }}>PS2</h1>
@@ -49,20 +46,25 @@ const MemoryCardSelectionScreen = () => {
           </Html>
           <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
           <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
+          <GlowOrbs position={orbPosition} />
           <MemoryCard
             position={[-2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
             setViewObjects={setViewObjects}
-            currHighlighted={currHighlighted}
-            setCurrHighLighted={setCurrHighLighted}
-            viewObjects={viewObjects} />
+            onPointerOver={() => {
+              setOrbPosition([-2.05, .25, 1]);
+              setCurrHighLighted(Highlight.WorkExperience.title)
+            }}
+          />
           <MemoryCard
             position={[2.25, 0, 0]}
             name={Highlight.SideProjects.title}
             setViewObjects={setViewObjects}
-            currHighlighted={currHighlighted}
-            setCurrHighLighted={setCurrHighLighted}
-            viewObjects={viewObjects} />
+            onPointerOver={() => {
+              setOrbPosition([2.05, .25, 1]);
+              setCurrHighLighted(Highlight.SideProjects.title)
+            }}
+          />
         </Canvas>
       }
     </>

@@ -7,9 +7,8 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { MathUtils } from 'three';
-import GlowOrbs from '../../components/GlowOrbs/GlowOrbs';
 
-export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted, setViewObjects, viewObjects }) {
+export function MemoryCard({ position, setViewObjects, ...props }) {
   const { nodes, materials } = useGLTF('models/memory_card.glb')
   const ref = useRef()
   let startAnimation = false
@@ -38,22 +37,20 @@ export function MemoryCard({ position, name, setCurrHighLighted, currHighlighted
     startAnimation = true;
     // setViewObjects(true); // this isn't working for some reason
   }
-  // currHighlighted === name will be used for highlighting
 
   return (
     <group
       dispose={null}
       ref={ref}
-      center={position}
       position={position}
       scale={0}
       rotation-x={-0.4}
-      onPointerOver={() => setCurrHighLighted(name)}
       onClick={() => {
         HandleClick(123);
-      }}>
+      }}
+      {...props}
+    >
       <mesh geometry={nodes.Memory_card.geometry} material={materials['07 - Default']} rotation={[Math.PI / 2, 0, 0]} scale={0.02} />
-      {currHighlighted === name && <GlowOrbs key={name} />}
     </group>
   )
 }
