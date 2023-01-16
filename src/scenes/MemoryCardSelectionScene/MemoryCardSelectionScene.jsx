@@ -1,6 +1,6 @@
 import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GlowOrbs from "../../components/GlowOrbs/GlowOrbs";
 import { MemoryCard } from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
@@ -21,6 +21,15 @@ const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
   const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("selectionSound2.mp3");
+  })
+
+  useEffect(() => {
+    audioRef.current.play();
+  }, [orbPosition])
 
   return (
     <>
