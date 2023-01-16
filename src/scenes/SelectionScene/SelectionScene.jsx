@@ -2,7 +2,7 @@ import './SelectionSceneStyles.css'
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Highlight = {
   Browser: {
@@ -21,6 +21,15 @@ const SceneSetup = () => {
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   const [isTextVisible, setIsTextVisible] = useState(true);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("selectionSound2.mp3");
+  })
+
+  useEffect(() => {
+    audioRef.current.play();
+  }, [currHighlighted])
 
   return (
     <>
@@ -40,7 +49,7 @@ const SelectionText = ({ nextScene }) => {
             </p>
           </center>
         </div>
-        : <div className="fadein-animation" style={{color:"red"}} onAnimationEnd={() => nextScene()}>
+        : <div className="fadein-animation" style={{ color: "red" }} onAnimationEnd={() => nextScene()}>
         </div>}
     </>
   );
