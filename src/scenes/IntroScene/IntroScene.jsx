@@ -85,7 +85,7 @@ const IntroScene = ({ nextScene }) => {
     })
   }
 
-  const playAudio = () => { // Have to make an disclaimer thingy before this because of google policy not allowing audio to play right away. Hard to debug right now
+  const playAudio = () => {
     const audio = new Audio("ps2_startup_sound_effect.mp4")
     audio.play()
   }
