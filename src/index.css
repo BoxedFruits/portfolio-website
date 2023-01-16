@@ -114,7 +114,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeInOut ease-in-out 4s forwards;
+  animation: fadeInOut ease-in-out 8s forwards;
 }
 
 @keyframes fadeOut {

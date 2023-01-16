@@ -28,7 +28,7 @@ const SetupScene = () => {
   camera.rotateZ(-0.025)
 
   useFrame(() => {
-    if (camera.rotation._z <= 0.14) {
+    if (camera.rotation._z <= 0.86) {
       const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {
@@ -120,7 +120,7 @@ const IntroScene = ({ nextScene }) => {
           scale={[.5, .5, 250 * .0035]}
           position={[.65 * 2, .65 * 7, 1]}
         />
-        {/* {playAudio()} */}
+        {playAudio()}
         <group ref={cloudRef}>
           <Cloud position={[0, 0, -.5]} speed={.35} opacity={.32} depth={.2} width={14.25} segments={40} color="blue" />
           <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.20} depth={.52} width={3.25} color="blue" />
