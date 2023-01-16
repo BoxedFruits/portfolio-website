@@ -27,7 +27,8 @@ const MemoryCardSelectionScreen = () => {
   const [viewObjects, setViewObjects] = useState();
   return (
     <>
-    <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"}></div>
+      <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"}></div>
+      <div style={{ position: "absolute", width: "100%", height: "100%", backgroundImage: "linear-gradient(145deg, rgb(126, 122, 122) 0%, rgba(0, 0, 0, 1) 116%)" }}></div>
       {viewObjects ?
         <ObjectSelector
           memoryCardName={currHighlighted}
@@ -40,7 +41,7 @@ const MemoryCardSelectionScreen = () => {
           <OrbitControls />
           <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
-            <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color:"white" }}>PS2</h1>
+            <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white" }}>PS2</h1>
             <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center" }}>
               Memory Card
               <span style={{ fontSize: "24px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
