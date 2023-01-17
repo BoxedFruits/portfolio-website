@@ -20,9 +20,11 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
   } = data;
 
   const htmlRef = useRef();
+  const cancelAudioRef = useRef(new Audio("selectionSound3.mp3"))
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
 
   const fadeout = () => {
+    cancelAudioRef.current.play()
     shrinkModel()
     document.getElementsByClassName('memory-card-body')[0].className += " fadeout-modal"
     document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"

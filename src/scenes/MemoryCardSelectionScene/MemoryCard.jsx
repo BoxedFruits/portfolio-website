@@ -11,6 +11,7 @@ import { MathUtils } from 'three';
 export function MemoryCard({ position, setViewObjects, ...props }) {
   const { nodes, materials } = useGLTF('models/memory_card.glb')
   const ref = useRef()
+  const audioRef = useRef(new Audio("selectionSound3.mp3"));
   let startAnimation = false
 
   useFrame(() => {
@@ -46,6 +47,7 @@ export function MemoryCard({ position, setViewObjects, ...props }) {
       scale={0}
       rotation-x={-0.4}
       onClick={() => {
+        audioRef.current.play();
         HandleClick(123);
       }}
       {...props}

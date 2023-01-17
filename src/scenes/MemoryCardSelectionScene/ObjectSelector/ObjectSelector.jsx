@@ -58,7 +58,8 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
   const [objectRefs, setObjectRefs] = useState([])
   const [modalObjectRef, setModalObjectRef] = useState();
-  const audioRef = useRef();
+  const highlightAudioRef = useRef(new Audio("selectionSound2.mp3"));
+  const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const objIndex = useRef(null);
   const lastOrbPosition = useRef(orbPosition);
 
@@ -69,7 +70,6 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
 
   useEffect(() => {
     let zValue = 3.25;
-    audioRef.current = new Audio("selectionSound2.mp3");
 
     const objects = jsonObject.objects.map((obj, index) => {
       if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
@@ -79,7 +79,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         obj.model,
         position,
         index,
-        () => handleAnimation(index),
+        () => { handleAnimation(index); selectAudioRef.current.play() },
         () => setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => setCurrHighLighted(obj.title),
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
@@ -110,7 +110,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
 
   useEffect(() => {
     if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
-      audioRef.current.play();
+      highlightAudioRef.current.play();
       lastOrbPosition.current = orbPosition
     }
   }, [orbPosition])
@@ -129,7 +129,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
             data={jsonObject.objects[objIndex.current]}
             Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current, (e) => setModalObjectRef(e))}
             shrinkModel={() => modalObjectRef.current.triggerShrinkAnimation()}
-            closeModal={() => { console.log(modalObjectRef); setAnimateBackground(false) }}
+            closeModal={() => setAnimateBackground(false)}
           />
         </Canvas>
       }
