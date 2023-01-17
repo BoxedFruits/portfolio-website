@@ -53,13 +53,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
   const [objectRefs, setObjectRefs] = useState([])
   const [modalObjectRef, setModalObjectRef] = useState();
-  
+
   const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const objIndex = useRef(null);
   const lastOrbPosition = useRef(orbPosition);
 
-  const handleAnimation = (index) => {
-    objIndex.current = index;
+  const handleAnimation = () => {
     setAnimateBackground(true);
   }
 
@@ -74,9 +73,15 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         obj.model,
         position,
         index,
-        () => { handleAnimation(index); selectAudioRef.current.play() },
+        () => {
+          handleAnimation();
+          selectAudioRef.current.play()
+        },
         () => setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]),
-        () => setCurrHighLighted(obj.title),
+        () => {
+          objIndex.current = index;
+          setCurrHighLighted(obj.title)
+        },
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
         () => setAnimatedObjectsCounter(index + 1)
       )
@@ -93,7 +98,6 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   }, [objectRefs])
 
   useEffect(() => {
-    // console.log("animated objects Counter ", animatedObjectsCounter);
     if (objectRefs[animatedObjectsCounter]?.current) {
       objectRefs[animatedObjectsCounter].current.startLoadingAnimation()
     }
@@ -130,7 +134,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
         </Canvas>
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute", pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
-        <Html fullscreen style={{display: animateBackground ? "none" : "block"}}>
+        <Html fullscreen style={{ display: animateBackground ? "none" : "block" }}>
           <p className="memory-card-title text-shadow" style={{ fontSize: "32px", color: "#dfdbdb", position: "absolute", marginLeft: "24px", pointerEvents: "None" }}>
             Memory Card
             <span style={{ fontSize: "24px" }}> (PS2) &nbsp;/</span>
@@ -140,7 +144,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           <h1 className="text-shadow arial-lighter title" style={{ float: 'right', marginRight: '24px', pointerEvents: "None" }}>{currHighlighted}</h1>
         </Html>
         <ambientLight />
-        <GlowOrbs position={orbPosition} />
+        <GlowOrbs position={orbPosition} onClick={() => handleAnimation()} />
         {objectsToRender}
       </Canvas>
     </>
