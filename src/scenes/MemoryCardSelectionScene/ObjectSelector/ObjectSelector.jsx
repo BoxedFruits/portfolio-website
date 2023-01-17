@@ -1,8 +1,3 @@
-//Create object that when clicked, will show a menu
-//Pass in the url for the json file to be used
-//Populate scene with objects
-//Populate menu with text from json file
-
 import { ArcballControls, Html, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
