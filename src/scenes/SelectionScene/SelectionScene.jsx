@@ -22,11 +22,18 @@ const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   const [isTextVisible, setIsTextVisible] = useState(true);
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
+  const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"))
 
   const playHighlightedAudio = () => {
     const highlightedAudio = new Audio("selectionSound2.mp3");
     highlightedAudio.play()
   }
+
+  useEffect(() => {
+    setTimeout(()=> {
+      oceanWavesAudioRef.current.play()
+      },3500)
+  })
 
   return (
     <>
