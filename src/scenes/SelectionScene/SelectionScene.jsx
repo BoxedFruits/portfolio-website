@@ -21,12 +21,12 @@ const SceneSetup = () => {
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   const [isTextVisible, setIsTextVisible] = useState(true);
-  const highlightedAudioRef = useRef(new Audio("selectionSound2.mp3"));
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
 
-  useEffect(() => {
-    highlightedAudioRef.current.play();
-  }, [currHighlighted])
+  const playHighlightedAudio = () => {
+    const highlightedAudio = new Audio("selectionSound2.mp3");
+    highlightedAudio.play()
+  }
 
   return (
     <>
@@ -39,12 +39,18 @@ const SelectionText = ({ nextScene }) => {
                 selectedAudioRef.current.play();
                 setIsTextVisible(false);
               }}
-              onMouseEnter={() => setCurrHighLighted(Highlight.Browser.title)}>
+              onMouseEnter={() => {
+                playHighlightedAudio();
+                setCurrHighLighted(Highlight.Browser.title);
+              }}>
               {Highlight.Browser.title}
             </p>
             <p
               className={`arial-lighter selectable-text ${currHighlighted === Highlight.SystemConfig.title ? 'highlight' : 'not-highlighted'}`}
-              onMouseEnter={() => setCurrHighLighted(Highlight.SystemConfig.title)}>
+              onMouseEnter={() => {
+                playHighlightedAudio();
+                setCurrHighLighted(Highlight.SystemConfig.title);
+              }}>
               {Highlight.SystemConfig.title}
             </p>
           </center>

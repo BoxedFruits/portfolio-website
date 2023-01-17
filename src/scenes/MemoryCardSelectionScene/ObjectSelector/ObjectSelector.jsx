@@ -58,7 +58,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
   const [objectRefs, setObjectRefs] = useState([])
   const [modalObjectRef, setModalObjectRef] = useState();
-  const highlightAudioRef = useRef(new Audio("selectionSound2.mp3"));
+  
   const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const objIndex = useRef(null);
   const lastOrbPosition = useRef(orbPosition);
@@ -110,7 +110,8 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
 
   useEffect(() => {
     if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
-      highlightAudioRef.current.play();
+      const highlightAudio = new Audio("selectionSound2.mp3");
+      highlightAudio.play();
       lastOrbPosition.current = orbPosition
     }
   }, [orbPosition])
