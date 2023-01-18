@@ -1,7 +1,7 @@
 import { ArcballControls, Html, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import GlowOrbs from "../../../components/GlowOrbs/GlowOrbs";
+import GlowOrb from "../../../components/GlowOrb/GlowOrb";
 import Modal from "../Modal/Modal";
 import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
@@ -144,7 +144,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           <h1 className="text-shadow arial-lighter title" style={{ float: 'right', marginRight: '24px', pointerEvents: "None" }}>{currHighlighted}</h1>
         </Html>
         <ambientLight />
-        <GlowOrbs position={orbPosition} onClick={() => handleAnimation()} />
+        <GlowOrb position={orbPosition} onClick={() => handleAnimation()} />
         {objectsToRender}
       </Canvas>
     </>

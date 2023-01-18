@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { AdditiveBlending } from 'three';
 
-const GlowOrbs = (props) => {
+const GlowOrb = (props) => {
   let spriteRef = useRef();
   let sphereRef = useRef();
   
@@ -55,4 +55,4 @@ const GlowOrbs = (props) => {
     </>
   );
 }
-export default GlowOrbs
+export default GlowOrb

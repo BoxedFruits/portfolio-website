@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
-import GlowOrbs from "../../components/GlowOrbs/GlowOrbs";
+import GlowOrb from "../../components/GlowOrb/GlowOrb";
 import { MemoryCard } from "./MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
@@ -55,7 +55,7 @@ const MemoryCardSelectionScreen = () => {
           </Html>
           <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
           <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
-          <GlowOrbs position={orbPosition} />
+          <GlowOrb position={orbPosition} />
           <MemoryCard
             position={[-2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
