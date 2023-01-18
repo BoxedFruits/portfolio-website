@@ -25,16 +25,23 @@ const SelectionText = ({ nextScene }) => {
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"))
 
-  const playHighlightedAudio = () => {
+  const handleClick = () => {
+    selectedAudioRef.current.play();
+    oceanWavesAudioRef.current.pause();
+    setIsTextVisible(false);
+  }
+
+  const handleMouseEnter = (title) => {
     const highlightedAudio = new Audio("selectionSound2.mp3");
     highlightedAudio.play()
+    setCurrHighLighted(title)
   }
 
   useEffect(() => {
-    setTimeout(()=> {
-      oceanWavesAudioRef.current.play()
-      },3500)
-  })
+    setTimeout(() => {
+      oceanWavesAudioRef.current.play();
+    }, 3500)
+  }, [])
 
   return (
     <>
@@ -43,22 +50,13 @@ const SelectionText = ({ nextScene }) => {
           <center style={{ marginTop: "10px" }}>
             <p
               className={`arial-lighter selectable-text ${currHighlighted === Highlight.Browser.title ? 'highlight' : 'not-highlighted'}`}
-              onClick={() => {
-                selectedAudioRef.current.play();
-                setIsTextVisible(false);
-              }}
-              onMouseEnter={() => {
-                playHighlightedAudio();
-                setCurrHighLighted(Highlight.Browser.title);
-              }}>
+              onClick={() => handleClick()}
+              onMouseEnter={() => handleMouseEnter(Highlight.Browser.title)}>
               {Highlight.Browser.title}
             </p>
             <p
               className={`arial-lighter selectable-text ${currHighlighted === Highlight.SystemConfig.title ? 'highlight' : 'not-highlighted'}`}
-              onMouseEnter={() => {
-                playHighlightedAudio();
-                setCurrHighLighted(Highlight.SystemConfig.title);
-              }}>
+              onMouseEnter={() => handleMouseEnter(Highlight.SystemConfig.title)}>
               {Highlight.SystemConfig.title}
             </p>
           </center>
