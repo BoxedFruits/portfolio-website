@@ -20,7 +20,7 @@ const getRandomArbitrary = () => {
   return Math.random() * (5 - (-5)) + (-5);
 }
 
-const SetupScene = ({nextScene}) => {
+const SetupScene = ({shouldZoomIn}) => {
   const { scene } = useThree();
   const camera = useThree((state) => state.camera);
 
@@ -28,11 +28,10 @@ const SetupScene = ({nextScene}) => {
   camera.rotateZ(-0.025)
 
   useFrame(() => {
-    if (camera.rotation._z <= 0.85) {
+    if (shouldZoomIn === false) {
       const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {
-      if(camera.position.z <= -59 ) nextScene();
       const lerpValueRotation = MathUtils.lerp(0.0025, 5, .001)
       const lerpValueZ = MathUtils.lerp(-0.0275, -4.5, .045)
 
@@ -58,9 +57,20 @@ const IntroScene = ({ nextScene }) => {
   const blockHeights = useRef([]);
   const pillarPositions = useRef(new Set())
   const [pillars, setPillars] = useState([])
-  // const audioLoader = useLoader()
+  const [shouldZoomIn, setShouldZoomIn] = useState(false);
+  const audio = useRef(new Audio("ps2StartupSoundEffect.mp4"))
+
 
   useEffect(() => {
+    audio.current.play();
+    audio.current.addEventListener('timeupdate', (event) => {
+      if(event.timeStamp > 9860) setShouldZoomIn(true)
+    });
+
+    audio.current.addEventListener('ended', () => {
+      nextScene();
+    });
+
     blockHeights.current.push(...getBlockHeights(SideProjects))
     blockHeights.current.push(...getBlockHeights(WorkExperience))
 
@@ -85,11 +95,6 @@ const IntroScene = ({ nextScene }) => {
     })
   }
 
-  const playAudio = () => {
-    const audio = new Audio("ps2_startup_sound_effect.mp4")
-    audio.play()
-  }
-
   return (
     <>
       <div className="fadeout-intro"></div>
@@ -108,7 +113,6 @@ const IntroScene = ({ nextScene }) => {
           scale={[.5, .5, 250 * .0035]}
           position={[.65 * 2, .65 * 7, 1]}
         />
-        {playAudio()}
         <group ref={cloudRef}>
           <Cloud position={[0, 0, -.5]} speed={.35} opacity={.32} depth={.2} width={14.25} segments={40} color="blue" />
           <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.20} depth={.52} width={3.25} color="blue" />
@@ -118,7 +122,7 @@ const IntroScene = ({ nextScene }) => {
           <Cloud position={[-.2, -2, -3.25]} speed={.15} opacity={.7} depth={.52} width={10.5} color="#000000" />
           <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.2} depth={.52} width={30} segments={35} color="#8080EF" />
         </group>
-        <SetupScene nextScene={nextScene} />
+        <SetupScene shouldZoomIn={shouldZoomIn} />
       </Canvas>
     </>
   )
