@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
 import { useEffect, useRef, useState } from 'react';
+import LightOrbs from './LightOrbs';
 
 const Highlight = {
   Browser: {
@@ -74,6 +75,7 @@ const SelectionScene = ({ nextScene }) => {
       <SelectionText nextScene={nextScene} />
       <Canvas>
         {/* LightOrbs component */}
+        <LightOrbs />
         <SceneSetup />
         <OrbitControls />
         <ambientLight args={[0xff0000]} intensity={0.1}></ambientLight>
