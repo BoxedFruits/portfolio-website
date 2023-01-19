@@ -24,6 +24,7 @@ const MemoryCardSelectionScreen = () => {
   const [startAnimation, setStartAnimation] = useState(false)
   const selectedAudioRef = useRef(null);
   const audioRef = useRef(null);
+  const lastOrbPosition = useRef(null)
 
   useEffect(() => {
     audioRef.current = new Audio("selectionSound2.mp3");
@@ -31,7 +32,10 @@ const MemoryCardSelectionScreen = () => {
   })
 
   useEffect(() => {
-    audioRef.current.play();
+    if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
+      lastOrbPosition.current = orbPosition;
+      audioRef.current.play();
+    }
   }, [orbPosition])
 
   const handlePointerOver = (title, pos) => {
