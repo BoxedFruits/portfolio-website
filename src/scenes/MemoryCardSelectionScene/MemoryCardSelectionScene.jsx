@@ -21,15 +21,33 @@ const MemoryCardSelectionScreen = () => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
   const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
+  const [startAnimation, setStartAnimation] = useState(false)
+  const selectedAudioRef = useRef(null);
   const audioRef = useRef(null);
 
   useEffect(() => {
     audioRef.current = new Audio("selectionSound2.mp3");
+    selectedAudioRef.current = new Audio("selectionSound3.mp3");
   })
 
   useEffect(() => {
     audioRef.current.play();
   }, [orbPosition])
+
+  const handlePointerOver = (title, pos) => {
+    if (!startAnimation) {
+      setOrbPosition(pos);
+      setCurrHighLighted(title);
+    }
+  }
+
+  const handleClick = () => {
+    selectedAudioRef.current.play();
+    setStartAnimation(true);
+    setTimeout(() => { // Let animation play before setting state and changing scene
+      setViewObjects(true);
+    }, 750);
+  }
 
   return (
     <>
@@ -60,19 +78,17 @@ const MemoryCardSelectionScreen = () => {
             position={[-2.25, 0, 0]}
             name={Highlight.WorkExperience.title}
             setViewObjects={setViewObjects}
-            onPointerOver={() => {
-              setOrbPosition([-2.05, .25, 1]);
-              setCurrHighLighted(Highlight.WorkExperience.title)
-            }}
+            startAnimation={startAnimation && currHighlighted === Highlight.WorkExperience.title}
+            onClick={handleClick}
+            onPointerOver={() => handlePointerOver(Highlight.WorkExperience.title, [-2.05, .25, 1])}
           />
           <MemoryCard
             position={[2.25, 0, 0]}
             name={Highlight.SideProjects.title}
             setViewObjects={setViewObjects}
-            onPointerOver={() => {
-              setOrbPosition([2.05, .25, 1]);
-              setCurrHighLighted(Highlight.SideProjects.title)
-            }}
+            startAnimation={startAnimation && currHighlighted === Highlight.SideProjects.title}
+            onClick={handleClick}
+            onPointerOver={() => handlePointerOver(Highlight.SideProjects.title, [2.05, .25, 1])}
           />
         </Canvas>
       }

@@ -8,11 +8,9 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { MathUtils } from 'three';
 
-export function MemoryCard({ position, setViewObjects, ...props }) {
+export function MemoryCard({ position, startAnimation, ...props }) {
   const { nodes, materials } = useGLTF('models/memory_card.glb')
   const ref = useRef()
-  const audioRef = useRef(new Audio("selectionSound3.mp3"));
-  let startAnimation = false
 
   useFrame(() => {
     if (ref.current.scale.x <= 1.5) {
@@ -28,16 +26,8 @@ export function MemoryCard({ position, setViewObjects, ...props }) {
       ref.current.rotation.x = MathUtils.lerp(ref.current.rotation.x, -7, 0.009);
       ref.current.rotation.y = MathUtils.lerp(ref.current.rotation.y, 3, 0.0007);
       ref.current.rotation.z = MathUtils.lerp(ref.current.position.z, -5, 0.78);
-      setTimeout(() => {
-        setViewObjects(true);
-      }, 750);
     }
   });
-
-  const HandleClick = (props) => { // Todo: clean this up
-    startAnimation = true;
-    // setViewObjects(true); // this isn't working for some reason
-  }
 
   return (
     <group
@@ -46,10 +36,6 @@ export function MemoryCard({ position, setViewObjects, ...props }) {
       position={position}
       scale={0}
       rotation-x={-0.4}
-      onClick={() => {
-        audioRef.current.play();
-        HandleClick(123);
-      }}
       {...props}
     >
       <mesh geometry={nodes.Memory_card.geometry} material={materials['07 - Default']} rotation={[Math.PI / 2, 0, 0]} scale={0.02} />
