@@ -69,10 +69,10 @@ const MemoryCardSelectionScreen = () => {
           {/* <OrbitControls /> */}
           <ambientLight intensity={1.3}></ambientLight>
           <Html fullscreen >
-            <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white" }}>PS2</h1>
-            <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center" }}>
+            <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white", fontSize: "48px" }}>PS2</h1>
+            <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center", fontSize: "48px" }}>
               Memory Card
-              <span style={{ fontSize: "24px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
+              <span style={{ fontSize: "32px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
             </h1>
           </Html>
           <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
