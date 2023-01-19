@@ -24,6 +24,7 @@ const SelectionText = ({ nextScene }) => {
   const [isTextVisible, setIsTextVisible] = useState(true);
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"))
+  
 
   const handleClick = () => {
     selectedAudioRef.current.play();
@@ -38,9 +39,14 @@ const SelectionText = ({ nextScene }) => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       oceanWavesAudioRef.current.play();
     }, 3500)
+
+    return () => {
+      oceanWavesAudioRef.current.pause()
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (
