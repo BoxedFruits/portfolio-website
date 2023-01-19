@@ -49,7 +49,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
         </center>
         <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{summary}</p>
         <i className="text-shadow-thinner modal-body" style={{ fontSize: "16px" }}>Tech Stack: {techStack}</i>
-        <ul>
+        <ul style={{fontSize: "24px"}}>
           {
             bulletPoints.map((bullet, index) => {
               return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>
