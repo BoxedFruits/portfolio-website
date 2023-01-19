@@ -7,7 +7,7 @@ const Highlight = {
   Back: "Back"
 }
 
-const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
+const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
   const {
     title,
     date,
@@ -19,21 +19,19 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
     link
   } = data;
 
-  const htmlRef = useRef();
   const cancelAudioRef = useRef(new Audio("selectionSound3.mp3"))
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
 
   const fadeout = () => {
     cancelAudioRef.current.play()
     shrinkModel()
-    document.getElementsByClassName('memory-card-body')[0].className += " fadeout-modal"
+    document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal"
     document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"
   }
 
   return (
     <>
-      {/* TODO: Refactor this. Probably no need to have two different Html elements. Can also change it to divs with absolute position to allow for scrolling */}
-      <Html zIndexRange={[1, 1]} wrapperClass="modal-background-wrapper fadein-modal" fullscreen ref={htmlRef}>
+      <div className="modal-background-wrapper fadein-modal">
         <div className="modal-background" style={{
           display: "block",
           background: linearGradient
@@ -41,13 +39,10 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
           onAnimationEnd={() => closeModal()}
         >
         </div>
-      </Html>
-      <ambientLight />
-      {Model}
-      <Html transform className="memory-card-body" position={[5.5, 2.5, -10]}>
+      </div>
+      <div className="modal-body-container">
         <div style={{ maxWidth: "28em" }}>
           <center>
-            {/* TODO: move some of the inline styles to the stylesheet */}
             <p className="memory-card-title text-shadow modal-body" style={{ fontSize: "32px", marginBottom: "8px" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
             <h1 className="text-shadow arial-lighter title" style={{ marginTop: "0", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
             <p className="text-shadow modal-body" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
@@ -74,13 +69,13 @@ const Modal = ({ data, memoryCardName, closeModal, Model, shrinkModel }) => {
             <p
               className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
               onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
-              onClick={() =>  fadeout()}
+              onClick={() => fadeout()}
             >
               Back
             </p>
           </div>
         </div>
-      </Html>
+      </div>
     </>
   );
 }

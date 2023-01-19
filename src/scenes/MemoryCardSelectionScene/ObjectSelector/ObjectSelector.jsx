@@ -55,7 +55,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [modalObjectRef, setModalObjectRef] = useState();
 
   const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
-  const objIndex = useRef(null);
+  const objIndex = useRef(0);
   const lastOrbPosition = useRef(orbPosition);
 
   const handleAnimation = () => {
@@ -77,6 +77,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           handleAnimation();
           selectAudioRef.current.play()
         },
+        //TODO: Can combine these two into one method since they are both used in onPointerOver
         () => setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => {
           objIndex.current = index;
@@ -122,16 +123,24 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
       }
       {
         animateBackground &&
-        <Canvas className="modal-canvas" style={{ position: "absolute" }}>
-          <ArcballControls enableRotate={false} enablePan={false} />
+        <>
+          <Canvas className="modal-canvas" style={{ position: "absolute" }}>
+            <ArcballControls enableRotate={false} enablePan={false} />
+            <ambientLight />
+            {
+              getModelForModal(
+                jsonObject.objects[objIndex.current].model,
+                objIndex.current,
+                (e) => setModalObjectRef(e))
+            }
+          </Canvas>
           <Modal
             memoryCardName={memoryCardName}
             data={jsonObject.objects[objIndex.current]}
-            Model={getModelForModal(jsonObject.objects[objIndex.current].model, objIndex.current, (e) => setModalObjectRef(e))}
             shrinkModel={() => modalObjectRef.current.triggerShrinkAnimation()}
             closeModal={() => setAnimateBackground(false)}
           />
-        </Canvas>
+        </>
       }
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute", pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
         <Html fullscreen style={{ display: animateBackground ? "none" : "block" }}>
