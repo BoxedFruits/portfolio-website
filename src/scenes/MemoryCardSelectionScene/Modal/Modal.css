@@ -18,4 +18,26 @@
   top: 5%;
   right: 20%;
   z-index: 1000;
+  max-height: 80vh;
+  max-width: 25vw;
+  overflow-y: scroll;
+  padding-right: 24px;
+  --scroll-size: 8px;
+  --scroll-radius: 10px;
+  --scroll-track: rgb(255 255 255 / 10%);
+  --scroll-thumb-color: rgb(0 0 0 / 80%);
+}
+
+/* https://onaircode.com/html-css-custom-scrollbar-examples/ */
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 10px solid transparent;
+}
+
+*::-webkit-scrollbar-thumb {        
+  box-shadow: inset 0 0 0 10px;
 }
