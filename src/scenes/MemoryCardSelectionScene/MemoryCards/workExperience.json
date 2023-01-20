@@ -20,22 +20,22 @@
       "link": "https://google.com"
     },
     {
-      "title": "Vanguard",
+      "title": "Nasdaq",
       "model": "Vanguard",
       "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
+        "start": "6/27/2019",
+        "end": "12/14/2020"
       },
-      "summary": "blahblahblah.",
+      "summary": "Nasdaq is a global electronic marketplace for buying and selling securities.",
       "bulletPoints": [
-        "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
-        "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
-        "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
+        "Developed POC web application automating Internal Audit tasks",
+        "Created scripts to populate local database nightly using data from company's database",
+        "Fleshed out and fine tuned user-interfaces using CSS, jQuery and JavaScript"
       ],
       "memory": "101 KB",
       "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(1,3,3,0.1) 2%, rgba(5,30,30,0.2) 40%, rgba(89,59,59,0.3) 88%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
+      "linearGradient": " linear-gradient(56deg, rgba(175,90,172, 0.3), rgba(175,90,172, 0) 25%), linear-gradient(157deg, rgba(9,43,131,0.983), rgba(9,43,131,0) 45%) , linear-gradient(322deg, rgba(63,176,181,0.9), rgba(63,176,181,0) 83%)",
+      "techStack": "CSS, HTML, Javascript, PHP, Perl, SQL",
       "link": ""
     },
     {
@@ -53,64 +53,7 @@
       ],
       "memory": "101 KB",
       "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(93,3,3,0.1) 2%, rgba(163,30,30,0.2) 40%, rgba(246,59,59,0.3) 88%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": ""
-    },
-    {
-      "title": "Kanguard",
-      "model": "Vanguard",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "blahblahblah.",
-      "bulletPoints": [
-        "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
-        "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
-        "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(93,3,3,0.1) 2%, rgba(163,30,30,0.2) 40%, rgba(246,59,59,0.3) 88%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": ""
-    },
-    {
-      "title": "Vanguard",
-      "model": "Vanguard",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
-      "bulletPoints": [
-        "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
-        "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
-        "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(93,3,3,0.1) 2%, rgba(163,30,30,0.2) 40%, rgba(246,59,59,0.3) 88%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": ""
-    },
-    {
-      "title": "Vanguard",
-      "model": "Vanguard",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "blahblahblah.",
-      "bulletPoints": [
-        "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
-        "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
-        "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(93,3,3,0.1) 2%, rgba(163,30,30,0.2) 40%, rgba(246,59,59,0.3) 88%)",
+      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
       "techStack": "Angular, CSS, HTML, TypeScript",
       "link": ""
     }
