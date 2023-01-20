@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import GlowOrb from "../../../components/GlowOrb/GlowOrb";
 import Modal from "../Modal/Modal";
+import { NasdaqLogo } from "../TitleModels/Nasdaq";
 import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
 const OBJECTS_IN_ROW = 5;
@@ -10,36 +11,55 @@ const OBJECTS_IN_ROW = 5;
 //TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
 //Might be able to combine these two functions with optional parameters and destructuring 
 const getModelForSelection = (title, position, index, onHandleAnimation, setOrbPosition, setCurrHighLighted, getRef, animateNextObject) => {
+  const commonProps = {
+    key: index,
+    position: position,
+    onClick: () => onHandleAnimation(),
+    onPointerOver: () => {
+      setOrbPosition();
+      setCurrHighLighted();
+    },
+    getRef: getRef,
+    animationCallback: () => animateNextObject()//this is what will move the count to the next object to animate
+  };
+
   switch (title) {
     case "Vanguard":
       return <VanguardLogo
-        key={index}
-        position={position}
-        onClick={() => onHandleAnimation()}
-        onPointerOver={() => {
-          setOrbPosition();
-          setCurrHighLighted();
-        }}
-        getRef={getRef}
+        {...commonProps}
         targetScale={.55}
-        animationCallback={() => animateNextObject()} //this is what will move the count to the next object to animate
+      />;
+    case "Nasdaq":
+      return <NasdaqLogo
+        {...commonProps}
+        targetScale={.5}
       />;
     default: return <Text>uh oh something broke</Text>
   }
 }
 
 const getModelForModal = (title, index, getRef) => {
+  const commonProps = {
+    key: index,
+    position: [-4.5, -1.25, -1],
+    shouldRotate: true,
+    loadAnimation: (e) => e.current.startLoadingAnimation(),
+    getRef: getRef,
+  }
+  
   switch (title) {
     case "Vanguard":
       return <VanguardLogo
-        key={index}
-        position={[-4.5, -1.25, -1]}
+        {...commonProps}
         rotation-x={1.6}
         targetScale={.85}
-        shouldRotate={true}
-        loadAnimation={(e) => e.current.startLoadingAnimation()}
-        getRef={getRef}
       />;
+      case "Nasdaq":
+        return <NasdaqLogo
+        {...commonProps}
+        rotation-x={1.8}
+        targetScale={.8}
+        />
     default: return <Text>uh oh something broke</Text>
   }
 }

@@ -21,7 +21,7 @@
     },
     {
       "title": "Nasdaq",
-      "model": "Vanguard",
+      "model": "Nasdaq",
       "date": {
         "start": "6/27/2019",
         "end": "12/14/2020"
