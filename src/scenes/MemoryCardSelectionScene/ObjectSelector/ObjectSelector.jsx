@@ -6,6 +6,7 @@ import Modal from "../Modal/Modal";
 import { NasdaqLogo } from "../3dModels/Nasdaq";
 import { VanguardLogo } from "../3dModels/VanguardLogo";
 import "./ObjectSelector.css";
+import { Dumbbell } from "../3dModels/Dumbbell";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -15,7 +16,7 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
     key: index,
     position: position,
     onClick: onHandleAnimation,
-    onPointerOver:  handlePointerOver,
+    onPointerOver: handlePointerOver,
     getRef: getRef,
     animationCallback: animateNextObject //this is what will move the count to the next object to animate
   };
@@ -31,6 +32,11 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
         {...commonProps}
         targetScale={.5}
       />;
+    case "Dumbbell":
+      return <Dumbbell
+        {...commonProps}
+        targetScale={7}
+      />
     default: return <Text>uh oh something broke</Text>
   }
 }
@@ -43,7 +49,7 @@ const getModelForModal = (title, index, getRef) => {
     loadAnimation: (e) => e.current.startLoadingAnimation(),
     getRef: getRef,
   }
-  
+
   switch (title) {
     case "Vanguard":
       return <VanguardLogo
@@ -51,11 +57,17 @@ const getModelForModal = (title, index, getRef) => {
         rotation-x={1.6}
         targetScale={.85}
       />;
-      case "Nasdaq":
-        return <NasdaqLogo
+    case "Nasdaq":
+      return <NasdaqLogo
         {...commonProps}
         rotation-x={1.8}
         targetScale={.8}
+      />
+      case "Dumbbell":
+        return <Dumbbell
+        {...commonProps}
+        rotation-x={1.6}
+        targetScale={6.5}
         />
     default: return <Text>uh oh something broke</Text>
   }
