@@ -7,6 +7,7 @@ import { NasdaqLogo } from "../3dModels/Nasdaq";
 import { VanguardLogo } from "../3dModels/VanguardLogo";
 import "./ObjectSelector.css";
 import { Dumbbell } from "../3dModels/Dumbbell";
+import { Ethereum } from "../3dModels/Ethereum";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -37,6 +38,11 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
         {...commonProps}
         targetScale={7}
       />
+    case "Ethereum":
+      return <Ethereum
+        {...commonProps}
+        targetScale={.7}
+      />
     default: return <Text>uh oh something broke</Text>
   }
 }
@@ -63,12 +69,18 @@ const getModelForModal = (title, index, getRef) => {
         rotation-x={1.8}
         targetScale={.8}
       />
-      case "Dumbbell":
-        return <Dumbbell
+    case "Dumbbell":
+      return <Dumbbell
         {...commonProps}
         rotation-x={1.6}
         targetScale={6.5}
-        />
+      />
+    case "Ethereum":
+      return <Ethereum
+        rotation-x={-1.58}
+        {...commonProps}
+        targetScale={1.15}
+      />
     default: return <Text>uh oh something broke</Text>
   }
 }
