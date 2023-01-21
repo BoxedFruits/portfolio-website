@@ -38,7 +38,7 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
 
   })
 
-  const startLoadingAnimation = async () => {
+  const startLoadingAnimation = () => {
     setIsLoadingAnimationFinished(false);
   }
 
