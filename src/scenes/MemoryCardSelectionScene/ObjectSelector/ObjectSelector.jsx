@@ -3,8 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import GlowOrb from "../../../components/GlowOrb/GlowOrb";
 import Modal from "../Modal/Modal";
-import { NasdaqLogo } from "../TitleModels/Nasdaq";
-import { VanguardLogo } from "../TitleModels/VanguardLogo";
+import { NasdaqLogo } from "../3dModels/Nasdaq";
+import { VanguardLogo } from "../3dModels/VanguardLogo";
 import "./ObjectSelector.css";
 const OBJECTS_IN_ROW = 5;
 
