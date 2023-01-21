@@ -10,17 +10,14 @@ const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
 //Might be able to combine these two functions with optional parameters and destructuring 
-const getModelForSelection = (title, position, index, onHandleAnimation, setOrbPosition, setCurrHighLighted, getRef, animateNextObject) => {
+const getModelForSelection = (title, position, index, onHandleAnimation, handlePointerOver, getRef, animateNextObject) => {
   const commonProps = {
     key: index,
     position: position,
-    onClick: () => onHandleAnimation(),
-    onPointerOver: () => {
-      setOrbPosition();
-      setCurrHighLighted();
-    },
+    onClick: onHandleAnimation,
+    onPointerOver:  handlePointerOver,
     getRef: getRef,
-    animationCallback: () => animateNextObject()//this is what will move the count to the next object to animate
+    animationCallback: animateNextObject //this is what will move the count to the next object to animate
   };
 
   switch (title) {
@@ -98,9 +95,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           selectAudioRef.current.play()
         },
         //TODO: Can combine these two into one method since they are both used in onPointerOver
-        () => setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]),
         () => {
           objIndex.current = index;
+          setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]);
           setCurrHighLighted(obj.title)
         },
         (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),

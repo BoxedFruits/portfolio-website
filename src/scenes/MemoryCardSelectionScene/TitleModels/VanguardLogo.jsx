@@ -65,8 +65,8 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
       dispose={null}
       scale={0}
       {...props}
-      startLoadingAnimation={() => startLoadingAnimation()}
-      triggerShrinkAnimation={() => { console.log("SHRINKIT"); setShrinkAnimation(true); }}
+      startLoadingAnimation={startLoadingAnimation}
+      triggerShrinkAnimation={() => { setShrinkAnimation(true); }}
     >
       <mesh geometry={nodes.Cube.geometry} material={materials.Material} />
     </group>
