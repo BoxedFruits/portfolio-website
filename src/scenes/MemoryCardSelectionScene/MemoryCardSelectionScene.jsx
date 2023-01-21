@@ -2,7 +2,7 @@ import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import GlowOrb from "../../components/GlowOrb/GlowOrb";
-import { MemoryCard } from "./MemoryCard";
+import { MemoryCard } from "./3dModels/MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 
 const SideProjects = require("./MemoryCards/sideProjects.json")
