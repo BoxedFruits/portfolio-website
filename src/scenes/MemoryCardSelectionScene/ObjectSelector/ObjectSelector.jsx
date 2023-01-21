@@ -8,7 +8,7 @@ import { VanguardLogo } from "../TitleModels/VanguardLogo";
 import "./ObjectSelector.css";
 const OBJECTS_IN_ROW = 5;
 
-//TODO: Refactor this to be more flexible. Won't be able to use this for the spinning object in the Modal
+//TODO: Refactor this to be more flexible
 //Might be able to combine these two functions with optional parameters and destructuring 
 const getModelForSelection = (title, position, index, onHandleAnimation, handlePointerOver, getRef, animateNextObject) => {
   const commonProps = {
