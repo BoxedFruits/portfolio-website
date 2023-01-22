@@ -12,7 +12,7 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { MathUtils } from 'three';
 
-const MARGIN = .035;
+const MARGIN = .015;
 
 export function Ethereum({ shouldRotate, getRef, animationCallback, targetScale, loadAnimation, shrink, ...props }) {
   const ref = useRef();

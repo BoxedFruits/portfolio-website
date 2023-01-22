@@ -96,7 +96,7 @@ const getModelForModal = (title, index, getRef) => {
     case "CodeArena":
       return <CodeArenaLogo
         {...commonProps}
-        rotation-x={.8}
+        rotation-x={-.05}
         targetScale={1}
       />
     case "PenAndPaper":
