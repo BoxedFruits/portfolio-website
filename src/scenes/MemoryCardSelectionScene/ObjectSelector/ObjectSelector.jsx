@@ -8,6 +8,7 @@ import { VanguardLogo } from "../3dModels/VanguardLogo";
 import "./ObjectSelector.css";
 import { Dumbbell } from "../3dModels/Dumbbell";
 import { Ethereum } from "../3dModels/Ethereum";
+import { CodeArenaLogo } from "../3dModels/CodeArenaLogo";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -43,6 +44,11 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
         {...commonProps}
         targetScale={.7}
       />
+    case "CodeArena":
+      return <CodeArenaLogo
+        {...commonProps}
+        targetScale={.8}
+      />
     default: return <Text>uh oh something broke</Text>
   }
 }
@@ -77,9 +83,15 @@ const getModelForModal = (title, index, getRef) => {
       />
     case "Ethereum":
       return <Ethereum
-        rotation-x={-1.58}
         {...commonProps}
+        rotation-x={-1.58}
         targetScale={1.15}
+      />
+    case "CodeArena":
+      return <CodeArenaLogo
+        {...commonProps}
+        rotation-x={.8}
+        targetScale={1}
       />
     default: return <Text>uh oh something broke</Text>
   }
