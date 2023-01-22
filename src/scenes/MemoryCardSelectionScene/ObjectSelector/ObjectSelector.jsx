@@ -9,6 +9,7 @@ import "./ObjectSelector.css";
 import { Dumbbell } from "../3dModels/Dumbbell";
 import { Ethereum } from "../3dModels/Ethereum";
 import { CodeArenaLogo } from "../3dModels/CodeArenaLogo";
+import { PenAndPaper } from "../3dModels/PenAndPaper";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -48,6 +49,11 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
       return <CodeArenaLogo
         {...commonProps}
         targetScale={.8}
+      />
+    case "PenAndPaper":
+      return <PenAndPaper
+        {...commonProps}
+        targetScale={2}
       />
     default: return <Text>uh oh something broke</Text>
   }
@@ -92,6 +98,12 @@ const getModelForModal = (title, index, getRef) => {
         {...commonProps}
         rotation-x={.8}
         targetScale={1}
+      />
+    case "PenAndPaper":
+      return <PenAndPaper 
+      {...commonProps}
+      rotation-x={1.6}
+      targetScale={2.8}
       />
     default: return <Text>uh oh something broke</Text>
   }
