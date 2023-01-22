@@ -38,7 +38,7 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
     case "Dumbbell":
       return <Dumbbell
         {...commonProps}
-        targetScale={7}
+        targetScale={6.5}
       />
     case "Ethereum":
       return <Ethereum
@@ -48,12 +48,12 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
     case "CodeArena":
       return <CodeArenaLogo
         {...commonProps}
-        targetScale={.8}
+        targetScale={.6}
       />
     case "PenAndPaper":
       return <PenAndPaper
         {...commonProps}
-        targetScale={2}
+        targetScale={1.8}
       />
     default: return <Text>uh oh something broke</Text>
   }
