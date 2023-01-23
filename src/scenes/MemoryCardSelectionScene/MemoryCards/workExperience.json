@@ -7,7 +7,7 @@
         "start": "9/30/2020",
         "end": "4/25/2022"
       },
-      "companySummary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
+      "summary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
       "additionalDetails" : "I joined Vanguard right out of college as my first full-time software engineer position. Being the most junior engineer on the team, I spent a lot of the first few months learning the tech stack and the applications we were developing. I was quickly able to grasp these new concepts and started to contribute to the team early on, even being able to handle tickets independently and communicate with others teams to implement new features.",
       "bulletPoints": [
         "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
@@ -27,7 +27,7 @@
         "start": "6/27/2019",
         "end": "12/14/2019"
       },
-      "companySummary": "Nasdaq is a global electronic marketplace for buying and selling securities.",
+      "summary": "Nasdaq is a global electronic marketplace for buying and selling securities.",
       "additionalDetails" : "At Nasdaq, I formed a team with another intern to work on automating tasks for the Internal Audit team. I was originally assigned to go into various data sources and crafting SQL queries that the auditors would normally have to ask a more technical person for. I created a backend service in Perl that pulled all that data into our database nightly. Having finished my work ahead of time, I was also able to work on the frontend where we presented that data with a UI.",
       "bulletPoints": [
         "Developed POC web application automating Internal Audit tasks",
