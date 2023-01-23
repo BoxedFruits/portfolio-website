@@ -111,7 +111,7 @@ const getModelForModal = (title, index, getRef) => {
 
 const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   const [animateBackground, setAnimateBackground] = useState(false);
-  const [orbPosition, setOrbPosition] = useState([-5, -0.5, -.50]);
+  const [orbPosition, setOrbPosition] = useState([-5, -0.45, 0.5]);
   const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title)
   const [objectsToRender, setObjectsToRender] = useState([]);
   const [animatedObjectsCounter, setAnimatedObjectsCounter] = useState(0); // Keeps track of which object to animate
@@ -128,12 +128,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
   }
 
   useEffect(() => {
-    let zValue = 3.25;
+    let zValue = 4.25;
 
     const objects = jsonObject.objects.map((obj, index) => {
       if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
       let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
-
+      console.log(position[0], position[1] - 0.45, position[2] - 0.75)
       return getModelForSelection(
         obj.model,
         position,
