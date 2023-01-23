@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Modal.css";
 
 const Highlight = {
@@ -21,6 +21,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
 
   const cancelAudioRef = useRef(new Audio("selectionSound3.mp3"))
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
+  const lastOrbPosition = useRef(currHighlighted);
 
   const fadeout = () => {
     cancelAudioRef.current.play()
@@ -28,6 +29,14 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
     document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal"
     document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"
   }
+
+  useEffect(() => {
+    if (lastOrbPosition.current !== currHighlighted) {
+      const highlightAudio = new Audio("selectionSound2.mp3");
+      highlightAudio.play();
+      lastOrbPosition.current = currHighlighted
+    }
+  }, [currHighlighted])
 
   return (
     <>
@@ -49,7 +58,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
         </center>
         <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{summary}</p>
         <i className="text-shadow-thinner modal-body" style={{ fontSize: "16px" }}>Tech Stack: {techStack}</i>
-        <ul style={{fontSize: "24px"}}>
+        <ul style={{ fontSize: "24px" }}>
           {
             bulletPoints.map((bullet, index) => {
               return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>
@@ -62,7 +71,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
             target="_blank"
             rel="noopener"
             className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : 'not-highlighted'}`}
-            style={{ cursor: link === "" ? "not-allowed" : "pointer" }}
+            style={{ cursor: link === "" ? "not-allowed" : "pointer", pointerEvents: link === "" ? "none" : "auto" }}
             onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
           >Link</p>
           <p
