@@ -1,6 +1,3 @@
-//AppJS will hold state and determine what gets rendered
-//Make sure to have ability to go back and forth scenes
-
 import { useState } from 'react';
 import './App.css';
 import ExplainerScene from './scenes/ExplainerScene/ExplainerScene';
