@@ -7,6 +7,62 @@
         "start": "9/31/2020",
         "end": "4/25/2022"
       },
+      "summary": "A competitive auditing platform for Smart Contract Auditors to review smart contracts that are close to production deployement. There are incentives to finding High/Medium/Low vulernabilities as well as QA/Informational findings. Reports are often published after an audit has been completed and patched, allowing for further learning for the auditors on the platform.",
+      "bulletPoints": [
+        "Finished in the top 500 for the year of 2022",
+        "Found a medium severity finding during the Forgotten Runes audit competition"
+      ],
+      "memory": "101 KB",
+      "height": "",
+      "linearGradient": "linear-gradient(139deg,  rgba(74, 32, 82, 1), rgba(74, 32, 82, 0) 40.71%), linear-gradient(217deg, rgba(141, 60, 156, 1), rgba(141, 60, 156, 0) 70.71%),linear-gradient(24deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 70.71%)",
+      "techStack": "Solidity, Forge, Hardhat",
+      "link": "https://code4rena.com/leaderboard"
+    },
+    {
+      "title": "That Time I Found a Critical Web3 Bug",
+      "model": "PenAndPaper",
+      "date": {
+        "start": "5/04/2022",
+        "end": "5/14/2022"
+      },
+      "summary": "After witnessing countless protocols and projects get exploited by hackers, I decided to finally jump into the world of smart contract security. Luckily enough, one of the NFT projects that I was an active member of were starting a bug bounty for their next phase of the roadmap.",
+      "bulletPoints": [
+        "Gained a mastery of the protocol after reading through every line of the new contracts",
+        "Reported a critical vulnerability that was accepted",
+        "Vulnerability would have lead to stolen of users' NFTs"
+      ],
+      "memory": "10 KB",
+      "height": "",
+      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(31, 81, 31, 1), rgba(25, 184, 25, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 50.71%)",
+      "techStack": "Solidity, Hardhat, Slither",
+      "link": "https://mirror.xyz/0xB75Bd7Ef6B0942b7AEF94995e43a59CB25a1e113/nDHy_KgvxWwPUtY65Xw6GfWStSZCJ8DEfXH65Zz_Cik"
+    },
+    {
+      "title": "Read the Signs: The dangers of eth_sign",
+      "model": "PenAndPaper",
+      "date": {
+        "start": "7/17/2022",
+        "end": "9/3/2022"
+      },
+      "summary": "After almost falling victim to a fake Collab.Land bot, I dug deep into the Metamask source code and ventured into EIPs to understand how hacks similar to this can drain the wallets of unsuspecting users who approve a signature.",
+      "bulletPoints": [
+        "Made a proof-of-concept of the attack",
+        "Reverse engineered an attack that uses raw eth_sign signatures in order to trick a user into signing a transaction that they don't know is harmful if approved",
+        "Dove into the Metamask source code, EIP 1559 and EIP 2718 to understand how transactions were created"
+      ],
+      "memory": "48 KB",
+      "height": "",
+      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
+      "techStack": "HTML, TypeScript, ethers.js, CSS",
+      "link": "https://google.com"
+    },
+    {
+      "title": "Blogs",
+      "model": "PenAndPaper",
+      "date": {
+        "start": "9/31/2020",
+        "end": "4/25/2022"
+      },
       "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
       "bulletPoints": [
         "Organically grow the holistic world view of disruptive innovation",
@@ -15,7 +71,7 @@
       ],
       "memory": "101 KB",
       "height": "",
-      "linearGradient": "linear-gradient(139deg,  rgba(74, 32, 82, 1), rgba(74, 32, 82, 0) 40.71%), linear-gradient(217deg, rgba(141, 60, 156, 1), rgba(141, 60, 156, 0) 70.71%),linear-gradient(24deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 70.71%)",
+      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
       "techStack": "Angular, CSS, HTML, TypeScript",
       "link": "https://google.com"
     },
@@ -54,63 +110,6 @@
       "memory": "101 KB",
       "height": "",
       "linearGradient": "linear-gradient(56deg, rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0) 25%), linear-gradient(157deg, rgba(61, 56, 163, 0.73), rgba(61, 56, 163, 0) 45%) , linear-gradient(322deg, rgba(123, 44, 198, 0.73), rgba(123, 44, 198, 0) 83%), linear-gradient(122deg, rgba(42, 130, 196, 0.73), rgba(42, 130, 196, 0) 83%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
-    },
-    {
-      "title": "Blogs",
-      "model": "PenAndPaper",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
-      "bulletPoints": [
-        "Organically grow the holistic world view of disruptive innovation",
-        "Bring to the table win-win survival strategies to ensure proactive domination.",
-        "At the end of the day, going forward, a new normal that has evolved from generation X"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
-    },
-    {
-      "title": "Blogs",
-      "model": "PenAndPaper",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
-      "bulletPoints": [
-        "Organically grow the holistic world view of disruptive innovation",
-        "Bring to the table win-win survival strategies to ensure proactive domination.",
-        "At the end of the day, going forward, a new normal that has evolved from generation X"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
-    },
-    {
-      "title": "Blogs",
-      "model": "PenAndPaper",
-      "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
-      },
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
-      "bulletPoints": [
-        "Organically grow the holistic world view of disruptive innovation",
-        "Bring to the table win-win survival strategies to ensure proactive domination.",
-        "At the end of the day, going forward, a new normal that has evolved from generation X"
-      ],
-      "memory": "101 KB",
-      "height": "",
-      "linearGradient": "linear-gradient(139deg,  rgba(255, 0, 0, 0.84), rgba(255, 0, 0, 0) 40.71%), linear-gradient(217deg, rgba(0, 255, 0, 0.4), rgba(0, 255, 0, 0) 70.71%),linear-gradient(24deg, rgba(0, 0, 255, 0.4), rgba(0, 0, 255, 0) 70.71%)",
       "techStack": "Angular, CSS, HTML, TypeScript",
       "link": "https://google.com"
     }
