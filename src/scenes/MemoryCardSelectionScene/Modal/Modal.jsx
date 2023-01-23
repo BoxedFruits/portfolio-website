@@ -1,4 +1,3 @@
-import { Html } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import "./Modal.css";
 
@@ -11,7 +10,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
   const {
     title,
     date,
-    summary,
+    companySummary,
     memory,
     bulletPoints,
     linearGradient,
@@ -56,7 +55,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
           <p className="text-shadow modal-body" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
           <p className="text-shadow modal-body" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", letterSpacing: "2px" }}>{memory}</p>
         </center>
-        <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{summary}</p>
+        <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{companySummary}</p>
         <i className="text-shadow-thinner modal-body" style={{ fontSize: "16px" }}>Tech Stack: {techStack}</i>
         <ul style={{ fontSize: "24px" }}>
           {
