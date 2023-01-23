@@ -142,7 +142,6 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
           handleAnimation();
           selectAudioRef.current.play()
         },
-        //TODO: Can combine these two into one method since they are both used in onPointerOver
         () => {
           objIndex.current = index;
           setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]);
