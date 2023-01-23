@@ -4,35 +4,37 @@
       "title": "Vanguard",
       "model": "Vanguard",
       "date": {
-        "start": "9/31/2020",
+        "start": "9/30/2020",
         "end": "4/25/2022"
       },
-      "summary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
+      "companySummary": "Vanguard is an American registered investment advisor that offers brokerage services, educational account services, financial planning, asset management, and trust services.",
+      "additionalDetails" : "I joined Vanguard right out of college as my first full-time software engineer position. Being the most junior engineer on the team, I spent a lot of the first few months learning the tech stack and the applications we were developing. I was quickly able to grasp these new concepts and started to contribute to the team early on, even being able to handle tickets independently and communicate with others teams to implement new features.",
       "bulletPoints": [
         "Developed web apps in an agile team using Angular to assist financial advisors and guide clients to informed financial decisions",
         "Worked on major front-end features and refactors to help launch two apps and support two legacy apps in one year",
         "Became a Security Champion leading to improvement of security posture and no current breaches of SLAs"
       ],
-      "memory": "101 KB",
+      "memory": "572 KB",
       "height": "",
       "linearGradient": "linear-gradient(326deg, rgba(93,3,3,0.1) 2%, rgba(163,30,30,0.2) 40%, rgba(246,59,59,0.3) 88%)",
       "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
+      "link": "https://vanguard.com/home"
     },
     {
       "title": "Nasdaq",
       "model": "Nasdaq",
       "date": {
         "start": "6/27/2019",
-        "end": "12/14/2020"
+        "end": "12/14/2019"
       },
-      "summary": "Nasdaq is a global electronic marketplace for buying and selling securities.",
+      "companySummary": "Nasdaq is a global electronic marketplace for buying and selling securities.",
+      "additionalDetails" : "At Nasdaq, I formed a team with another intern to work on automating tasks for the Internal Audit team. I was originally assigned to go into various data sources and crafting SQL queries that the auditors would normally have to ask a more technical person for. I created a backend service in Perl that pulled all that data into our database nightly. Having finished my work ahead of time, I was also able to work on the frontend where we presented that data with a UI.",
       "bulletPoints": [
         "Developed POC web application automating Internal Audit tasks",
         "Created scripts to populate local database nightly using data from company's database",
         "Fleshed out and fine tuned user-interfaces using CSS, jQuery and JavaScript"
       ],
-      "memory": "101 KB",
+      "memory": "170 KB",
       "height": "",
       "linearGradient": "linear-gradient(56deg, rgba(175,90,172, 0.3), rgba(175,90,172, 0) 25%), linear-gradient(157deg, rgba(9,43,131,0.983), rgba(9,43,131,0) 45%) , linear-gradient(322deg, rgba(63,176,181,0.9), rgba(63,176,181,0) 83%)",
       "techStack": "CSS, HTML, Javascript, PHP, Perl, SQL",

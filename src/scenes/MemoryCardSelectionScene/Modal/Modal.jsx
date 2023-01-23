@@ -11,6 +11,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
     title,
     date,
     companySummary,
+    additionalDetails,
     memory,
     bulletPoints,
     linearGradient,
@@ -56,6 +57,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
           <p className="text-shadow modal-body" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", letterSpacing: "2px" }}>{memory}</p>
         </center>
         <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{companySummary}</p>
+        <p className="text-shadow-thinner modal-body" style={{ lineHeight: "1.5" }}>{additionalDetails}</p>
         <i className="text-shadow-thinner modal-body" style={{ fontSize: "16px" }}>Tech Stack: {techStack}</i>
         <ul style={{ fontSize: "24px" }}>
           {
