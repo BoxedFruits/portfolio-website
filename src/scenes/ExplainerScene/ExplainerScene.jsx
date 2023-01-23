@@ -14,7 +14,7 @@ const ExplainerScene = ({nextScene}) => {
         </p>
         
         <i style={{fontSize: "16px"}}>
-          I needed to create this page in order to have audio autoplay because of google's autoplay policy so keep your volume on!.
+          I needed to create this page in order to have audio autoplay because of google's autoplay policy so keep your volume on!
         </i>
         <br />
         <button className="button-18" onClick={() => nextScene()}>Enter</button>
