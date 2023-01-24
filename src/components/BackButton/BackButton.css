@@ -9,6 +9,7 @@
   position: absolute;
   bottom: 0%;
   left: 50% ;
+  animation: 2.5s ease-out 0s 1 fadeIn;
 }
 
 .back-button > span {
@@ -20,4 +21,14 @@
 
 img {
   width: 84px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
