@@ -1,0 +1,23 @@
+.back-button:hover {
+  transform: scale(1.09);
+  transition:transform 1.05s ease-in-out;
+  cursor: pointer;
+}
+
+.back-button {
+  z-index: 2;
+  position: absolute;
+  bottom: 0%;
+  left: 50% ;
+}
+
+.back-button > span {
+  font-size: 48px;
+  color: white;
+  align-items: center;
+  display: flex;
+}
+
+img {
+  width: 84px;
+}
