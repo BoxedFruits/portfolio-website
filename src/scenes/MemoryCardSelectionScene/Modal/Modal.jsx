@@ -66,15 +66,15 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
             })
           }
         </ul>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "128px" }}>
-          <p
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "80px" }}>
+          <a
             href={link}
             target="_blank"
-            rel="noopener"
+            rel="noreferrer"
             className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Link && link !== "" ? 'highlight' : 'not-highlighted'}`}
-            style={{ cursor: link === "" ? "not-allowed" : "pointer", pointerEvents: link === "" ? "none" : "auto" }}
+            style={{ cursor: link === "" ? "not-allowed" : "pointer", pointerEvents: link === "" ? "none" : "auto", textDecoration: "none" }}
             onMouseEnter={() => setCurrHighLighted(Highlight.Link)}
-          >Link</p>
+          >Link</a>
           <p
             className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
             onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
