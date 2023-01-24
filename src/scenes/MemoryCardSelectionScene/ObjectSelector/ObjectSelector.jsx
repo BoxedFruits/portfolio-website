@@ -10,6 +10,7 @@ import { Dumbbell } from "../3dModels/Dumbbell";
 import { Ethereum } from "../3dModels/Ethereum";
 import { CodeArenaLogo } from "../3dModels/CodeArenaLogo";
 import { PenAndPaper } from "../3dModels/PenAndPaper";
+import BackButton from "../../../components/BackButton/BackButton";
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -100,16 +101,16 @@ const getModelForModal = (title, index, getRef) => {
         targetScale={1}
       />
     case "PenAndPaper":
-      return <PenAndPaper 
-      {...commonProps}
-      rotation-x={1.6}
-      targetScale={2.8}
+      return <PenAndPaper
+        {...commonProps}
+        rotation-x={1.6}
+        targetScale={2.8}
       />
     default: return <Text>uh oh something broke</Text>
   }
 }
 
-const ObjectSelector = ({ jsonObject, memoryCardName }) => {
+const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => {
   const [animateBackground, setAnimateBackground] = useState(false);
   const [orbPosition, setOrbPosition] = useState([-5, -0.45, 0.5]);
   const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title)
@@ -184,6 +185,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName }) => {
     <>
       {!finishedLoadingAnimation &&
         <div className="text-shadow loading-text"> Now Loading...</div>
+      }
+
+      {
+       finishedLoadingAnimation && 
+       !animateBackground &&
+       <BackButton onClick={closeObjectSelector} /> 
       }
       {
         animateBackground &&

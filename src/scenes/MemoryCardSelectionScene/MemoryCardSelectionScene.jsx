@@ -1,6 +1,7 @@
 import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import BackButton from "../../components/BackButton/BackButton";
 import GlowOrb from "../../components/GlowOrb/GlowOrb";
 import { MemoryCard } from "./3dModels/MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
@@ -17,7 +18,7 @@ const Highlight = {
   }
 }
 
-const MemoryCardSelectionScreen = () => {
+const MemoryCardSelectionScreen = ({ prevScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
   const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
@@ -63,38 +64,41 @@ const MemoryCardSelectionScreen = () => {
           jsonObject={
             currHighlighted === Highlight.WorkExperience.title ? WorkExperience : SideProjects
           }
+          closeObjectSelector={() => { setStartAnimation(false); setViewObjects(false) }}
         />
         :
-        <Canvas camera={{ position: [0, 0, 10] }}> {/* Need to play around with either FOV or orthographic camera to avoid the fisheye lens effect*/}
-          {/* <OrbitControls /> */}
-          <ambientLight intensity={1.3}></ambientLight>
-          <Html fullscreen >
-            <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white", fontSize: "48px" }}>PS2</h1>
-            <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center", fontSize: "48px" }}>
-              Memory Card
-              <span style={{ fontSize: "32px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
-            </h1>
-          </Html>
-          <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
-          <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
-          <GlowOrb position={orbPosition} />
-          <MemoryCard
-            position={[-2.25, 0, 0]}
-            name={Highlight.WorkExperience.title}
-            setViewObjects={setViewObjects}
-            startAnimation={startAnimation && currHighlighted === Highlight.WorkExperience.title}
-            onClick={handleClick}
-            onPointerOver={() => handlePointerOver(Highlight.WorkExperience.title, [-2.05, .25, 1])}
-          />
-          <MemoryCard
-            position={[2.25, 0, 0]}
-            name={Highlight.SideProjects.title}
-            setViewObjects={setViewObjects}
-            startAnimation={startAnimation && currHighlighted === Highlight.SideProjects.title}
-            onClick={handleClick}
-            onPointerOver={() => handlePointerOver(Highlight.SideProjects.title, [2.05, .25, 1])}
-          />
-        </Canvas>
+        <>
+          <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white", fontSize: "48px" }}>PS2</h1>
+          <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center", fontSize: "48px", position: "relative" }}>
+            Memory Card
+            <span style={{ fontSize: "32px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
+          </h1>
+          {/* TODO: Fadeout animation when transitioning back */}
+          <BackButton onClick={prevScene} />
+          <Canvas camera={{ position: [0, 0, 10] }}> {/* Need to play around with either FOV or orthographic camera to avoid the fisheye lens effect*/}
+            {/* <OrbitControls /> */}
+            <ambientLight intensity={1.3}></ambientLight>
+            <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
+            <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
+            <GlowOrb position={orbPosition} />
+            <MemoryCard
+              position={[-2.25, 0, 0]}
+              name={Highlight.WorkExperience.title}
+              setViewObjects={setViewObjects}
+              startAnimation={startAnimation && currHighlighted === Highlight.WorkExperience.title}
+              onClick={handleClick}
+              onPointerOver={() => handlePointerOver(Highlight.WorkExperience.title, [-2.05, .25, 1])}
+            />
+            <MemoryCard
+              position={[2.25, 0, 0]}
+              name={Highlight.SideProjects.title}
+              setViewObjects={setViewObjects}
+              startAnimation={startAnimation && currHighlighted === Highlight.SideProjects.title}
+              onClick={handleClick}
+              onPointerOver={() => handlePointerOver(Highlight.SideProjects.title, [2.05, .25, 1])}
+            />
+          </Canvas>
+        </>
       }
     </>
   );

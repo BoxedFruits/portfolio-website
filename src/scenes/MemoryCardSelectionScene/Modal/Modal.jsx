@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import BackButton from "../../../components/BackButton/BackButton";
 import "./Modal.css";
 
 const Highlight = {
@@ -78,12 +79,13 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
           <p
             className={`arial-lighter text-shadow-thinner selectable-text ${currHighlighted === Highlight.Back ? 'highlight' : 'not-highlighted'}`}
             onMouseEnter={() => setCurrHighLighted(Highlight.Back)}
-            onClick={() => fadeout()}
+            onClick={fadeout}
           >
             Back
           </p>
         </div>
       </div>
+      <BackButton onClick={fadeout}/>
     </>
   );
 }
