@@ -76,23 +76,23 @@
       "link": "https://google.com"
     },
     {
-      "title": "Workout App",
+      "title": "Rest And Reps",
       "model": "Dumbbell",
       "date": {
-        "start": "9/31/2020",
-        "end": "4/25/2022"
+        "start": "7/4/2020",
+        "end": "8/22/2021"
       },
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
+      "summary": "Going to the gym is one of my favorite hobbies. So, when I noticed that I was taking too much time to rest in between exercises the idea came to mind to make an app to solve that!",
       "bulletPoints": [
-        "Organically grow the holistic world view of disruptive innovation",
-        "Bring to the table win-win survival strategies to ensure proactive domination.",
-        "At the end of the day, going forward, a new normal that has evolved from generation X"
+        "50+ Downloads on the Google Playstore",
+        "Gained a basic knowledge of Flutter Development",
+        "Have the ability to make custom workouts and save them locally to the user's device"
       ],
       "memory": "101 KB",
       "height": "",
-      "linearGradient": "linear-gradient(326deg, rgba(126, 101, 101, 0.22) 2%, rgba(199, 176, 176, 0.73) 40%, rgba(199, 176, 176, 0.23) 88%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
+      "linearGradient": "linear-gradient(326deg, rgba(126, 101, 101, 0.22) 2%, rgba(63, 61, 61, 0.73) 40%, rgba(199, 176, 176, 0.23) 88%)",
+      "techStack": "Flutter, Android",
+      "link": "https://play.google.com/store/apps/details?id=com.dindle.RestAndReps"
     },
     {
       "title": "Random Web3 Projects",
@@ -101,17 +101,17 @@
         "start": "9/31/2020",
         "end": "4/25/2022"
       },
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition",
+      "summary": "Web3 had been a topic with growing interest, atleast in the bullrun, for many people. As I got deeper into the NFT craze, I found myself wanting to learn more about Web3 developement if it indeed was going to be the next phase of the internet. To help me explore that, I made a few tiny projects to gain a deeper understanding of Web3 developement.",
       "bulletPoints": [
-        "Organically grow the holistic world view of disruptive innovation",
-        "Bring to the table win-win survival strategies to ensure proactive domination.",
-        "At the end of the day, going forward, a new normal that has evolved from generation X"
+        "Dead man's Switch - A password to a file would be stored on the blockchain which therefore made it immutable. A user would have to keep the switch active to prevent that password from being able to be read by anyone.",
+        "Nordle - Worlde but on-chain and can be represented by NFTs",
+        "Verify Signature - A small website to create and/or verify the signature made by an Ethereum EOA"
       ],
       "memory": "101 KB",
       "height": "",
       "linearGradient": "linear-gradient(56deg, rgba(255, 255, 255, 0.43), rgba(255, 255, 255, 0) 25%), linear-gradient(157deg, rgba(61, 56, 163, 0.73), rgba(61, 56, 163, 0) 45%) , linear-gradient(322deg, rgba(123, 44, 198, 0.73), rgba(123, 44, 198, 0) 83%), linear-gradient(122deg, rgba(42, 130, 196, 0.73), rgba(42, 130, 196, 0) 83%)",
-      "techStack": "Angular, CSS, HTML, TypeScript",
-      "link": "https://google.com"
+      "techStack": "React, Metamask, ethers.js, CSS, HTML, javascript",
+      "link": "https://github.com/BoxedFruits/"
     }
   ]
 }
