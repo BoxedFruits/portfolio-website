@@ -26,7 +26,7 @@ const App = () => {
           case Scenes.SelectionScene:
             return <SelectionScene nextScene={() => setCurrScene(Scenes.MemoryCardSelectionScene)} />
           case Scenes.MemoryCardSelectionScene:
-            return <MemoryCardSelectionScreen />
+            return <MemoryCardSelectionScreen prevScene={() => setCurrScene(Scenes.SelectionScene)}/>
           default: <h1>Uh oh someething broke</h1>
         }
       })()}
