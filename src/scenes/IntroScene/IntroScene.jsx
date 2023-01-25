@@ -28,11 +28,11 @@ const SetupScene = ({shouldZoomIn}) => {
 
   useFrame(() => {
     if (shouldZoomIn === false) {
-      const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
+      const lerpValue = MathUtils.lerp(0.0001, 5, .00065)
       camera.rotateZ(lerpValue)
     } else {
       const lerpValueRotation = MathUtils.lerp(0.0025, 5, .001)
-      const lerpValueZ = MathUtils.lerp(-0.0275, -4.5, .045)
+      const lerpValueZ = MathUtils.lerp(-0.0275, -4.5, .085)
 
       camera.rotateZ(lerpValueRotation)
       camera.translateZ(lerpValueZ)
