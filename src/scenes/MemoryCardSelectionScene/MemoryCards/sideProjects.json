@@ -15,7 +15,7 @@
       "memory": "101 KB",
       "height": "",
       "linearGradient": "linear-gradient(139deg,  rgba(74, 32, 82, 1), rgba(74, 32, 82, 0) 40.71%), linear-gradient(217deg, rgba(141, 60, 156, 1), rgba(141, 60, 156, 0) 70.71%),linear-gradient(24deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 70.71%)",
-      "techStack": "Solidity, Forge, Hardhat",
+      "techStack": "Solidity, Foundry, Hardhat",
       "link": "https://code4rena.com/leaderboard"
     },
     {
