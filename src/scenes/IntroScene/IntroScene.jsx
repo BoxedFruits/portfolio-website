@@ -28,7 +28,7 @@ const SetupScene = ({shouldZoomIn}) => {
 
   useFrame(() => {
     if (shouldZoomIn === false) {
-      const lerpValue = MathUtils.lerp(0.0001, 5, .00065)
+      const lerpValue = MathUtils.lerp(0.0001, 5, .00045)
       camera.rotateZ(lerpValue)
     } else {
       const lerpValueRotation = MathUtils.lerp(0.0025, 5, .001)
@@ -112,13 +112,11 @@ const IntroScene = ({ nextScene }) => {
           position={[.65 * 2, .65 * 7, 1]}
         />
         <group ref={cloudRef}>
-          <Cloud position={[0, 0, -.5]} speed={.35} opacity={.32} depth={.2} width={14.25} segments={40} color="blue" />
-          <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.20} depth={.52} width={3.25} color="blue" />
+          <Cloud position={[0, 0, -.5]} speed={.75} opacity={.42} depth={.2} width={7.25} segments={20} color="blue" />
           <Cloud position={[2, 0, -3.25]} speed={.25} opacity={.44} depth={.52} width={8.5} color="blue" />
-          <Cloud position={[0, 0, -3.25]} speed={1.55} opacity={.7} depth={.52} width={10.5} color="blue" />
           <Cloud position={[.2, 0, -3.25]} speed={.15} opacity={.7} depth={.52} width={20.5} color="#0c0c0c" />
           <Cloud position={[-.2, -2, -3.25]} speed={.15} opacity={.7} depth={.52} width={10.5} color="#000000" />
-          <Cloud position={[0, 0, -3.25]} speed={.25} opacity={.2} depth={.52} width={30} segments={35} color="#8080EF" />
+          <Cloud position={[0, 0, -2.25]} speed={.25} opacity={.4} depth={.52} width={10} segments={15} color="#8080EF" />
         </group>
         <SetupScene shouldZoomIn={shouldZoomIn} />
       </Canvas>
