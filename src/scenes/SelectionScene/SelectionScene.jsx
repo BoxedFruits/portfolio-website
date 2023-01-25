@@ -76,9 +76,9 @@ const SelectionText = ({ nextScene }) => {
 const SelectionScene = ({ nextScene }) => {
   return (
     <>
+      <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"}></div>
       <SelectionText nextScene={nextScene} />
       <Canvas>
-        {/* LightOrbs component */}
         <LightOrbs />
         <SceneSetup />
         <OrbitControls />
