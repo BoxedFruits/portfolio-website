@@ -25,7 +25,6 @@ const SetupScene = ({shouldZoomIn}) => {
   const camera = useThree((state) => state.camera);
 
   scene.background = new Color("#0c0c0c")
-  camera.rotateZ(-0.025)
 
   useFrame(() => {
     if (shouldZoomIn === false) {
@@ -58,16 +57,15 @@ const IntroScene = ({ nextScene }) => {
   const pillarPositions = useRef(new Set())
   const [pillars, setPillars] = useState([])
   const [shouldZoomIn, setShouldZoomIn] = useState(false);
-  const audio = useRef(new Audio("ps2StartupSoundEffect.mp4"))
-
+  const audio = new Audio("ps2StartupSoundEffect.mp4")
 
   useEffect(() => {
-    audio.current.play();
-    audio.current.addEventListener('timeupdate', (event) => {
-      if(event.timeStamp > 9860) setShouldZoomIn(true)
+    audio.play();
+    audio.addEventListener('timeupdate', (event) => {
+      if(audio.currentTime >= 8.2) setShouldZoomIn(true);
     });
 
-    audio.current.addEventListener('ended', () => {
+    audio.addEventListener('ended', () => {
       nextScene();
     });
 
@@ -99,7 +97,7 @@ const IntroScene = ({ nextScene }) => {
     <>
       <div className="fadeout-intro"></div>
       <div className="sony text-shadow fadeInOut">Sony Computer Enterainment</div>
-      <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1 }}>
+      <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1, rotation:[0,0, -0.025] }}>
         {/* <ArcballControls /> */}
         <GlassBoxes />
         <ColorSpheres />
