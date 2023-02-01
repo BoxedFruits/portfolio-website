@@ -16,7 +16,7 @@ const CrystalClock = (props) => {
   })
 
   return (
-    <group position={[0, 0, 0]} ref={clockRef}>
+    <group position={[-1.5, .25, -1.5]} ref={clockRef}>
       {props.children}
       <LightOrb />
     </group>
