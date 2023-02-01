@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 const CrystalClock = (props) => {
   const clockRef = useRef(null);
-  console.log(props)
+
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime() / 8;
     clockRef.current.rotation.y = a;
