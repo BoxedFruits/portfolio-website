@@ -1,17 +1,34 @@
 import { ArcballControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useState } from "react";
 import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
+import { useRef } from "react";
+
+const CrystalClock = (props) => {
+  const clockRef = useRef(null);
+  console.log(props)
+  useFrame(({ clock }) => {
+    const a = clock.getElapsedTime() / 8;
+    clockRef.current.rotation.y = a;
+  })
+
+  return (
+    <group position={[0, 0, 0]} ref={clockRef}>
+      {props.children}
+      <LightOrb />
+    </group>
+  )
+}
 
 const AboutMeScene = ({ prevScene }) => {
-  const [lightPillars, setLightPillars] = useState([])
+  const [lightPillars, setLightPillars] = useState([]); //can be a ref since it doesn't need to setState
   const radian_interval = (2.0 * Math.PI) / 12;
-  const radius = 5
+  const radius = 3;
+
   useEffect(() => {
-    //Should lookAt center
     for (let index = 0; index < 12; index++) {
       setLightPillars(prev => [...prev, <CrystalPillar
         position={[
@@ -30,10 +47,9 @@ const AboutMeScene = ({ prevScene }) => {
       <Canvas>
         <ArcballControls />
         <ambientLight />
-        <group position={[0, 0, 0]}>
+        <CrystalClock>
           {lightPillars}
-        </group>
-        <LightOrb></LightOrb>
+        </CrystalClock>
       </Canvas>
       <BackButton onClick={prevScene} />
     </>
