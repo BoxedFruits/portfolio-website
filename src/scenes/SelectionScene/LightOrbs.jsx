@@ -21,30 +21,32 @@ function LightOrb({ index }) {
   })
 
   return (
-    <group ref={mesh} position={[offset, 0, 0]}>
-      <sprite
-      >
-        <spriteMaterial
-          map={orbTexture}
-          alphaMap={orbTexture}
-          blending={AdditiveBlending}
-          transparent
-          opacity={.5}
+    <group position={[0,0,0]}>
+      <group ref={mesh} position={[offset, 0, 0]}>
+        <sprite
+        >
+          <spriteMaterial
+            map={orbTexture}
+            alphaMap={orbTexture}
+            blending={AdditiveBlending}
+            transparent
+            opacity={.5}
+            color={"#40a3c4"}
+          />
+        </sprite>
+        <Trail width={.85}
+          length={20}
+          decay={1.5}
           color={"#40a3c4"}
-        />
-      </sprite>
-      <Trail width={.85}
-        length={20}
-        decay={1.5}
-        color={"#40a3c4"}
-        attenuation={(t) => {
-          return (t * t) / 1.5
-        }}>
-        <mesh scale={.05}>
-          <sphereGeometry />
-          <meshBasicMaterial color="#40a3c4" />
-        </mesh>
-      </Trail>
+          attenuation={(t) => {
+            return (t * t) / 1.5
+          }}>
+          <mesh scale={.05}>
+            <sphereGeometry />
+            <meshBasicMaterial color="#40a3c4" />
+          </mesh>
+        </Trail>
+      </group>
     </group>
   )
 }

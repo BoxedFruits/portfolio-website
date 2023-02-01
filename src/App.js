@@ -15,7 +15,7 @@ export const Scenes = {
 }
 
 const App = () => {
-  const [currScene, setCurrScene] = useState(Scenes.ExplainerScene);
+  const [currScene, setCurrScene] = useState(Scenes.AboutMeScene);
 
   return (
     <div className="App">
