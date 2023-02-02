@@ -1,3 +1,7 @@
+canvas {
+  background-image: radial-gradient(farthest-corner at 40% 50%, #000 5%,#150c22 15%, #5a4878 100% );
+}
+
 .blurred-div {
   z-index: 1;
   position: absolute;
