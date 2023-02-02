@@ -1,11 +1,10 @@
 import { ArcballControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
-import { useRef } from "react";
+import "../AboutMeScene/AboutMeScene.css"
 
 const CrystalClock = (props) => {
   const clockRef = useRef(null);
@@ -44,13 +43,14 @@ const AboutMeScene = ({ prevScene }) => {
 
   return (
     <>
-      <Canvas>
+      <Canvas style={{zIndex: 0, position: "absolute"}}>
         <ArcballControls />
         <ambientLight />
         <CrystalClock>
           {lightPillars}
         </CrystalClock>
       </Canvas>
+      <div className="blurred-div" />
       <BackButton onClick={prevScene} />
     </>
   )
