@@ -43,7 +43,7 @@ const AboutMeScene = ({ prevScene }) => {
 
   return (
     <>
-      <Canvas style={{zIndex: 0, position: "absolute"}}>
+      <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
         <ArcballControls />
         <ambientLight />
         <CrystalClock>
@@ -51,7 +51,19 @@ const AboutMeScene = ({ prevScene }) => {
         </CrystalClock>
       </Canvas>
       <div className="blurred-div" />
-      <BackButton onClick={prevScene} />
+      <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
+        <mesh>
+          <boxGeometry />
+          <meshNormalMaterial />
+        </mesh>
+      </Canvas>
+      <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
+        {/* TODO: date and time */}
+        <div> {/* this is where all of the sections will go */}
+          <h1 className="title arial-lighter text-shadow"> About Me </h1>
+        </div>
+        <BackButton onClick={prevScene} />
+      </div>
     </>
   )
 }
