@@ -1,4 +1,4 @@
-import { ArcballControls } from "@react-three/drei";
+import { ArcballControls, Html, Text } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import "../MemoryCardSelectionScene/Modal/Modal.css"
@@ -55,19 +55,19 @@ const AboutMeScene = ({ prevScene }) => {
 
   const BOX_PARAMS = [
     {
-      position: [1, 1, 0]
+      position: [-2, 2.2, 0]
     },
     {
-      position: [2, 0, 0]
+      position: [-3.5, 1, 0]
     },
     {
-      position: [3, 0, 0]
+      position: [-1.8, 0, 0]
     },
     {
-      position: [4, 0, 0]
+      position: [-3.5, -1.2, 0]
     },
     {
-      position: [5, 0, 0]
+      position: [-1.8, -2, 0]
     }
   ]
 
@@ -123,10 +123,14 @@ const AboutMeScene = ({ prevScene }) => {
       </Canvas>
       <div className="blurred-div" />
       <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
-        {BOX_PARAMS.map((e) => {
-          console.log(e.position)
+        {BOX_PARAMS.map((e, index) => {
           return (
-            <mesh position={e.position}>
+            <mesh scale={.8} position={e.position}>
+              <Html>
+                <div>
+                  {index}
+                </div>
+              </Html>
               <boxGeometry />
               <meshNormalMaterial />
             </mesh>
