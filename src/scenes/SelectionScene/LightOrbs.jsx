@@ -74,7 +74,7 @@ function LightOrbs() {
       <group ref={orbsRef} scale={1} position={[-.25, 0, 0]}>
         {orbs}
       </group>
-      <ambientLight intensity={5} />
+      <pointLight intensity={3} />
       <directionalLight />
     </>
   );

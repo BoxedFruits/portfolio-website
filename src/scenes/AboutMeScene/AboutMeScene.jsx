@@ -1,4 +1,4 @@
-import { ArcballControls, Html, Text } from "@react-three/drei";
+import { ArcballControls, Html } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
 import "../MemoryCardSelectionScene/Modal/Modal.css"
@@ -7,6 +7,7 @@ import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
 
+/* TODO: date and time */
 const Content = {
   ProfessionalSummary: {
     header: "Professional Summary",
@@ -116,7 +117,9 @@ const AboutMeScene = ({ prevScene }) => {
     <>
       <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
         <ArcballControls />
-        <ambientLight />
+        <ambientLight intensity={.5} color={"lightblue"}/>
+        <pointLight intensity={10} position={[0,3,-4]}/>
+        <pointLight intensity={4} position={[.5,-2,-4]}/>
         <CrystalClock>
           {lightPillars}
         </CrystalClock>
@@ -138,7 +141,6 @@ const AboutMeScene = ({ prevScene }) => {
         })}
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
-        {/* TODO: date and time */}
         <div className="modal-body-container about-me-container">
           <center>
             <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
