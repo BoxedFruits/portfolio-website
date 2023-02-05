@@ -2,6 +2,11 @@
   background-image: radial-gradient(farthest-corner at 40% 50%, #000 5%,#150c22 15%, #5a4878 100% );
 }
 
+.about-me-container {
+  top: 25%;
+  max-height: 40vh;
+}
+
 .blurred-div {
   z-index: 1;
   position: absolute;

@@ -1,6 +1,7 @@
 import { ArcballControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useState, useEffect, useRef } from "react";
+import "../MemoryCardSelectionScene/Modal/Modal.css"
 import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
@@ -134,12 +135,18 @@ const AboutMeScene = ({ prevScene }) => {
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
         {/* TODO: date and time */}
-        <div> {/* this is where all of the sections will go */}
-          <h1 className="title arial-lighter text-shadow"> About Me </h1>
-          {contentObj.header}
-          {contentObj.content}
-          <button onClick={() => setCounter(counter - 1)}>decerement</button>
-          <button onClick={() => setCounter(counter + 1)}>increment</button>
+        <div className="modal-body-container about-me-container">
+          <center>
+            <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
+            <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
+              {contentObj.header}
+            </h2>
+            <p className="modal-body arial-lighter text-shadow-thinner">
+              {contentObj.content}
+            </p>
+            <button onClick={() => setCounter(counter - 1)}>decerement</button>
+            <button onClick={() => setCounter(counter + 1)}>increment</button>
+          </center>
         </div>
         <BackButton onClick={prevScene} />
       </div>
