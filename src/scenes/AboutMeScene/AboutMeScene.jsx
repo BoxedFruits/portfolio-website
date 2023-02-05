@@ -6,6 +6,29 @@ import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
 
+const Content = {
+  ProfessionalSummary: {
+    header: "Professional Summary",
+    content: "Hi! My name is Samuel Ballesteros but most people call me Sam. I have previously worked at Vanguard and interned at Nasdaq. Most of my experience specializes in Front-End development using Angular as well as a few side projects using React, though, the most important thing for me is being able to face interesting problems so I am willing to learn anything."
+  },
+  EmployementStatus: {
+    header: "Employement Status",
+    content: "I am currently looking for a new role! I strongly prefer remote work but willing to work things out for the right opportunity. I have experience with Front-End development but would love to explore Back-End development as well as Security related roles. "
+  },
+  Resume: {
+    header: "Resume",
+    content: "a link?"
+  },
+  ContactInfo: {
+    header: "Contact Info",
+    content: "samballesteros.swe@gmail.com"
+  },
+  HobbiesLikesDislikes: {
+    header: "Hobbies/Likes/Dislikes",
+    content: "- Hobbies: Videogames, Guitar, Piano, Gym, Learning \n - Likes: Pepperoni pizza, Cooking, Mechanical Keyboards \n - Dislikes: When people don’t put back their weights at the gym"
+  }
+}
+
 const CrystalClock = (props) => {
   const clockRef = useRef(null);
 
@@ -24,8 +47,28 @@ const CrystalClock = (props) => {
 
 const AboutMeScene = ({ prevScene }) => {
   const [lightPillars, setLightPillars] = useState([]); //can be a ref since it doesn't need to setState
+  const [counter, setCounter] = useState(0);
+  const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
   const radian_interval = (2.0 * Math.PI) / 12;
   const radius = 3;
+
+  const BOX_PARAMS = [
+    {
+      position: [1, 1, 0]
+    },
+    {
+      position: [2, 0, 0]
+    },
+    {
+      position: [3, 0, 0]
+    },
+    {
+      position: [4, 0, 0]
+    },
+    {
+      position: [5, 0, 0]
+    }
+  ]
 
   useEffect(() => {
     for (let index = 0; index < 12; index++) {
@@ -41,6 +84,33 @@ const AboutMeScene = ({ prevScene }) => {
     }
   }, [])
 
+  useEffect(() => { //TODO: Refactor
+    switch (counter) {
+      case 0:
+        setContentObj(Content.ProfessionalSummary)
+        break;
+      case 1:
+        setContentObj(Content.EmployementStatus)
+        break
+      case 2:
+        setContentObj(Content.Resume)
+        break
+      case 3:
+        setContentObj(Content.ContactInfo)
+        break
+      case 4:
+        setContentObj(Content.HobbiesLikesDislikes)
+        break
+      case 5:
+        setCounter(0)
+        break;
+      case -1:
+        setCounter(4)
+        break;
+      default: setCounter(0)
+    }
+  }, [counter])
+
   return (
     <>
       <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
@@ -52,15 +122,24 @@ const AboutMeScene = ({ prevScene }) => {
       </Canvas>
       <div className="blurred-div" />
       <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
-        <mesh>
-          <boxGeometry />
-          <meshNormalMaterial />
-        </mesh>
+        {BOX_PARAMS.map((e) => {
+          console.log(e.position)
+          return (
+            <mesh position={e.position}>
+              <boxGeometry />
+              <meshNormalMaterial />
+            </mesh>
+          )
+        })}
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
         {/* TODO: date and time */}
         <div> {/* this is where all of the sections will go */}
           <h1 className="title arial-lighter text-shadow"> About Me </h1>
+          {contentObj.header}
+          {contentObj.content}
+          <button onClick={() => setCounter(counter - 1)}>decerement</button>
+          <button onClick={() => setCounter(counter + 1)}>increment</button>
         </div>
         <BackButton onClick={prevScene} />
       </div>
