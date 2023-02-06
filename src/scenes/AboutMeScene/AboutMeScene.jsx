@@ -84,6 +84,19 @@ const AboutMeScene = ({ prevScene }) => {
         index={index}
       />])
     }
+
+    // Glowing portion of pillar. Hardcoded for now
+    setLightPillars(prev => [...prev, <CrystalPillar
+      isGlowing
+      position={[
+        (Math.cos(radian_interval * 2) * radius) - .22,
+        (Math.sin(radian_interval * 2) * radius) - .45,
+        0
+      ]}
+      rotation-z={(.52 * 2) + 1.64}
+      // index={index}
+    />])
+
   }, [])
 
   useEffect(() => { //TODO: Refactor
