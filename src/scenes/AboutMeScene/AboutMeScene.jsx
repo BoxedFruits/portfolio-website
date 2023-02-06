@@ -11,7 +11,7 @@ import "../AboutMeScene/AboutMeScene.css"
 const Content = {
   ProfessionalSummary: {
     header: "Professional Summary",
-    content: "Hi! My name is Samuel Ballesteros but most people call me Sam. I have previously worked at Vanguard and interned at Nasdaq. Most of my experience specializes in Front-End development using Angular as well as a few side projects using React, though, the most important thing for me is being able to face interesting problems so I am willing to learn anything."
+    content: "Hi! My name is Samuel Ballesteros but most people call me Sam. I have previously worked at Vanguard and interned at Nasdaq. Most of my experience specializes in Front-End development using Angular as well as a few side projects using React though, the most important thing for me is being able to face interesting problems so I am willing to learn anything."
   },
   EmployementStatus: {
     header: "Employement Status",
