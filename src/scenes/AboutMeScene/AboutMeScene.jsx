@@ -6,6 +6,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
+import { BackSide, DoubleSide } from "three";
 
 /* TODO: date and time */
 const Content = {
@@ -47,30 +48,87 @@ const CrystalClock = (props) => {
   )
 }
 
+const FloatingBoxes = () => {
+  const boxRef1 = useRef();
+  const boxRef2 = useRef();
+  const boxRef3 = useRef();
+  const boxRef4 = useRef();
+  const boxRef5 = useRef();
+
+  const BOX_PARAMS = [
+    {
+      ref: boxRef1,
+      position: [-2, 2.2, 0],
+      rotation: [0, 0, 0]
+    },
+    {
+      ref: boxRef2,
+      position: [-3.5, 1, 0],
+      rotation: [-1, .5, 0]
+    },
+    {
+      ref: boxRef3,
+      position: [-1.8, 0, 0],
+      rotation: [.8, -1.3, 0]
+    },
+    {
+      ref: boxRef4,
+      position: [-3.5, -1.2, 0],
+      rotation: [-1.3, .4, 0]
+    },
+    {
+      ref: boxRef5,
+      position: [-1.8, -2, 0],
+      rotation: [.6, -.5, 0]
+    }
+  ]
+
+  useFrame(() => {
+
+  })
+
+
+  return (
+    <>
+      {
+        BOX_PARAMS.map((e, index) => {
+          return (
+            <mesh scale={.8} position={e.position} rotation={e.rotation}>
+              <Html>
+                <div color={'white'}>
+                  {index}
+                </div>
+              </Html>
+              <boxGeometry />
+              <meshNormalMaterial/>
+              {/* <meshPhysicalMaterial
+                // transparent
+                side={DoubleSide}
+                depthTest={false}
+                sheenColor={"#6b65a2"}
+                color={"#87d2e5"}
+                emissive={"#403c76"}
+                reflectivity={.1}
+                specularIntensity={.1}
+                // opacity={.25}
+                transmission={.35}
+                clearcoat={1}
+                clearcoatRoughness={1}
+              /> */}
+            </mesh>
+          )
+        })
+      }
+    </>
+  )
+}
+
 const AboutMeScene = ({ prevScene }) => {
   const [lightPillars, setLightPillars] = useState([]); //can be a ref since it doesn't need to setState
   const [counter, setCounter] = useState(0);
   const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
   const radian_interval = (2.0 * Math.PI) / 12;
   const radius = 3;
-
-  const BOX_PARAMS = [
-    {
-      position: [-2, 2.2, 0]
-    },
-    {
-      position: [-3.5, 1, 0]
-    },
-    {
-      position: [-1.8, 0, 0]
-    },
-    {
-      position: [-3.5, -1.2, 0]
-    },
-    {
-      position: [-1.8, -2, 0]
-    }
-  ]
 
   useEffect(() => {
     for (let index = 0; index < 12; index++) {
@@ -94,7 +152,7 @@ const AboutMeScene = ({ prevScene }) => {
         0
       ]}
       rotation-z={(.52 * 2) + 1.64}
-      // index={index}
+    // index={index}
     />])
 
   }, [])
@@ -130,28 +188,18 @@ const AboutMeScene = ({ prevScene }) => {
     <>
       <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
         <ArcballControls />
-        <ambientLight intensity={.5} color={"lightblue"}/>
-        <pointLight intensity={10} position={[0,3,-4]}/>
-        <pointLight intensity={4} position={[.5,-2,-4]}/>
+        <ambientLight intensity={.5} color={"lightblue"} />
+        <pointLight intensity={10} position={[0, 3, -4]} />
+        <pointLight intensity={4} position={[.5, -2, -4]} />
         <CrystalClock>
           {lightPillars}
         </CrystalClock>
       </Canvas>
       <div className="blurred-div" />
       <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
-        {BOX_PARAMS.map((e, index) => {
-          return (
-            <mesh scale={.8} position={e.position}>
-              <Html>
-                <div>
-                  {index}
-                </div>
-              </Html>
-              <boxGeometry />
-              <meshNormalMaterial />
-            </mesh>
-          )
-        })}
+        <ambientLight intensity={1}></ambientLight>
+        <ArcballControls />
+        <FloatingBoxes />
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
         <div className="modal-body-container about-me-container">
