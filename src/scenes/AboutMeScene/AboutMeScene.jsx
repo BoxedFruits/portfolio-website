@@ -83,8 +83,26 @@ const FloatingBoxes = () => {
     }
   ]
 
-  useFrame(() => {
+  useFrame(({clock}) => {
+    const t = clock.getElapsedTime() / 5.2
+    boxRef1.current.rotation.z = -t
+    boxRef1.current.rotation.y = -t / 2
 
+    boxRef2.current.rotation.z = t
+    boxRef2.current.rotation.y = t / 3
+    boxRef2.current.rotation.x = t / 5.4
+
+    boxRef3.current.rotation.z = -t
+    boxRef3.current.rotation.y = -t / 2
+    boxRef3.current.rotation.x = t / 2
+
+    boxRef4.current.rotation.z = -t
+    boxRef4.current.rotation.y = t / 1.5
+    boxRef4.current.rotation.x = -t / 1
+
+    boxRef5.current.rotation.z = t
+    boxRef5.current.rotation.y = -t
+    boxRef5.current.rotation.x = t / 2
   })
 
 
@@ -93,16 +111,15 @@ const FloatingBoxes = () => {
       {
         BOX_PARAMS.map((e, index) => {
           return (
-            <mesh scale={.8} position={e.position} rotation={e.rotation}>
+            <mesh scale={.8} ref={e.ref} position={e.position} rotation={e.rotation}>
               <Html>
                 <div color={'white'}>
                   {index}
                 </div>
               </Html>
               <boxGeometry />
-              <meshNormalMaterial/>
-              {/* <meshPhysicalMaterial
-                // transparent
+              {/* <meshNormalMaterial/> */}
+              <meshPhysicalMaterial
                 side={DoubleSide}
                 depthTest={false}
                 sheenColor={"#6b65a2"}
@@ -110,11 +127,10 @@ const FloatingBoxes = () => {
                 emissive={"#403c76"}
                 reflectivity={.1}
                 specularIntensity={.1}
-                // opacity={.25}
                 transmission={.35}
                 clearcoat={1}
                 clearcoatRoughness={1}
-              /> */}
+              />
             </mesh>
           )
         })
