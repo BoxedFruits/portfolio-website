@@ -5,6 +5,7 @@
 .about-me-container {
   top: 25%;
   max-height: 40vh;
+  width: 40vw;
 }
 
 .blurred-div {

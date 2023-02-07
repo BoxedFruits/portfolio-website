@@ -6,7 +6,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
-import { BackSide, DoubleSide } from "three";
+import { DoubleSide } from "three";
 
 /* TODO: date and time */
 const Content = {
@@ -27,7 +27,7 @@ const Content = {
     content: "samballesteros.swe@gmail.com"
   },
   HobbiesLikesDislikes: {
-    header: "Hobbies/Likes/Dislikes",
+    header: "Random Facts About Me",
     content: "- Hobbies: Videogames, Guitar, Piano, Gym, Learning \n - Likes: Pepperoni pizza, Cooking, Mechanical Keyboards \n - Dislikes: When people don’t put back their weights at the gym"
   }
 }
@@ -48,7 +48,7 @@ const CrystalClock = (props) => {
   )
 }
 
-const FloatingBoxes = () => {
+const FloatingBoxes = ({counter}) => {
   const boxRef1 = useRef();
   const boxRef2 = useRef();
   const boxRef3 = useRef();
@@ -118,17 +118,15 @@ const FloatingBoxes = () => {
                 </div>
               </Html>
               <boxGeometry />
-              {/* <meshNormalMaterial/> */}
               <meshPhysicalMaterial
                 side={DoubleSide}
                 depthTest={false}
-                // sheenColor={"#6b65a2"}
                 // color={"#87d2e5"}
                 emissive={"#5D3C76"}
-                color={"#a3a3a3"}
+                color={counter === index ? "#00CBFF" : "#a3a3a3"}
                 reflectivity={.1}
                 specularIntensity={.1}
-                transmission={.35}
+                transmission={counter === index ? .2 : .35}
                 clearcoat={1}
                 clearcoatRoughness={1}
               />
@@ -214,9 +212,9 @@ const AboutMeScene = ({ prevScene }) => {
       </Canvas>
       <div className="blurred-div" />
       <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
-        <ambientLight intensity={1}></ambientLight>
+        <ambientLight intensity={.6}></ambientLight>
         <ArcballControls />
-        <FloatingBoxes />
+        <FloatingBoxes counter={counter}/>
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
         <div className="modal-body-container about-me-container">
