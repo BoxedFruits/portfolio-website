@@ -122,9 +122,10 @@ const FloatingBoxes = () => {
               <meshPhysicalMaterial
                 side={DoubleSide}
                 depthTest={false}
-                sheenColor={"#6b65a2"}
-                color={"#87d2e5"}
-                emissive={"#403c76"}
+                // sheenColor={"#6b65a2"}
+                // color={"#87d2e5"}
+                emissive={"#5D3C76"}
+                color={"#a3a3a3"}
                 reflectivity={.1}
                 specularIntensity={.1}
                 transmission={.35}
