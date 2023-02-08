@@ -48,7 +48,7 @@ const CrystalClock = (props) => {
   )
 }
 
-const FloatingBoxes = ({ counter }) => {
+const FloatingBoxes = ({ counter, shouldShrink }) => {
   const boxRef1 = useRef();
   const boxRef2 = useRef();
   const boxRef3 = useRef();
@@ -89,7 +89,17 @@ const FloatingBoxes = ({ counter }) => {
 
     if (boxRef1.current.scale.x <= TARGET_SCALE) {
       const lerpValue = MathUtils.lerp(boxRef1.current.scale.x, TARGET_SCALE, 0.007)
-      
+
+      boxRef1.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef2.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef3.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef4.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef5.current.scale.set(lerpValue, lerpValue, lerpValue)
+    }
+
+    if (shouldShrink === true && boxRef1.current.scale.x > 0) {
+      const lerpValue = MathUtils.lerp(boxRef1.current.scale.x, -.2, 0.03)
+
       boxRef1.current.scale.set(lerpValue, lerpValue, lerpValue)
       boxRef2.current.scale.set(lerpValue, lerpValue, lerpValue)
       boxRef3.current.scale.set(lerpValue, lerpValue, lerpValue)
@@ -138,7 +148,6 @@ const FloatingBoxes = ({ counter }) => {
               <meshPhysicalMaterial
                 side={DoubleSide}
                 depthTest={false}
-                // color={"#87d2e5"}
                 emissive={"#5D3C76"}
                 color={counter === index ? "#00CBFF" : "#a3a3a3"}
                 reflectivity={.1}
@@ -159,6 +168,7 @@ const AboutMeScene = ({ prevScene }) => {
   const [lightPillars, setLightPillars] = useState([]); //can be a ref since it doesn't need to setState
   const [counter, setCounter] = useState(0);
   const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
+  const [shouldShrink, setShouldShrink] = useState(false)
   const radian_interval = (2.0 * Math.PI) / 12;
   const radius = 3;
 
@@ -231,30 +241,33 @@ const AboutMeScene = ({ prevScene }) => {
       <Canvas style={{ zIndex: 2, position: "absolute" }}>
         <ambientLight intensity={.6}></ambientLight>
         <ArcballControls />
-        <FloatingBoxes counter={counter} />
+        <FloatingBoxes counter={counter} shouldShrink={shouldShrink} />
       </Canvas>
-      <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
-        <div className="modal-body-container about-me-container">
-          <center>
-            <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
-            <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
-              {contentObj.header}
-            </h2>
-            <p className="modal-body arial-lighter text-shadow-thinner">
-              {contentObj.content}
-            </p>
-          </center>
-          <div className="buttons">
-            <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
-              <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
-            </button>
-            <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
-              <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
-            </button>
+      {shouldShrink ?
+        <div className="fadein-animation" onAnimationEnd={prevScene}></div> :
+        <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
+          <div className="modal-body-container about-me-container">
+            <center>
+              <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
+              <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
+                {contentObj.header}
+              </h2>
+              <p className="modal-body arial-lighter text-shadow-thinner">
+                {contentObj.content}
+              </p>
+            </center>
+            <div className="buttons">
+              <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
+                <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
+              </button>
+              <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
+                <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
+              </button>
+            </div>
           </div>
+          <BackButton onClick={() => setShouldShrink(true)} />
         </div>
-        <BackButton onClick={prevScene} />
-      </div>
+      }
     </>
   )
 }
