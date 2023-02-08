@@ -200,6 +200,9 @@ const AboutMeScene = ({ prevScene }) => {
   }, [])
 
   useEffect(() => { //TODO: Refactor
+    const highlightAudio = new Audio("selectionSound2.mp3");
+    highlightAudio.play();
+
     switch (counter) {
       case 0:
         setContentObj(Content.ProfessionalSummary)
