@@ -259,10 +259,10 @@ const AboutMeScene = ({ prevScene }) => {
                 </p>
               </center>
               <div className="buttons">
-                <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
+                <button onClick={() => setCounter(counter - 1)}>
                   <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
                 </button>
-                <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
+                <button style={{ marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
                   <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
                 </button>
               </div>
