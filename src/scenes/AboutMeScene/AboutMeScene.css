@@ -9,6 +9,13 @@
   display: flex;
   align-items: center;
   word-break: break-word;
+  /* border: 2px solid red; */
+  justify-content: space-around;
+}
+
+.about-me-container > center {
+  min-width: 15vw;
+  max-width: 20vw;
 }
 
 .blurred-div {
