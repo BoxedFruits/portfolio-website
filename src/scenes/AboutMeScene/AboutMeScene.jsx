@@ -28,7 +28,7 @@ const Content = {
   },
   HobbiesLikesDislikes: {
     header: "Random Facts About Me",
-    content: "- Hobbies: Videogames, Guitar, Piano, Gym, Learning \n - Likes: Pepperoni pizza, Cooking, Mechanical Keyboards \n - Dislikes: When people don’t put back their weights at the gym"
+    content: "Some of my favorite things to do is to go to the gym, cook and play videogames. I also really like pizza (and no, pineapple does not belong on pizza). I often get mistaken for being super serious but I'm the exact opposite, I'm just really akward I swear. I am always up for a chat and to joke around."
   }
 }
 
