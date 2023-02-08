@@ -1,3 +1,5 @@
+import { DoubleSide } from "three";
+
 const CrystalPillar = ({isGlowing , ...props}) => {
   // props will determine how much the crystal is filled with light
   return (
@@ -9,6 +11,7 @@ const CrystalPillar = ({isGlowing , ...props}) => {
         args={[.27, .27, !isGlowing ? 3 : 2, 6,60]}
       />
       <meshPhysicalMaterial
+        side={DoubleSide}
         transparent={!isGlowing}
         sheenColor={"#6b65a2"}
         color={!isGlowing ? "#6b68aa": "#87d2e5"}
