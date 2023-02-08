@@ -1,7 +1,7 @@
 import "./BackButton.css"
 
 const BackButton = ({onClick}) => {
-  const cancelAudio = new Audio("selectionSound3.mp3")
+  const cancelAudio = new Audio("backSound.mp3")
 
   const handleOnClick = () => {
     cancelAudio.play()

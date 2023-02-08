@@ -20,7 +20,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
     link
   } = data;
 
-  const cancelAudioRef = useRef(new Audio("selectionSound3.mp3"))
+  const cancelAudioRef = useRef(new Audio("backSound.mp3"))
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
   const lastOrbPosition = useRef(currHighlighted);
 
