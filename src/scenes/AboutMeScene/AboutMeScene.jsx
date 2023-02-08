@@ -245,28 +245,31 @@ const AboutMeScene = ({ prevScene }) => {
       </Canvas>
       {shouldShrink ?
         <div className="fadein-animation" onAnimationEnd={prevScene}></div> :
-        <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
-          <div className="modal-body-container about-me-container">
-            <center>
-              <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
-              <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
-                {contentObj.header}
-              </h2>
-              <p className="modal-body arial-lighter text-shadow-thinner">
-                {contentObj.content}
-              </p>
-            </center>
-            <div className="buttons">
-              <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
-                <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
-              </button>
-              <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
-                <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
-              </button>
+        <>
+          <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"} />
+          <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
+            <div className="modal-body-container about-me-container">
+              <center>
+                <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
+                <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
+                  {contentObj.header}
+                </h2>
+                <p className="modal-body arial-lighter text-shadow-thinner">
+                  {contentObj.content}
+                </p>
+              </center>
+              <div className="buttons">
+                <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
+                  <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
+                </button>
+                <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
+                  <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
+                </button>
+              </div>
             </div>
+            <BackButton onClick={() => setShouldShrink(true)} />
           </div>
-          <BackButton onClick={() => setShouldShrink(true)} />
-        </div>
+        </>
       }
     </>
   )
