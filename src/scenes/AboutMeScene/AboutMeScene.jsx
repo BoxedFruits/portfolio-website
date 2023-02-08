@@ -6,7 +6,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
-import { DoubleSide } from "three";
+import { DoubleSide, MathUtils } from "three";
 
 /* TODO: date and time */
 const Content = {
@@ -54,6 +54,7 @@ const FloatingBoxes = ({ counter }) => {
   const boxRef3 = useRef();
   const boxRef4 = useRef();
   const boxRef5 = useRef();
+  const TARGET_SCALE = .8;
 
   const BOX_PARAMS = [
     {
@@ -85,6 +86,17 @@ const FloatingBoxes = ({ counter }) => {
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() / 5.2
+
+    if (boxRef1.current.scale.x <= TARGET_SCALE) {
+      const lerpValue = MathUtils.lerp(boxRef1.current.scale.x, TARGET_SCALE, 0.007)
+      
+      boxRef1.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef2.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef3.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef4.current.scale.set(lerpValue, lerpValue, lerpValue)
+      boxRef5.current.scale.set(lerpValue, lerpValue, lerpValue)
+    }
+
     boxRef1.current.rotation.z = -t
     boxRef1.current.rotation.y = -t / 2
 
@@ -111,7 +123,12 @@ const FloatingBoxes = ({ counter }) => {
       {
         BOX_PARAMS.map((e, index) => {
           return (
-            <mesh scale={.8} ref={e.ref} position={e.position} rotation={e.rotation}>
+            <mesh
+              scale={0}
+              ref={e.ref}
+              position={e.position}
+              rotation={e.rotation}
+            >
               <Html>
                 <div color={'white'}>
                   {index}
@@ -229,7 +246,7 @@ const AboutMeScene = ({ prevScene }) => {
           </center>
           <div className="buttons">
             <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
-              <img style={{height: "30px"}} src="arrow.png" alt="arrow" />
+              <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
             </button>
             <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
               <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
