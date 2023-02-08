@@ -48,7 +48,7 @@ const CrystalClock = (props) => {
   )
 }
 
-const FloatingBoxes = ({counter}) => {
+const FloatingBoxes = ({ counter }) => {
   const boxRef1 = useRef();
   const boxRef2 = useRef();
   const boxRef3 = useRef();
@@ -83,7 +83,7 @@ const FloatingBoxes = ({counter}) => {
     }
   ]
 
-  useFrame(({clock}) => {
+  useFrame(({ clock }) => {
     const t = clock.getElapsedTime() / 5.2
     boxRef1.current.rotation.z = -t
     boxRef1.current.rotation.y = -t / 2
@@ -211,10 +211,10 @@ const AboutMeScene = ({ prevScene }) => {
         </CrystalClock>
       </Canvas>
       <div className="blurred-div" />
-      <Canvas className="foo" style={{ zIndex: 2, position: "absolute" }}>
+      <Canvas style={{ zIndex: 2, position: "absolute" }}>
         <ambientLight intensity={.6}></ambientLight>
         <ArcballControls />
-        <FloatingBoxes counter={counter}/>
+        <FloatingBoxes counter={counter} />
       </Canvas>
       <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
         <div className="modal-body-container about-me-container">
@@ -226,9 +226,15 @@ const AboutMeScene = ({ prevScene }) => {
             <p className="modal-body arial-lighter text-shadow-thinner">
               {contentObj.content}
             </p>
-            <button onClick={() => setCounter(counter - 1)}>decerement</button>
-            <button onClick={() => setCounter(counter + 1)}>increment</button>
           </center>
+          <div className="buttons">
+            <button style={{ background: "transparent", border: "none", cursor: "pointer" }} onClick={() => setCounter(counter - 1)}>
+              <img style={{height: "30px"}} src="arrow.png" alt="arrow" />
+            </button>
+            <button style={{ background: "transparent", border: "none", cursor: "pointer", marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
+              <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
+            </button>
+          </div>
         </div>
         <BackButton onClick={prevScene} />
       </div>
