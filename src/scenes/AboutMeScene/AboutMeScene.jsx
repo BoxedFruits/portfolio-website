@@ -138,11 +138,6 @@ const FloatingBoxes = ({ counter, shouldShrink }) => {
               position={e.position}
               rotation={e.rotation}
             >
-              <Html>
-                <div color={'white'}>
-                  {index}
-                </div>
-              </Html>
               <boxGeometry />
               <meshPhysicalMaterial
                 side={DoubleSide}
