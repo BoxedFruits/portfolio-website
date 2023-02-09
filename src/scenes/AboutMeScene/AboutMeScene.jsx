@@ -8,7 +8,6 @@ import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
 import { DoubleSide, MathUtils } from "three";
 
-/* TODO: date and time */
 const Content = {
   ProfessionalSummary: {
     header: "Professional Summary",
@@ -171,6 +170,8 @@ const AboutMeScene = ({ prevScene }) => {
   const [shouldShrink, setShouldShrink] = useState(false)
   const radian_interval = (2.0 * Math.PI) / 12;
   const radius = 3;
+  const date = new Date()
+  const [time, setTime] = useState(date.toLocaleString())
 
   useEffect(() => {
     for (let index = 0; index < 12; index++) {
@@ -194,7 +195,6 @@ const AboutMeScene = ({ prevScene }) => {
         0
       ]}
       rotation-z={(.52 * 2) + 1.64}
-    // index={index}
     />])
 
   }, [])
@@ -229,6 +229,15 @@ const AboutMeScene = ({ prevScene }) => {
     }
   }, [counter])
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(date.toLocaleTimeString());
+    }, 1000);
+    return () => {
+      clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+    }
+  }, [time])
+
   return (
     <>
       <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
@@ -251,6 +260,14 @@ const AboutMeScene = ({ prevScene }) => {
         <>
           <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"} />
           <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
+            <div className="date-things text-shadow arial-lighter">
+              <span>
+                {date.toLocaleDateString()}
+              </span>
+              <span>
+                {time}
+              </span>
+            </div>
             <div className="modal-body-container about-me-container">
               <center>
                 <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
