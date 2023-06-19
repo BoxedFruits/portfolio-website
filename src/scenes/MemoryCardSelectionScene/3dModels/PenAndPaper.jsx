@@ -23,7 +23,7 @@ export function PenAndPaper({ shouldRotate, getRef, animationCallback, targetSca
 
     if (isLoadingAnimationFinished === false) {
       if (ref.current.scale.x <= targetScale - MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.015)
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.0245)
         ref.current.scale.set(lerpValue, lerpValue, lerpValue)
       } else {
         if (animationCallback) animationCallback(); // tell parent component animation is finished

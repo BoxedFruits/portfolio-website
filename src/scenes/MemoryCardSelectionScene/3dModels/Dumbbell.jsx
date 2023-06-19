@@ -23,7 +23,7 @@ export function Dumbbell({ shouldRotate, getRef, animationCallback, targetScale,
 
     if (isLoadingAnimationFinished === false) {
       if (ref.current.scale.x <= targetScale - MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.01)
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.02)
         ref.current.scale.set(lerpValue, lerpValue, lerpValue)
       } else {
         if (animationCallback) animationCallback(); // tell parent component animation is finished

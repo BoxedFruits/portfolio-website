@@ -23,7 +23,7 @@ export function VanguardLogo({ shouldRotate, getRef, animationCallback, targetSc
 
     if (isLoadingAnimationFinished === false) {
       if (ref.current.scale.x <= targetScale - MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.01)
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.019)
         ref.current.scale.set(lerpValue, lerpValue, lerpValue)
       } else {
         if (animationCallback) animationCallback(); // tell parent component animation is finished
