@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import "./BackButton.css"
+import { EnableSoundContext } from "../../App";
 
 const BackButton = ({onClick}) => {
   const cancelAudio = new Audio("backSound.mp3")
+  const { isMuted, _ } = useContext(EnableSoundContext);
 
   const handleOnClick = () => {
+    cancelAudio.muted = isMuted
     cancelAudio.play()
     onClick()
   }

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BackButton from "../../../components/BackButton/BackButton";
 import "./Modal.css";
+import { EnableSoundContext } from "../../../App";
 
 const Highlight = {
   Link: "Link",
@@ -22,6 +23,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
 
   const cancelAudioRef = useRef(new Audio("backSound.mp3"))
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
+  const {isMuted, _} = useContext(EnableSoundContext);
   const lastOrbPosition = useRef(currHighlighted);
 
   const fadeout = () => {
@@ -32,9 +34,14 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
   }
 
   useEffect(() => {
+    cancelAudioRef.current.muted = isMuted
+
     if (lastOrbPosition.current !== currHighlighted) {
       const highlightAudio = new Audio("selectionSound2.mp3");
+      
+      highlightAudio.muted = isMuted;
       highlightAudio.play();
+      
       lastOrbPosition.current = currHighlighted
     }
   }, [currHighlighted])
