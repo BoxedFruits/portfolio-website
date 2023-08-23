@@ -20,7 +20,7 @@ const Content = {
   },
   Resume: {
     header: "Resume",
-    content: "https://drive.google.com/file/d/1Q9f7btjdnFQzfXl39Lt3D4e3jA8o0wOi/view?usp=share_link"
+    content: "https://drive.google.com/file/d/1Yv-D2UZ53sU1NTJbD_BI84dwZ8_Z2jFT/view?usp=sharing"
   },
   ContactInfo: {
     header: "Contact Info",
