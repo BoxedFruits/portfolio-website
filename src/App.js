@@ -5,6 +5,7 @@ import ExplainerScene from './scenes/ExplainerScene/ExplainerScene';
 import IntroScene from './scenes/IntroScene/IntroScene';
 import MemoryCardSelectionScreen from './scenes/MemoryCardSelectionScene/MemoryCardSelectionScene';
 import SelectionScene from './scenes/SelectionScene/SelectionScene';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 
 export const Scenes = {
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <>
+      <Analytics />
       <BrowserView>
         <div className="App">
           <EnableSoundContext.Provider value={{ isMuted: isMuted, setIsMuted: setIsMuted }}>
@@ -45,13 +47,13 @@ const App = () => {
         </div>
       </BrowserView>
       <MobileView>
-          <div>
-            <center>
-              <div>
-                <h1 style={{color: "white"}}>Please use a PC to view this website.</h1>
-              </div>
-            </center>
-          </div>
+        <div>
+          <center>
+            <div>
+              <h1 style={{ color: "white" }}>Please use a PC to view this website.</h1>
+            </div>
+          </center>
+        </div>
       </MobileView>
     </>
   );
