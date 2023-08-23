@@ -2,9 +2,9 @@ import './SelectionSceneStyles.css'
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import LightOrbs from './LightOrbs';
-import { Scenes } from '../../App';
+import { EnableSoundContext, Scenes } from '../../App';
 
 const Highlight = {
   Browser: {
@@ -23,6 +23,7 @@ const SceneSetup = () => {
 const SelectionText = ({ nextScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.Browser.title);
   const [isTextVisible, setIsTextVisible] = useState(true);
+  const { isMuted, _ } = useContext(EnableSoundContext);
   const nextSceneRef = useRef(null);
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
   const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"))
@@ -39,11 +40,19 @@ const SelectionText = ({ nextScene }) => {
 
   const handleMouseEnter = (title) => {
     const highlightedAudio = new Audio("selectionSound2.mp3");
+    highlightedAudio.muted = isMuted;
+    
     highlightedAudio.play()
+
     setCurrHighLighted(title)
   }
 
   useEffect(() => {
+    if (isMuted === true) {
+      oceanWavesAudioRef.current.muted = true;
+      selectedAudioRef.current.muted = true;
+    }
+
     const timeout = setTimeout(() => {
       oceanWavesAudioRef.current.play();
     }, 3500)

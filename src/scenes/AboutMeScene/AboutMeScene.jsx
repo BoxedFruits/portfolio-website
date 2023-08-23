@@ -1,12 +1,13 @@
-import { ArcballControls, Html } from "@react-three/drei";
+import { ArcballControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import "../MemoryCardSelectionScene/Modal/Modal.css"
 import BackButton from "../../components/BackButton/BackButton";
 import CrystalPillar from "./CrystalPillar/CrystalPillar";
 import LightOrb from "../SelectionScene/LightOrbs";
 import "../AboutMeScene/AboutMeScene.css"
 import { DoubleSide, MathUtils } from "three";
+import { EnableSoundContext } from "../../App";
 
 const Content = {
   ProfessionalSummary: {
@@ -19,7 +20,7 @@ const Content = {
   },
   Resume: {
     header: "Resume",
-    content: "https://drive.google.com/file/d/1Q9f7btjdnFQzfXl39Lt3D4e3jA8o0wOi/view?usp=share_link"
+    content: "https://drive.google.com/file/d/1Yv-D2UZ53sU1NTJbD_BI84dwZ8_Z2jFT/view?usp=sharing"
   },
   ContactInfo: {
     header: "Contact Info",
@@ -163,6 +164,7 @@ const AboutMeScene = ({ prevScene }) => {
   const [counter, setCounter] = useState(0);
   const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
   const [shouldShrink, setShouldShrink] = useState(false)
+  const { isMuted, _ } = useContext(EnableSoundContext);
   const radian_interval = (2.0 * Math.PI) / 12;
   const radius = 3;
   const date = new Date()
@@ -196,6 +198,7 @@ const AboutMeScene = ({ prevScene }) => {
 
   useEffect(() => { //TODO: Refactor
     const highlightAudio = new Audio("selectionSound2.mp3");
+    highlightAudio.muted = isMuted;
     highlightAudio.play();
 
     switch (counter) {

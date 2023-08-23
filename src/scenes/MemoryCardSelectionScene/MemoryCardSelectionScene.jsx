@@ -1,10 +1,10 @@
-import { Html } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import GlowOrb from "../../components/GlowOrb/GlowOrb";
 import { MemoryCard } from "./3dModels/MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
+import { EnableSoundContext } from "../../App";
 
 const SideProjects = require("./MemoryCards/sideProjects.json")
 const WorkExperience = require("./MemoryCards/workExperience.json")
@@ -23,6 +23,7 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
   const [viewObjects, setViewObjects] = useState();
   const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
   const [startAnimation, setStartAnimation] = useState(false)
+  const { isMuted, _ } = useContext(EnableSoundContext);
   const selectedAudioRef = useRef(null);
   const audioRef = useRef(null);
   const lastOrbPosition = useRef(null)
@@ -30,6 +31,11 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
   useEffect(() => {
     audioRef.current = new Audio("selectionSound2.mp3");
     selectedAudioRef.current = new Audio("selectionSound3.mp3");
+
+    if (isMuted === true) {
+      audioRef.current.muted = true;
+      selectedAudioRef.current.muted = true;
+    }
   })
 
   useEffect(() => {

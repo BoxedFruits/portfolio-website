@@ -1,6 +1,6 @@
 import { ArcballControls, Html, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import GlowOrb from "../../../components/GlowOrb/GlowOrb";
 import Modal from "../Modal/Modal";
 import { NasdaqLogo } from "../3dModels/Nasdaq";
@@ -11,6 +11,8 @@ import { Ethereum } from "../3dModels/Ethereum";
 import { CodeArenaLogo } from "../3dModels/CodeArenaLogo";
 import { PenAndPaper } from "../3dModels/PenAndPaper";
 import BackButton from "../../../components/BackButton/BackButton";
+import { EnableSoundContext } from "../../../App";
+
 const OBJECTS_IN_ROW = 5;
 
 //TODO: Refactor this to be more flexible
@@ -121,6 +123,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
   const [modalObjectRef, setModalObjectRef] = useState();
 
   const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
+  const { isMuted, _ } = useContext(EnableSoundContext);
   const objIndex = useRef(0);
   const lastOrbPosition = useRef(orbPosition);
 
@@ -133,8 +136,11 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
 
     const objects = jsonObject.objects.map((obj, index) => {
       if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
+
       let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
-      console.log(position[0], position[1] - 0.45, position[2] - 0.75)
+
+      selectAudioRef.current.muted = isMuted;
+
       return getModelForSelection(
         obj.model,
         position,
@@ -176,7 +182,10 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
   useEffect(() => {
     if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
       const highlightAudio = new Audio("selectionSound2.mp3");
+
+      highlightAudio.muted = isMuted;
       highlightAudio.play();
+
       lastOrbPosition.current = orbPosition
     }
   }, [orbPosition])
@@ -188,9 +197,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
       }
 
       {
-       finishedLoadingAnimation && 
-       !animateBackground &&
-       <BackButton onClick={closeObjectSelector} /> 
+        finishedLoadingAnimation &&
+        !animateBackground &&
+        <BackButton onClick={closeObjectSelector} />
       }
       {
         animateBackground &&
