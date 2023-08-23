@@ -10,7 +10,7 @@ const ExplainerScene = ({ nextScene }) => {
           Hi! My name is Sam and this is my portfolio/online resume website that was inspired by one of my favorite gaming consoles growing up, the PlayStation 2.
         </p>
         <p>
-          There are a lot of 3d elements I recreated using React Three Fiber so to experience this website, it is best to use a PC or turn your phone into landscape mode.
+          There are a lot of 3d elements I recreated using React Three Fiber so to experience this website, it is best to use a PC or turn your device into landscape mode.
         </p>
 
         <i style={{ fontSize: "16px" }}>

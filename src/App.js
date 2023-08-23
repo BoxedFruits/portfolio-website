@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 import AboutMeScene from './scenes/AboutMeScene/AboutMeScene';
 import ExplainerScene from './scenes/ExplainerScene/ExplainerScene';
 import IntroScene from './scenes/IntroScene/IntroScene';
@@ -21,25 +22,38 @@ const App = () => {
   const [isMuted, setIsMuted] = useState(false);
 
   return (
-    <div className="App">
-      <EnableSoundContext.Provider value={{isMuted: isMuted, setIsMuted: setIsMuted}}>
-        {(() => {
-          switch (currScene) {
-            case Scenes.ExplainerScene:
-              return <ExplainerScene nextScene={() => setCurrScene(Scenes.IntroScene)} />
-            case Scenes.IntroScene:
-              return <IntroScene nextScene={() => setCurrScene(Scenes.SelectionScene)} />
-            case Scenes.SelectionScene:
-              return <SelectionScene nextScene={(scene) => setCurrScene(scene)} />
-            case Scenes.AboutMeScene:
-              return <AboutMeScene prevScene={() => setCurrScene(Scenes.SelectionScene)} />
-            case Scenes.MemoryCardSelectionScene:
-              return <MemoryCardSelectionScreen prevScene={() => setCurrScene(Scenes.SelectionScene)} />
-            default: <h1>Uh oh someething broke</h1>
-          }
-        })()}
-      </EnableSoundContext.Provider>
-    </div>
+    <>
+      <BrowserView>
+        <div className="App">
+          <EnableSoundContext.Provider value={{ isMuted: isMuted, setIsMuted: setIsMuted }}>
+            {(() => {
+              switch (currScene) {
+                case Scenes.ExplainerScene:
+                  return <ExplainerScene nextScene={() => setCurrScene(Scenes.IntroScene)} />
+                case Scenes.IntroScene:
+                  return <IntroScene nextScene={() => setCurrScene(Scenes.SelectionScene)} />
+                case Scenes.SelectionScene:
+                  return <SelectionScene nextScene={(scene) => setCurrScene(scene)} />
+                case Scenes.AboutMeScene:
+                  return <AboutMeScene prevScene={() => setCurrScene(Scenes.SelectionScene)} />
+                case Scenes.MemoryCardSelectionScene:
+                  return <MemoryCardSelectionScreen prevScene={() => setCurrScene(Scenes.SelectionScene)} />
+                default: <h1>Uh oh someething broke</h1>
+              }
+            })()}
+          </EnableSoundContext.Provider>
+        </div>
+      </BrowserView>
+      <MobileView>
+          <div>
+            <center>
+              <div>
+                <h1 style={{color: "white"}}>Please use a PC to view this website.</h1>
+              </div>
+            </center>
+          </div>
+      </MobileView>
+    </>
   );
 };
 

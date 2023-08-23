@@ -102,7 +102,7 @@ const IntroScene = ({ nextScene }) => {
   return (
     <>
       <div className="fadeout-intro"></div>
-      <div className="sony text-shadow fadeInOut">Sony Computer Entertainment</div>
+      <div className="sony text-shadow fadeInOut">Samuel Ballesteros Entertainment</div>
       <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1, rotation:[0,0, -0.025] }}>
         {/* <ArcballControls /> */}
         <GlassBoxes />
