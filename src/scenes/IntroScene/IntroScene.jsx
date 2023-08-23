@@ -1,9 +1,10 @@
-import { Cloud, useTexture, useProgress, Html } from "@react-three/drei";
+import { Cloud, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Color, MathUtils } from "three";
 import ColorSpheres from "./ColorSpheres";
 import { GlassBoxes } from "./GlassBoxes";
+import { EnableSoundContext } from "../../App";
 
 const SideProjects = require("../MemoryCardSelectionScene/MemoryCards/sideProjects.json")
 const WorkExperience = require("../MemoryCardSelectionScene/MemoryCards/workExperience.json")
@@ -57,10 +58,15 @@ const IntroScene = ({ nextScene }) => {
   const pillarPositions = useRef(new Set())
   const [pillars, setPillars] = useState([])
   const [shouldZoomIn, setShouldZoomIn] = useState(false);
+  const {isMuted, _} = useContext(EnableSoundContext);
   const audio = new Audio("ps2StartupSoundEffect.mp4")
 
   useEffect(() => {
+    audio.muted = isMuted;
+
+    audio.volume = 0.13;
     audio.play();
+    
     audio.addEventListener('timeupdate', (event) => {
       if(audio.currentTime >= 8.2) setShouldZoomIn(true);
     });
@@ -96,7 +102,7 @@ const IntroScene = ({ nextScene }) => {
   return (
     <>
       <div className="fadeout-intro"></div>
-      <div className="sony text-shadow fadeInOut">Sony Computer Enterainment</div>
+      <div className="sony text-shadow fadeInOut">Sony Computer Entertainment</div>
       <Canvas camera={{ position: [0, 0, 8.5], far: 100, near: .1, rotation:[0,0, -0.025] }}>
         {/* <ArcballControls /> */}
         <GlassBoxes />
