@@ -60,9 +60,18 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
     }, 750);
   };
 
+  const handleAnimationEnd = (e) => {
+    e.target.style.display = "none";
+  };
+
+  const closeObjectSelector = () => {
+    setStartAnimation(false); 
+    setViewObjects(false)
+  };
+
   return (
     <>
-      <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"} />
+      <div className="fadeout-animation" onAnimationEnd={handleAnimationEnd} />
       <div style={{ position: "absolute", width: "100%", height: "100%", backgroundImage: "linear-gradient(145deg, rgb(126, 122, 122) 0%, rgba(0, 0, 0, 1) 116%)" }}></div>
       {viewObjects ?
         <ObjectSelector
@@ -70,7 +79,7 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
           jsonObject={
             currHighlighted === Highlight.WorkExperience.title ? WorkExperience : SideProjects
           }
-          closeObjectSelector={() => { setStartAnimation(false); setViewObjects(false) }}
+          closeObjectSelector={closeObjectSelector}
         />
         :
         <>
