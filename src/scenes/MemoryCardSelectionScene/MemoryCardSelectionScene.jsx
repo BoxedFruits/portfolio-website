@@ -6,8 +6,8 @@ import { MemoryCard } from "./3dModels/MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 import { EnableSoundContext } from "../../App";
 
-const SideProjects = require("./MemoryCards/sideProjects.json")
-const WorkExperience = require("./MemoryCards/workExperience.json")
+const SideProjects = require("./MemoryCards/sideProjects.json");
+const WorkExperience = require("./MemoryCards/workExperience.json");
 
 const Highlight = {
   WorkExperience: {
@@ -21,12 +21,12 @@ const Highlight = {
 const MemoryCardSelectionScreen = ({ prevScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
   const [viewObjects, setViewObjects] = useState();
-  const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1])
-  const [startAnimation, setStartAnimation] = useState(false)
+  const [orbPosition, setOrbPosition] = useState([-2.05, .25, 1]);
+  const [startAnimation, setStartAnimation] = useState(false);
   const { isMuted, _ } = useContext(EnableSoundContext);
   const selectedAudioRef = useRef(null);
   const audioRef = useRef(null);
-  const lastOrbPosition = useRef(null)
+  const lastOrbPosition = useRef(null);
 
   useEffect(() => {
     audioRef.current = new Audio("selectionSound2.mp3");
@@ -36,21 +36,21 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
       audioRef.current.muted = true;
       selectedAudioRef.current.muted = true;
     }
-  })
+  });
 
   useEffect(() => {
     if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
       lastOrbPosition.current = orbPosition;
       audioRef.current.play();
     }
-  }, [orbPosition])
+  }, [orbPosition]);
 
   const handlePointerOver = (title, pos) => {
     if (!startAnimation) {
       setOrbPosition(pos);
       setCurrHighLighted(title);
     }
-  }
+  };
 
   const handleClick = () => {
     selectedAudioRef.current.play();
@@ -58,11 +58,11 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
     setTimeout(() => { // Let animation play before setting state and changing scene
       setViewObjects(true);
     }, 750);
-  }
+  };
 
   return (
     <>
-      <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"}></div>
+      <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"} />
       <div style={{ position: "absolute", width: "100%", height: "100%", backgroundImage: "linear-gradient(145deg, rgb(126, 122, 122) 0%, rgba(0, 0, 0, 1) 116%)" }}></div>
       {viewObjects ?
         <ObjectSelector
@@ -81,11 +81,10 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
           </h1>
           {/* TODO: Fadeout animation when transitioning back */}
           <BackButton onClick={prevScene} />
-          <Canvas camera={{ position: [0, 0, 10] }}> {/* Need to play around with either FOV or orthographic camera to avoid the fisheye lens effect*/}
-            {/* <OrbitControls /> */}
-            <ambientLight intensity={1.3}></ambientLight>
-            <pointLight position={[2.5, 9, 2]} intensity={.45}></pointLight>
-            <pointLight position={[-2.5, 9, 2]} intensity={.45}></pointLight>
+          <Canvas camera={{ position: [0, 0, 10] }}>
+            <ambientLight intensity={1.3} />
+            <pointLight position={[2.5, 9, 2]} intensity={.45} />
+            <pointLight position={[-2.5, 9, 2]} intensity={.45} />
             <GlowOrb position={orbPosition} />
             <MemoryCard
               position={[-2.25, 0, 0]}
