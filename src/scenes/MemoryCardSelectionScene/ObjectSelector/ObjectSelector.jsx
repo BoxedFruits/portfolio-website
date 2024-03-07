@@ -233,15 +233,15 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
           />
         </>
       }
-      <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ position: "absolute", pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
+      <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
         <Html fullscreen style={{ display: animateBackground ? "none" : "block" }}>
-          <p className="memory-card-title text-shadow" style={{ fontSize: "48px", color: "#dfdbdb", position: "absolute", marginLeft: "24px", pointerEvents: "None" }}>
+          <p className="memory-card-title text-shadow">
             Memory Card
-            <span style={{ fontSize: "32px" }}> (PS2) &nbsp;/</span>
+            <span className="ps2"> (PS2) &nbsp;/</span>
             &nbsp;{memoryCardName}
-            <p style={{ marginTop: "0px", fontSize: "24px" }}>46,341 KB FREE</p>
+            <p className="freespace">46,341 KB FREE</p>
           </p>
-          <p className="text-shadow arial-lighter title" style={{ float: 'right', marginRight: '24px', pointerEvents: "None", fontSize: "48px" }}>{currHighlighted}</p>
+          <p className="text-shadow arial-lighter title memory-card-highlighted">{currHighlighted}</p>
         </Html>
         <ambientLight />
         <GlowOrb position={orbPosition} onClick={() => handleAnimation()} />
