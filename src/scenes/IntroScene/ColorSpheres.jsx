@@ -1,21 +1,21 @@
-import { Trail, useTexture } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
-import { useRef } from "react"
-import { AdditiveBlending } from "three"
+import { Trail, useTexture } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import { AdditiveBlending } from "three";
 
 const ColorSpheres = () => {
-  const redSphere = useRef()
-  const greenSphere = useRef()
-  const purpleSphere = useRef()
-  const blueSphere = useRef()
+  const redSphere = useRef();
+  const greenSphere = useRef();
+  const purpleSphere = useRef();
+  const blueSphere = useRef();
 
-  const SCALE = .035
-  const RED_COLOR = "#FF043E"
-  const PURPLE_COLOR = "#900ff0"
-  const GREEN_COLOR = "#007F5C"
-  const BLUE_COLOR = "#336693"
+  const SCALE = .035;
+  const RED_COLOR = "#FF043E";
+  const PURPLE_COLOR = "#900ff0";
+  const GREEN_COLOR = "#007F5C";
+  const BLUE_COLOR = "#336693";
 
-  const orbTexture = useTexture("glow.png")
+  const orbTexture = useTexture("glow.png");
   const SPRITE_CONFIG = {
     map: orbTexture,
     alphaMap: orbTexture,
@@ -24,7 +24,7 @@ const ColorSpheres = () => {
     blending: AdditiveBlending,
     depthWrite: false,
     toneMapped: false,
-  }
+  };
 
   const sphereData =
     [{
@@ -50,20 +50,20 @@ const ColorSpheres = () => {
     ];
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime()
+    const t = clock.getElapsedTime();
 
-    redSphere.current.position.x = Math.sin(t / 2.5) * 4
-    redSphere.current.position.y = Math.cos(-t)
+    redSphere.current.position.x = Math.sin(t / 2.5) * 4;
+    redSphere.current.position.y = Math.cos(-t);
 
-    greenSphere.current.position.x = Math.sin(t) * 2 - 2
-    greenSphere.current.position.y = Math.cos(t / Math.PI) - 1
+    greenSphere.current.position.x = Math.sin(t) * 2 - 2;
+    greenSphere.current.position.y = Math.cos(t / Math.PI) - 1;
 
-    blueSphere.current.position.x = Math.cos(t)
-    blueSphere.current.position.y = Math.sin(2 * t / Math.PI)
+    blueSphere.current.position.x = Math.cos(t);
+    blueSphere.current.position.y = Math.sin(2 * t / Math.PI);
 
-    purpleSphere.current.position.x = Math.sin(t / Math.PI) * 4 - 1.5
-    purpleSphere.current.position.y = Math.cos(t) * 2
-  })
+    purpleSphere.current.position.x = Math.sin(t / Math.PI) * 4 - 1.5;
+    purpleSphere.current.position.y = Math.cos(t) * 2;
+  });
 
   return (
     <>
@@ -83,7 +83,7 @@ const ColorSpheres = () => {
               length={10}
               decay={2}
               attenuation={(t) => {
-                return (t * t) / 2.2
+                return (t * t) / 2.2;
               }}
               color={sphere.color}
             >
@@ -93,10 +93,10 @@ const ColorSpheres = () => {
               </mesh>
             </Trail>
           </group>
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
 export default ColorSpheres;

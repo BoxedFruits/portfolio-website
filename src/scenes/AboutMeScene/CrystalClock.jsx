@@ -21,7 +21,7 @@ const CrystalClock = () => {
         ]}
         rotation-z={(.52 * index) + 1.64}
         index={index}
-      />])
+      />]);
     }
 
     // Glowing portion of pillar. Hardcoded for now
@@ -33,21 +33,20 @@ const CrystalClock = () => {
         0
       ]}
       rotation-z={(.52 * 2) + 1.64}
-    />])
-
-  }, [])
+    />]);
+  }, []);
 
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime() / 8;
     clockRef.current.rotation.y = a;
-  })
+  });
 
   return (
     <group position={[-1.5, .25, -1.5]} ref={clockRef}>
       {lightPillars}
       <LightOrbs />
     </group>
-  )
+  );
 };
 
 export default CrystalClock;

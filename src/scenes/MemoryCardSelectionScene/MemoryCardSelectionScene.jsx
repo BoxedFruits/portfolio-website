@@ -16,7 +16,7 @@ const Highlight = {
   SideProjects: {
     title: "Side Projects"
   }
-}
+};
 
 const MemoryCardSelectionScreen = ({ prevScene }) => {
   const [currHighlighted, setCurrHighLighted] = useState(Highlight.WorkExperience.title);
@@ -66,7 +66,7 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
 
   const closeObjectSelector = () => {
     setStartAnimation(false); 
-    setViewObjects(false)
+    setViewObjects(false);
   };
 
   return (
@@ -116,6 +116,6 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
       }
     </>
   );
-}
+};
 
 export default MemoryCardSelectionScreen;

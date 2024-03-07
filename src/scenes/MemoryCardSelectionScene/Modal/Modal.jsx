@@ -6,7 +6,7 @@ import { EnableSoundContext } from "../../../App";
 const Highlight = {
   Link: "Link",
   Back: "Back"
-}
+};
 
 const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
   const {
@@ -21,20 +21,20 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
     link
   } = data;
 
-  const cancelAudioRef = useRef(new Audio("backSound.mp3"))
+  const cancelAudioRef = useRef(new Audio("backSound.mp3"));
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
   const {isMuted, _} = useContext(EnableSoundContext);
   const lastOrbPosition = useRef(currHighlighted);
 
   const fadeout = () => {
-    cancelAudioRef.current.play()
-    shrinkModel()
-    document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal"
-    document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"
-  }
+    cancelAudioRef.current.play();
+    shrinkModel();
+    document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal";
+    document.getElementsByClassName('modal-background')[0].className += " fadeout-modal";
+  };
 
   useEffect(() => {
-    cancelAudioRef.current.muted = isMuted
+    cancelAudioRef.current.muted = isMuted;
 
     if (lastOrbPosition.current !== currHighlighted) {
       const highlightAudio = new Audio("selectionSound2.mp3");
@@ -42,9 +42,9 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
       highlightAudio.muted = isMuted;
       highlightAudio.play();
       
-      lastOrbPosition.current = currHighlighted
+      lastOrbPosition.current = currHighlighted;
     }
-  }, [currHighlighted])
+  }, [currHighlighted]);
 
   return (
     <>
@@ -70,7 +70,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
         <ul style={{ fontSize: "24px" }}>
           {
             bulletPoints.map((bullet, index) => {
-              return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>
+              return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>;
             })
           }
         </ul>
@@ -95,6 +95,6 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
       <BackButton onClick={fadeout}/>
     </>
   );
-}
+};
 
 export default Modal;

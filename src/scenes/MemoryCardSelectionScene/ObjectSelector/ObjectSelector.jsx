@@ -42,25 +42,25 @@ const getModelForSelection = (title, position, index, onHandleAnimation, handleP
       return <Dumbbell
         {...commonProps}
         targetScale={6.5}
-      />
+      />;
     case "Ethereum":
       return <Ethereum
         {...commonProps}
         targetScale={.7}
-      />
+      />;
     case "CodeArena":
       return <CodeArenaLogo
         {...commonProps}
         targetScale={.6}
-      />
+      />;
     case "PenAndPaper":
       return <PenAndPaper
         {...commonProps}
         targetScale={1.8}
-      />
-    default: return <Text>uh oh something broke</Text>
+      />;
+    default: return <Text>uh oh something broke</Text>;
   }
-}
+};
 
 const getModelForModal = (title, index, getRef) => {
   const commonProps = {
@@ -69,7 +69,7 @@ const getModelForModal = (title, index, getRef) => {
     shouldRotate: true,
     loadAnimation: (e) => e.current.startLoadingAnimation(),
     getRef: getRef
-  }
+  };
 
   switch (title) {
     case "Vanguard":
@@ -83,43 +83,43 @@ const getModelForModal = (title, index, getRef) => {
         {...commonProps}
         rotation-x={1.8}
         targetScale={.8}
-      />
+      />;
     case "Dumbbell":
       return <Dumbbell
         {...commonProps}
         rotation-x={1.6}
         targetScale={6.5}
-      />
+      />;
     case "Ethereum":
       return <Ethereum
         {...commonProps}
         rotation-x={-1.58}
         targetScale={1.15}
-      />
+      />;
     case "CodeArena":
       return <CodeArenaLogo
         {...commonProps}
         rotation-x={-.05}
         targetScale={1}
-      />
+      />;
     case "PenAndPaper":
       return <PenAndPaper
         {...commonProps}
         rotation-x={1.6}
         targetScale={2.8}
-      />
-    default: return <Text>uh oh something broke</Text>
+      />;
+    default: return <Text>uh oh something broke</Text>;
   }
-}
+};
 
 const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => {
   const [animateBackground, setAnimateBackground] = useState(false);
   const [orbPosition, setOrbPosition] = useState([-5, -0.45, 0.5]);
-  const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title)
+  const [currHighlighted, setCurrHighLighted] = useState(jsonObject.objects[0].title);
   const [objectsToRender, setObjectsToRender] = useState([]);
   const [animatedObjectsCounter, setAnimatedObjectsCounter] = useState(0); // Keeps track of which object to animate
   const [finishedLoadingAnimation, setFinishedLoadingAnimation] = useState(false);
-  const [objectRefs, setObjectRefs] = useState([])
+  const [objectRefs, setObjectRefs] = useState([]);
   const [modalObjectRef, setModalObjectRef] = useState();
 
   const selectAudioRef = useRef(new Audio("selectionSound1.mp3"));
@@ -129,7 +129,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
 
   const handleAnimation = () => {
     setAnimateBackground(true);
-  }
+  };
 
   const handleAnimationAndPlayAudio = () => {
     handleAnimation();
@@ -171,24 +171,24 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
     });
     setObjectsToRender(objects);
 
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (objectRefs[0]?.current) { // Start the loading animations
       objectRefs[0].current.startLoadingAnimation();
       setFinishedLoadingAnimation(false);
     }
-  }, [objectRefs])
+  }, [objectRefs]);
 
   useEffect(() => {
     if (objectRefs[animatedObjectsCounter]?.current) {
-      objectRefs[animatedObjectsCounter].current.startLoadingAnimation()
+      objectRefs[animatedObjectsCounter].current.startLoadingAnimation();
     }
 
     if (objectRefs.length > 0 && animatedObjectsCounter >= objectRefs.length) {
       setFinishedLoadingAnimation(true);
     }
-  }, [animatedObjectsCounter])
+  }, [animatedObjectsCounter]);
 
   useEffect(() => {
     if (JSON.stringify(lastOrbPosition.current) !== JSON.stringify(orbPosition)) {
@@ -197,9 +197,9 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
       highlightAudio.muted = isMuted;
       highlightAudio.play();
 
-      lastOrbPosition.current = orbPosition
+      lastOrbPosition.current = orbPosition;
     }
-  }, [orbPosition])
+  }, [orbPosition]);
 
   return (
     <>
@@ -245,7 +245,7 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
         {objectsToRender}
       </Canvas>
     </>
-  )
-}
+  );
+};
 
 export default ObjectSelector;

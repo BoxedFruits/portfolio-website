@@ -9,15 +9,15 @@ const GlowOrb = (props) => {
   let sphereRef = useRef();
   
   useFrame(({clock}) => {
-    const a = clock.getElapsedTime()
+    const a = clock.getElapsedTime();
     const spriteScale = (Math.sin((2.5 * a) / Math.PI)) + 5;
     const sphereScale = ((Math.sin((2.505 * a) / Math.PI)) / 7.75) + .25;
 
-    spriteRef.current.scale.set(spriteScale, spriteScale, spriteScale)
-    sphereRef.current.scale.set(sphereScale, sphereScale, sphereScale)
-  })
+    spriteRef.current.scale.set(spriteScale, spriteScale, spriteScale);
+    sphereRef.current.scale.set(sphereScale, sphereScale, sphereScale);
+  });
 
-  const orbTexture = useTexture("glow.png")
+  const orbTexture = useTexture("glow.png");
   // To prevent sprite from clipping other objects, might have to mess around with the renderOrder. Might have render it last
   return (
     <>
@@ -54,5 +54,5 @@ const GlowOrb = (props) => {
 
     </>
   );
-}
-export default GlowOrb
+};
+export default GlowOrb;

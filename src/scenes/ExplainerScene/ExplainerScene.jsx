@@ -23,7 +23,7 @@ const ExplainerScene = ({ nextScene }) => {
         </div>
       </center>
     </div>
-  )
-}
+  );
+};
 
 export default ExplainerScene;

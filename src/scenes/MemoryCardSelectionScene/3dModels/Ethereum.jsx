@@ -7,9 +7,9 @@ Source: https://sketchfab.com/3d-models/ethereum-logo-103abec3ee9045858db28a7657
 Title: Ethereum logo
 */
 
-import React, { useEffect, useRef, useState } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import React, { useEffect, useRef, useState } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import { MathUtils } from 'three';
 
 const MARGIN = .015;
@@ -21,14 +21,14 @@ export function Ethereum({ shouldRotate, getRef, animationCallback, targetScale,
 
   useFrame(({ clock }) => {
     if (shouldRotate) {
-      const t = clock.getElapsedTime()
-      ref.current.rotation.z = t
+      const t = clock.getElapsedTime();
+      ref.current.rotation.z = t;
     }
 
     if (isLoadingAnimationFinished === false) {
       if (ref.current.scale.x <= targetScale - MARGIN) {
-        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.021)
-        ref.current.scale.set(lerpValue, lerpValue, lerpValue)
+        const lerpValue = MathUtils.lerp(ref.current.scale.x, targetScale, 0.021);
+        ref.current.scale.set(lerpValue, lerpValue, lerpValue);
       } else {
         if (animationCallback) animationCallback(); // tell parent component animation is finished
         setIsLoadingAnimationFinished(true);
@@ -36,15 +36,15 @@ export function Ethereum({ shouldRotate, getRef, animationCallback, targetScale,
     }
 
     if (shrinkAnimation === true) {
-      const lerpValue = MathUtils.lerp(ref.current.scale.x, -0.02, 0.25)
-      ref.current.scale.set(lerpValue, lerpValue, lerpValue)
+      const lerpValue = MathUtils.lerp(ref.current.scale.x, -0.02, 0.25);
+      ref.current.scale.set(lerpValue, lerpValue, lerpValue);
     }
 
-  })
+  });
 
   const startLoadingAnimation = () => {
     setIsLoadingAnimationFinished(false);
-  }
+  };
 
   useEffect(() => {
     if (getRef) {
@@ -58,9 +58,9 @@ export function Ethereum({ shouldRotate, getRef, animationCallback, targetScale,
     if (shrink) {
       shrink(ref);
     }
-  }, [])
-  const { nodes, materials } = useGLTF('/models/ethereum_logo.glb')
-  console.log(materials)
+  }, []);
+  const { nodes, materials } = useGLTF('/models/ethereum_logo.glb');
+  console.log(materials);
   return (
     <group
       ref={ref}
@@ -78,7 +78,7 @@ export function Ethereum({ shouldRotate, getRef, animationCallback, targetScale,
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/models/ethereum_logo.glb')
+useGLTF.preload('/models/ethereum_logo.glb');

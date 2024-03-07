@@ -1,9 +1,9 @@
 import { ArcballControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useState, useEffect, useContext } from "react";
-import "../MemoryCardSelectionScene/Modal/Modal.css"
+import "../MemoryCardSelectionScene/Modal/Modal.css";
 import BackButton from "../../components/BackButton/BackButton";
-import "../AboutMeScene/AboutMeScene.css"
+import "../AboutMeScene/AboutMeScene.css";
 import { EnableSoundContext } from "../../App";
 import FloatingBoxes from "./FloatingBoxes";
 import CrystalClock from "./CrystalClock";
@@ -29,7 +29,7 @@ const Content = {
     header: "Random Facts About Me",
     content: "Some of my favorite things to do is to go to the gym, cook and play videogames. I also really like pizza (and no, pineapple does not belong on pizza). I often get mistaken for being super serious but I'm the exact opposite, I'm just really akward I swear. I am always up for a chat and to joke around."
   }
-}
+};
 
 const ChangeContentButton = ({ changeContent, direction }) => (
   <button onClick={changeContent}>
@@ -39,11 +39,11 @@ const ChangeContentButton = ({ changeContent, direction }) => (
 
 const AboutMeScene = ({ prevScene }) => {
   const [counter, setCounter] = useState(0);
-  const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
-  const [shouldShrink, setShouldShrink] = useState(false)
+  const [contentObj, setContentObj] = useState(Content.ProfessionalSummary);
+  const [shouldShrink, setShouldShrink] = useState(false);
   const { isMuted, _ } = useContext(EnableSoundContext);
-  const date = new Date()
-  const [time, setTime] = useState(date.toLocaleString())
+  const date = new Date();
+  const [time, setTime] = useState(date.toLocaleString());
 
 
   useEffect(() => { //TODO: Refactor
@@ -53,29 +53,29 @@ const AboutMeScene = ({ prevScene }) => {
 
     switch (counter) {
       case 0:
-        setContentObj(Content.ProfessionalSummary)
+        setContentObj(Content.ProfessionalSummary);
         break;
       case 1:
-        setContentObj(Content.EmployementStatus)
-        break
+        setContentObj(Content.EmployementStatus);
+        break;
       case 2:
-        setContentObj(Content.Resume)
-        break
+        setContentObj(Content.Resume);
+        break;
       case 3:
-        setContentObj(Content.ContactInfo)
-        break
+        setContentObj(Content.ContactInfo);
+        break;
       case 4:
-        setContentObj(Content.HobbiesLikesDislikes)
-        break
+        setContentObj(Content.HobbiesLikesDislikes);
+        break;
       case 5:
-        setCounter(0)
+        setCounter(0);
         break;
       case -1: //Needed if you press the up arrow at index 0
-        setCounter(4)
+        setCounter(4);
         break;
-      default: setCounter(0)
+      default: setCounter(0);
     }
-  }, [counter])
+  }, [counter]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -83,8 +83,8 @@ const AboutMeScene = ({ prevScene }) => {
     }, 1000);
     return () => {
       clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
-    }
-  }, [time])
+    };
+  }, [time]);
 
   return (
     <>
@@ -129,7 +129,7 @@ const AboutMeScene = ({ prevScene }) => {
         </>
       }
     </>
-  )
-}
+  );
+};
 
 export default AboutMeScene;
