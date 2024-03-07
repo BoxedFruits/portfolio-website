@@ -11,11 +11,11 @@ import CrystalClock from "./CrystalClock";
 const Content = {
   ProfessionalSummary: {
     header: "Professional Summary",
-    content: "Hi! My name is Samuel Ballesteros but most people call me Sam. I have previously worked at Vanguard and interned at Nasdaq. Most of my experience specializes in Front-End development using Angular as well as a few side projects using React though, the most important thing for me is being able to face interesting problems so I am willing to learn anything."
+    content: "Hi! My name is Samuel Ballesteros but most people call me Sam. I currently work at Nasdaq where I support on-prem and cloud applications. I have also previously worked at Vanguard as a front-end engineer. Most of my experience specializes in Front-End development using Angular as well as a few side projects using React though, the most important thing for me is being able to face interesting problems so I am willing to learn anything."
   },
   EmployementStatus: {
     header: "Employement Status",
-    content: "I am currently looking for a new role! I strongly prefer remote work but willing to work things out for the right opportunity. I have experience with Front-End development but would love to explore Back-End development as well as Security related roles. "
+    content: "I am currently looking for a new role! I strongly prefer remote work but willing to work things out for the right opportunity. I have experience with Front-End development but would love to explore Back-End development."
   },
   Resume: {
     header: "Resume",
