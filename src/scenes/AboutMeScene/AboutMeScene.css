@@ -13,9 +13,10 @@
   justify-content: space-around;
 }
 
-.about-me-container>center {
+.about-me-container > .about-me-container-content {
   min-width: 15vw;
   max-width: 20vw;
+  text-align: center;
 }
 
 .blurred-div {
