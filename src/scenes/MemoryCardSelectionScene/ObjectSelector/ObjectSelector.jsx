@@ -203,36 +203,33 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
 
   return (
     <>
-      {!finishedLoadingAnimation &&
+      {!finishedLoadingAnimation ? (
         <div className="text-shadow loading-text"> Now Loading...</div>
-      }
-
-      {
-        finishedLoadingAnimation &&
-        !animateBackground &&
-        <BackButton onClick={closeObjectSelector} />
-      }
-      {
-        animateBackground &&
+      ) : (
         <>
-          <Canvas className="modal-canvas" style={{ position: "absolute" }}>
-            <ArcballControls enableRotate={false} enablePan={false} />
-            <ambientLight />
-            {
-              getModelForModal(
-                jsonObject.objects[objIndex.current].model,
-                objIndex.current,
-                (e) => setModalObjectRef(e))
-            }
-          </Canvas>
-          <Modal
-            memoryCardName={memoryCardName}
-            data={jsonObject.objects[objIndex.current]}
-            shrinkModel={() => modalObjectRef.current.triggerShrinkAnimation()}
-            closeModal={() => setAnimateBackground(false)}
-          />
+          {!animateBackground && <BackButton onClick={closeObjectSelector} />}
+          {animateBackground && (
+            <>
+              <Canvas className="modal-canvas" style={{ position: "absolute" }}>
+                <ArcballControls enableRotate={false} enablePan={false} />
+                <ambientLight />
+                {
+                  getModelForModal(
+                    jsonObject.objects[objIndex.current].model,
+                    objIndex.current,
+                    (e) => setModalObjectRef(e))
+                }
+              </Canvas>
+              <Modal
+                memoryCardName={memoryCardName}
+                data={jsonObject.objects[objIndex.current]}
+                shrinkModel={() => modalObjectRef.current.triggerShrinkAnimation()}
+                closeModal={() => setAnimateBackground(false)}
+              />
+            </>
+          )}
         </>
-      }
+      )}
       <Canvas className="object-selector-canvas" camera={{ position: [0, -8, 0] }} style={{ pointerEvents: !finishedLoadingAnimation ? "None" : "auto" }}>
         <Html fullscreen style={{ display: animateBackground ? "none" : "block" }}>
           <p className="memory-card-title text-shadow">
