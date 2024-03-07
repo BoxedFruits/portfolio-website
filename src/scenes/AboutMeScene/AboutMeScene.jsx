@@ -31,6 +31,12 @@ const Content = {
   }
 }
 
+const ChangeContentButton = ({ changeContent, direction }) => (
+  <button onClick={changeContent}>
+    <img className={`${direction}-arrow`} src="arrow.png" alt={`${direction} arrow`} />
+  </button>
+);
+
 const AboutMeScene = ({ prevScene }) => {
   const [counter, setCounter] = useState(0);
   const [contentObj, setContentObj] = useState(Content.ProfessionalSummary)
@@ -64,7 +70,7 @@ const AboutMeScene = ({ prevScene }) => {
       case 5:
         setCounter(0)
         break;
-      case -1:
+      case -1: //Needed if you press the up arrow at index 0
         setCounter(4)
         break;
       default: setCounter(0)
@@ -82,7 +88,7 @@ const AboutMeScene = ({ prevScene }) => {
 
   return (
     <>
-      <Canvas className="about-me" style={{ zIndex: 0, position: "absolute" }}>
+      <Canvas className="about-me-bg">
         <ambientLight intensity={.5} color={"lightblue"} />
         <pointLight intensity={10} position={[0, 3, -4]} />
         <pointLight intensity={4} position={[.5, -2, -4]} />
@@ -98,15 +104,15 @@ const AboutMeScene = ({ prevScene }) => {
         <div className="fadein-animation" onAnimationEnd={prevScene}></div> :
         <>
           <div className="fadeout-animation" onAnimationEnd={(e) => e.target.style.display = "none"} />
-          <div style={{ zIndex: 3, position: "absolute", width: "100%", height: "100%" }}>
+          <div className="about-me-wrapper">
             <div className="date-things text-shadow arial-lighter">
               <div>{date.toLocaleDateString()}</div>
               <div>{time}</div>
             </div>
-            <div className="modal-body-container about-me-container">
-              <div className="about-me-container-content">
-                <h1 className="title arial-lighter text-shadow" style={{ fontSize: "3.25em", marginBottom: ".5em" }}>About Me</h1>
-                <h2 className="highlight arial-lighter text-shadow-thinner" style={{ fontSize: "3.25em", marginTop: "0em", marginBottom: "0.25em" }}>
+            <div className="about-me-section">
+              <div className="about-me-section-content">
+                <h1 className="title arial-lighter text-shadow about-me-title">About Me</h1>
+                <h2 className="highlight arial-lighter text-shadow-thinner about-me-header">
                   {contentObj.header}
                 </h2>
                 <p className="modal-body arial-lighter text-shadow-thinner">
@@ -114,12 +120,8 @@ const AboutMeScene = ({ prevScene }) => {
                 </p>
               </div>
               <div className="buttons">
-                <button onClick={() => setCounter(counter - 1)}>
-                  <img style={{ height: "30px" }} src="arrow.png" alt="arrow" />
-                </button>
-                <button style={{ marginTop: "8px" }} onClick={() => setCounter(counter + 1)}>
-                  <img src="arrow.png" style={{ transform: "scaleY(-1)", height: "30px" }} alt="arrow" />
-                </button>
+                <ChangeContentButton changeContent={() => setCounter(counter - 1)} direction="up" />
+                <ChangeContentButton changeContent={() => setCounter(counter + 1)} direction="down" />
               </div>
             </div>
             <BackButton onClick={() => setShouldShrink(true)} />
