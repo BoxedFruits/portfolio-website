@@ -5,7 +5,7 @@ import GlowOrb from "../../components/GlowOrb/GlowOrb";
 import { MemoryCard } from "./3dModels/MemoryCard";
 import ObjectSelector from "./ObjectSelector/ObjectSelector";
 import { EnableSoundContext } from "../../App";
-
+import "./MemoryCardSelectionScene.css";
 const SideProjects = require("./MemoryCards/sideProjects.json");
 const WorkExperience = require("./MemoryCards/workExperience.json");
 
@@ -72,7 +72,7 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
   return (
     <>
       <div className="fadeout-animation" onAnimationEnd={handleAnimationEnd} />
-      <div style={{ position: "absolute", width: "100%", height: "100%", backgroundImage: "linear-gradient(145deg, rgb(126, 122, 122) 0%, rgba(0, 0, 0, 1) 116%)" }}></div>
+      <div className="mem-card-bg"></div>
       {viewObjects ?
         <ObjectSelector
           memoryCardName={currHighlighted}
@@ -83,8 +83,8 @@ const MemoryCardSelectionScreen = ({ prevScene }) => {
         />
         :
         <>
-          <h1 className="text-shadow arial-lighter" style={{ position: 'absolute', marginLeft: '20px', color: "white", fontSize: "48px" }}>PS2</h1>
-          <h1 className="text-shadow arial-lighter" style={{ float: 'right', marginRight: '20px', color: 'rgb(221, 221, 78)', display: "flex", alignItems: "center", fontSize: "48px", position: "relative" }}>
+          <h1 className="text-shadow arial-lighter ps2-header">PS2</h1>
+          <h1 className="text-shadow arial-lighter mem-card-header">
             Memory Card
             <span style={{ fontSize: "32px" }}>&nbsp;(PS2)&nbsp;</span> / {currHighlighted}
           </h1>
