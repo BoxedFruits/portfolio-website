@@ -68,7 +68,7 @@ const getModelForModal = (title, index, getRef) => {
     position: [-4.5, -1.25, -1],
     shouldRotate: true,
     loadAnimation: (e) => e.current.startLoadingAnimation(),
-    getRef: getRef,
+    getRef: getRef
   }
 
   switch (title) {
@@ -131,12 +131,30 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
     setAnimateBackground(true);
   }
 
+  const handleAnimationAndPlayAudio = () => {
+    handleAnimation();
+    selectAudioRef.current.play();
+  };
+
+  const handlePointerOver = (index, position, title) => {
+    objIndex.current = index;
+    setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]);
+    setCurrHighLighted(title);
+  };
+
+  const updateObjectRefs = (e) => {
+    setObjectRefs(objectRefs => ([...objectRefs, e]));
+  };
+
+  const incrementAnimatedObjectsCounter = (index) => {
+    setAnimatedObjectsCounter(index + 1);
+  };
+
   useEffect(() => {
     let zValue = 4.25;
 
     const objects = jsonObject.objects.map((obj, index) => {
       if (index % OBJECTS_IN_ROW === 0) zValue -= 3;
-
       let position = [-5 + (index % OBJECTS_IN_ROW * 2.5), 0, zValue];
 
       selectAudioRef.current.muted = isMuted;
@@ -145,19 +163,12 @@ const ObjectSelector = ({ jsonObject, memoryCardName, closeObjectSelector }) => 
         obj.model,
         position,
         index,
-        () => {
-          handleAnimation();
-          selectAudioRef.current.play()
-        },
-        () => {
-          objIndex.current = index;
-          setOrbPosition([position[0], position[1] - 0.45, position[2] - 0.75]);
-          setCurrHighLighted(obj.title)
-        },
-        (e) => setObjectRefs(objectRefs => ([...objectRefs, e])),
-        () => setAnimatedObjectsCounter(index + 1)
-      )
-    })
+        handleAnimationAndPlayAudio,
+        () => handlePointerOver(index, position, obj.title),
+        updateObjectRefs,
+        () => incrementAnimatedObjectsCounter(index)
+      );
+    });
     setObjectsToRender(objects);
 
   }, [])
