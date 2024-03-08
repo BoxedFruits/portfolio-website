@@ -1,4 +1,4 @@
-import './SelectionSceneStyles.css'
+import './SelectionSceneStyles.css';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Color } from 'three';
@@ -13,7 +13,7 @@ const Highlight = {
   SystemConfig: {
     title: "System Configuration"
   }
-}
+};
 
 const SceneSetup = () => {
   const { scene } = useThree();
@@ -26,7 +26,7 @@ const SelectionText = ({ nextScene }) => {
   const { isMuted, _ } = useContext(EnableSoundContext);
   const nextSceneRef = useRef(null);
   const selectedAudioRef = useRef(new Audio("selectionSound1.mp3"));
-  const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"))
+  const oceanWavesAudioRef = useRef(new Audio("oceanWavesSoundEffect.mp3"));
 
 
   const handleClick = (scene) => {
@@ -36,16 +36,16 @@ const SelectionText = ({ nextScene }) => {
     nextSceneRef.current = scene;
 
     setIsTextVisible(false);
-  }
+  };
 
   const handleMouseEnter = (title) => {
     const highlightedAudio = new Audio("selectionSound2.mp3");
     highlightedAudio.muted = isMuted;
     
-    highlightedAudio.play()
+    highlightedAudio.play();
 
-    setCurrHighLighted(title)
-  }
+    setCurrHighLighted(title);
+  };
 
   useEffect(() => {
     if (isMuted === true) {
@@ -55,13 +55,13 @@ const SelectionText = ({ nextScene }) => {
 
     const timeout = setTimeout(() => {
       oceanWavesAudioRef.current.play();
-    }, 3500)
+    }, 3500);
 
     return () => {
-      oceanWavesAudioRef.current.pause()
-      clearTimeout(timeout)
-    }
-  }, [])
+      oceanWavesAudioRef.current.pause();
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <>
@@ -86,7 +86,7 @@ const SelectionText = ({ nextScene }) => {
         </div>}
     </>
   );
-}
+};
 
 const SelectionScene = ({ nextScene }) => {
   return (

@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import "./BackButton.css"
+import "./BackButton.css";
 import { EnableSoundContext } from "../../App";
 
 const BackButton = ({onClick}) => {
-  const cancelAudio = new Audio("backSound.mp3")
+  const cancelAudio = new Audio("backSound.mp3");
   const { isMuted, _ } = useContext(EnableSoundContext);
 
   const handleOnClick = () => {
-    cancelAudio.muted = isMuted
-    cancelAudio.play()
-    onClick()
-  }
+    cancelAudio.muted = isMuted;
+    cancelAudio.play();
+    onClick();
+  };
   
   return (
     <div className="back-button" onClick={handleOnClick}>
@@ -19,7 +19,7 @@ const BackButton = ({onClick}) => {
         Back
       </span>
     </div>
-  )
-}
+  );
+};
 
 export default BackButton;

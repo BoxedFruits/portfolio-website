@@ -22,7 +22,7 @@ const CrystalPillar = ({isGlowing , ...props}) => {
         transmission={!isGlowing ? .2 : 0}
       />
     </mesh>
-  )
-}
+  );
+};
 
 export default CrystalPillar;

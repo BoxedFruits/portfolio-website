@@ -14,7 +14,7 @@ export const Scenes = {
   SelectionScene: 2,
   MemoryCardSelectionScene: 3,
   AboutMeScene: 4
-}
+};
 
 export const EnableSoundContext = createContext();
 
@@ -31,16 +31,16 @@ const App = () => {
             {(() => {
               switch (currScene) {
                 case Scenes.ExplainerScene:
-                  return <ExplainerScene nextScene={() => setCurrScene(Scenes.IntroScene)} />
+                  return <ExplainerScene nextScene={() => setCurrScene(Scenes.IntroScene)} />;
                 case Scenes.IntroScene:
-                  return <IntroScene nextScene={() => setCurrScene(Scenes.SelectionScene)} />
+                  return <IntroScene nextScene={() => setCurrScene(Scenes.SelectionScene)} />;
                 case Scenes.SelectionScene:
-                  return <SelectionScene nextScene={(scene) => setCurrScene(scene)} />
+                  return <SelectionScene nextScene={(scene) => setCurrScene(scene)} />;
                 case Scenes.AboutMeScene:
-                  return <AboutMeScene prevScene={() => setCurrScene(Scenes.SelectionScene)} />
+                  return <AboutMeScene prevScene={() => setCurrScene(Scenes.SelectionScene)} />;
                 case Scenes.MemoryCardSelectionScene:
-                  return <MemoryCardSelectionScreen prevScene={() => setCurrScene(Scenes.SelectionScene)} />
-                default: <h1>Uh oh someething broke</h1>
+                  return <MemoryCardSelectionScreen prevScene={() => setCurrScene(Scenes.SelectionScene)} />;
+                default: <h1>Uh oh someething broke</h1>;
               }
             })()}
           </EnableSoundContext.Provider>

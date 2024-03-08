@@ -6,7 +6,7 @@ import { EnableSoundContext } from "../../../App";
 const Highlight = {
   Link: "Link",
   Back: "Back"
-}
+};
 
 const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
   const {
@@ -21,20 +21,20 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
     link
   } = data;
 
-  const cancelAudioRef = useRef(new Audio("backSound.mp3"))
+  const cancelAudioRef = useRef(new Audio("backSound.mp3"));
   const [currHighlighted, setCurrHighLighted] = useState(link === "" ? Highlight.Back : Highlight.Link);
   const {isMuted, _} = useContext(EnableSoundContext);
   const lastOrbPosition = useRef(currHighlighted);
 
   const fadeout = () => {
-    cancelAudioRef.current.play()
-    shrinkModel()
-    document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal"
-    document.getElementsByClassName('modal-background')[0].className += " fadeout-modal"
-  }
+    cancelAudioRef.current.play();
+    shrinkModel();
+    document.getElementsByClassName('modal-body-container')[0].className += " fadeout-modal";
+    document.getElementsByClassName('modal-background')[0].className += " fadeout-modal";
+  };
 
   useEffect(() => {
-    cancelAudioRef.current.muted = isMuted
+    cancelAudioRef.current.muted = isMuted;
 
     if (lastOrbPosition.current !== currHighlighted) {
       const highlightAudio = new Audio("selectionSound2.mp3");
@@ -42,9 +42,9 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
       highlightAudio.muted = isMuted;
       highlightAudio.play();
       
-      lastOrbPosition.current = currHighlighted
+      lastOrbPosition.current = currHighlighted;
     }
-  }, [currHighlighted])
+  }, [currHighlighted]);
 
   return (
     <>
@@ -59,7 +59,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
       </div>
       <div className="modal-body-container">
         <center>
-          <p className="memory-card-title text-shadow modal-body" style={{ fontSize: "32px", marginBottom: "8px" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
+          <p className="text-shadow modal-body" style={{ fontSize: "32px", marginBottom: "8px" }}>Memory Card <span style={{ fontSize: "24px" }}> (PS2) / </span> {memoryCardName}</p>
           <h1 className="text-shadow arial-lighter title" style={{ marginTop: "0", fontSize: "48px", marginBottom: "8px" }} >{title}</h1>
           <p className="text-shadow modal-body" style={{ marginBottom: "0", marginTop: "0", fontSize: "24px", letterSpacing: "2px" }}>{date.start}&nbsp; — &nbsp;{date.end}</p>
           <p className="text-shadow modal-body" style={{ marginTop: "0", marginBottom: "40px", fontSize: "24px", letterSpacing: "2px" }}>{memory}</p>
@@ -70,7 +70,7 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
         <ul style={{ fontSize: "24px" }}>
           {
             bulletPoints.map((bullet, index) => {
-              return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>
+              return <li key={index} className="memory-card-bulletpoints text-shadow-thinner modal-body" style={{ lineHeight: "1.8" }}>{bullet}</li>;
             })
           }
         </ul>
@@ -95,6 +95,6 @@ const Modal = ({ data, memoryCardName, closeModal, shrinkModel }) => {
       <BackButton onClick={fadeout}/>
     </>
   );
-}
+};
 
 export default Modal;

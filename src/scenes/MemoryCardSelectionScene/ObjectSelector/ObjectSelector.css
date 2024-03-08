@@ -5,6 +5,7 @@
 
 .object-selector-canvas {
   z-index: 0;
+  position: absolute;
 }
 
 .modal-canvas > div {
@@ -25,4 +26,28 @@
   font-family: arial;
   font-weight: lighter;
   pointer-events: none;
+}
+
+.memory-card-title {
+  font-size: 48px;
+  color: #dfdbdb;
+  position: absolute;
+  margin-left: 24px;
+  pointer-events: None 
+}
+
+.memory-card-highlighted {
+  float: right;
+  margin-right: 24px;
+  pointer-events: None;
+  font-size: 48px
+}
+
+.freespace { 
+  margin-top: 0px;
+  font-size: 24px;
+}
+
+.ps2 {
+  font-size: 32px;
 }

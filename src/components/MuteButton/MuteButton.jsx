@@ -20,7 +20,7 @@ const MuteButton = () => {
         )}
       </svg>
     </button>
-  )
-}
+  );
+};
 
 export default MuteButton;
